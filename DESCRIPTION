@@ -1,0 +1,31 @@
+Package: derfinder
+Type: Package
+Title: Plotting functions for derfinder
+Version: 0.0.1
+Date: 2014-07-07
+Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
+    = "lcollado@jhu.edu"), person("Andrew", "Jaffe", role = "aut", email =
+    "andrew.jaffe@libd.org"), person("Jeffrey", "Leek", role = c("aut", "ths"),
+    email = "jtleek@gmail.com"))
+Depends:
+    R(>= 3.1)
+Imports:
+    GenomeInfoDb (>= 1.1.5),
+    GenomicRanges (>= 1.17.16),
+    ggbio (>= 1.12.3),
+    ggplot2,
+    IRanges (>= 1.99.15),
+    plyr,
+    reshape2,
+    scales
+Suggests:
+    biovizBase,
+    bumphunter,
+    RColorBrewer,
+    TxDb.Hsapiens.UCSC.hg19.knownGene
+Description: Plotting functions for derfinder
+License: Artistic-2.0
+LazyData: false
+URL: https://github.com/lcolladotor/derfinderPlot
+BugReports: https://github.com/lcolladotor/derfinderPlot/issues
+biocViews: DifferentialExpression, Sequencing, RNASeq, Software
