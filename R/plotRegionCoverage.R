@@ -1,25 +1,27 @@
 #' Makes plots for every region while summarizing the annotation
 #'
-#' This function takes the regions found in \link{calculatePvalues} and assigns 
-#' them genomic states contructed with \link{makeGenomicState}. The main 
-#' workhorse functions are \link[IRanges]{countOverlaps} and 
-#' \link[IRanges]{findOverlaps}. For an alternative plot check 
-#' \link{plotCluster} which is much slower and we recommend it's use only after 
-#' quickly checking the results with this function.
+#' This function takes the regions found in \link[derfinder]{calculatePvalues} 
+#' and assigns them genomic states contructed with 
+#' \link[derfinder]{makeGenomicState}. The main workhorse functions are 
+#' \link[IRanges]{countOverlaps} and \link[IRanges]{findOverlaps}. For an 
+#' alternative plot check \link{plotCluster} which is much slower and we 
+#' recommend it's use only after quickly checking the results with this 
+#' function.
 #' 
-#' @param regions The \code{$regions} output from \link{calculatePvalues}.
-#' @param regionCoverage The output from \link{getRegionCoverage} used on 
-#' \code{regions}.
+#' @param regions The \code{$regions} output from 
+#' \link[derfinder]{calculatePvalues}.
+#' @param regionCoverage The output from \link[derfinder]{getRegionCoverage} 
+#' used on \code{regions}.
 #' @param groupInfo A factor specifying the group membership of each sample. It 
 #' will be used to color the samples by group.
 #' @param nearestAnnotation The output from \link[bumphunter]{annotateNearest} 
 #' used on \code{regions}.
-#' @param annotatedRegions The output from \link{annotateRegions} used on 
-#' \code{regions}.
+#' @param annotatedRegions The output from \link[derfinder]{annotateRegions} 
+#' used on \code{regions}.
 #' @param whichRegions An integer vector with the index of the regions to plot.
 #' @param colors If \code{NULL} then \link[RColorBrewer]{brewer.pal} with the 
 #' \code{'Dark2'} color scheme is used.
-#' @param scalefac The parameter used in \link{preprocessCoverage}.
+#' @param scalefac The parameter used in \link[derfinder]{preprocessCoverage}.
 #' @param ask If \code{TRUE} then the user is prompted before each plot is made.
 #' @param ylab The name of the of the Y axis.
 #' @param verbose If \code{TRUE} basic status updates will be printed along the 
@@ -29,8 +31,9 @@
 #' base of the region as well as the summarized annotation information.
 #'
 #' @author Andrew Jaffe, Leonardo Collado-Torres
-#' @seealso \link{calculatePvalues}, \link{getRegionCoverage}, 
-#' \link[bumphunter]{annotateNearest}, \link{annotateRegions}, 
+#' @seealso \link[derfinder]{calculatePvalues}, 
+#' \link[derfinder]{getRegionCoverage}, 
+#' \link[bumphunter]{annotateNearest}, \link[derfinder]{annotateRegions}, 
 #' \link{plotCluster}
 #' @export
 #' @importMethodsFrom GenomicRanges mcols names start end '$' '[[' as.data.frame

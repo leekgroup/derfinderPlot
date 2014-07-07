@@ -1,18 +1,19 @@
 #' Plot the coverage information surrounding a region cluster
 #'
-#' For a given region found in \link{calculatePvalues}, plot the coverage for 
-#' the cluster this region belongs to as well as some padding. The mean by 
-#' group is shown to facilitate comparisons between groups. If annotation 
-#' exists, you can plot the trancripts and exons (if any) overlapping in the 
-#' vicinity of the region of interest.
+#' For a given region found in \link[derfinder]{calculatePvalues}, plot the 
+#' coverage for the cluster this region belongs to as well as some padding. The 
+#' mean by group is shown to facilitate comparisons between groups. If 
+#' annotation exists, you can plot the trancripts and exons (if any) 
+#' overlapping in the vicinity of the region of interest.
 #'
 #' 
 #' @param idx A integer specifying the index number of the region of interest.
-#' @param regions The \code{$regions} output from \link{calculatePvalues}.
+#' @param regions The \code{$regions} output from 
+#' \link[derfinder]{calculatePvalues}.
 #' @param annotation The output from running \link[bumphunter]{annotateNearest} 
-#' on the output from \link{calculatePvalues}.
-#' @param coverageInfo A DataFrame resulting from \link{loadCoverage} using 
-#' \code{cutoff=NULL}.
+#' on the output from \link[derfinder]{calculatePvalues}.
+#' @param coverageInfo A DataFrame resulting from 
+#' \link[derfinder]{loadCoverage} using \code{cutoff=NULL}.
 #' @param groupInfo A factor specifying the group membership of each sample. It 
 #' will be used to color the samples by group.
 #' @param titleUse Whether to show the p-value (\code{pval}) or the q-value 
@@ -28,7 +29,7 @@
 #' each side) before and after the region cluster of interest. For small region 
 #' clusters, the one side extension is equal to the width of the region cluster.
 #' @param colsubset Column subset in case that it was specified in 
-#' \link{preprocessCoverage}.
+#' \link[derfinder]{preprocessCoverage}.
 #' @param forceLarge If \code{TRUE} then the data size limitations are ignored. 
 #' The window size (region cluster width + 2 times \code{maxExtend}) has to be 
 #' less than 100 kb. Note that a single plot at the 300kb range can take around 
@@ -40,10 +41,11 @@
 #' ggbio object. The region with the red bar is the one whose information is 
 #' shown in the title.
 #'
-#' @details See the parameter \code{significantCut} in \link{calculatePvalues} 
-#' for how the significance cutoffs are determined.
+#' @details See the parameter \code{significantCut} in 
+#' \link[derfinder]{calculatePvalues} for how the significance cutoffs are 
+#' determined.
 #'
-#' @seealso \link{loadCoverage}, \link{calculatePvalues}, 
+#' @seealso \link[derfinder]{loadCoverage}, \link[derfinder]{calculatePvalues}, 
 #' \link[bumphunter]{annotateNearest}, \link[ggbio]{plotIdeogram}
 #' @author Leonardo Collado-Torres
 #' @export

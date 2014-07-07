@@ -1,16 +1,17 @@
 #' Plot a karyotype overview of the genome with the identified regions
 #'
 #' Plots an overview of the genomic locations of the identified regions (see 
-#' \link{calculatePvalues}) in a karyotype view. The coloring can be done 
-#' either by significant regions according to their p-values, significant by 
-#' adjusted p-values, or by annotated region if using 
+#' \link[derfinder]{calculatePvalues}) in a karyotype view. The coloring can be 
+#' done either by significant regions according to their p-values, significant 
+#' by adjusted p-values, or by annotated region if using 
 #' \link[bumphunter]{annotateNearest}.
 #'
 #' 
-#' @param regions The \code{$regions} output from \link{calculatePvalues}.
+#' @param regions The \code{$regions} output from
+#' \link[derfinder]{calculatePvalues}.
 #' @param annotation The output from running \link[bumphunter]{annotateNearest} 
-#' on the output from \link{calculatePvalues}. It is only required if 
-#' \code{type='annotation'}.
+#' on the output from \link[derfinder]{calculatePvalues}. It is only required 
+#' if \code{type='annotation'}.
 #' @param type Must be either \code{pval}, \code{qval} or \code{annotation}. It 
 #' determines whether the plot coloring should be done according to significant 
 #' p-values (<0.05), significant q-values (<0.10) or annotation regions.
@@ -31,7 +32,8 @@
 #' @return A ggplot2 plot that is ready to be printed out. Tecnically it is a 
 #' ggbio object.
 #'
-#' @seealso \link{calculatePvalues}, \link[bumphunter]{annotateNearest}
+#' @seealso \link[derfinder]{calculatePvalues}, 
+#' \link[bumphunter]{annotateNearest}
 #' @author Leonardo Collado-Torres
 #' @export
 #' @importFrom GenomicRanges seqinfo
