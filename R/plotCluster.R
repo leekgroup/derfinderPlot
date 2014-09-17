@@ -50,7 +50,7 @@
 #' @author Leonardo Collado-Torres
 #' @export
 #' @importFrom IRanges width resize
-#' @importMethodsFrom IRanges '$' '[' as.matrix findOverlaps queryHits
+#' @importMethodsFrom IRanges '[' as.matrix findOverlaps queryHits
 #' @importFrom GenomicRanges seqnames
 #' @importMethodsFrom GenomicRanges findOverlaps start end as.data.frame range
 #' @importFrom ggbio plotIdeogram tracks theme_tracks_sunset
