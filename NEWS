@@ -1,0 +1,6 @@
+CHANGES IN VERSION 0.0.1
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Moved plotting functions from derfinder into this package
