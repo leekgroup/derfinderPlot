@@ -190,9 +190,9 @@
 #' }
 
 plotCluster <- function(idx, regions, annotation, coverageInfo, 
-    groupInfo, titleUse = "qval", txdb = NULL, p.ideogram = NULL, 
-    maxExtend = 300L, colsubset = NULL, forceLarge = FALSE, chrsStyle = "UCSC") {
-    stopifnot(titleUse %in% c("pval", "qval", "none"))
+    groupInfo, titleUse = 'qval', txdb = NULL, p.ideogram = NULL, 
+    maxExtend = 300L, colsubset = NULL, forceLarge = FALSE, chrsStyle = 'UCSC') {
+    stopifnot(titleUse %in% c('pval', 'qval', 'none'))
     stopifnot(is.factor(groupInfo))
     if (is.null(colsubset)) 
         colsubset <- seq_len(length(groupInfo))
@@ -215,19 +215,19 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
     l <- width(cluster) + 2 * min(maxExtend, width(cluster))
     
     if (l > 1e+05 & !forceLarge) {
-        message(paste("No plot will be made because the data is too large. The window size exceeds 100 kb."))
+        message(paste('No plot will be made because the data is too large. The window size exceeds 100 kb.'))
         return(invisible(l))
     }
     
-    wh <- resize(cluster, l, fix = "center")
-    if (titleUse == "pval") {
-        title <- paste0("Cluster for region with name ", annotation$name[idx], 
-            " and p-value ", signif(current$pvalues, 4))
-    } else if (titleUse == "qval") {
-        title <- paste0("Cluster for region with name ", annotation$name[idx], 
-            " and q-value ", signif(current$qvalues, 4))
+    wh <- resize(cluster, l, fix = 'center')
+    if (titleUse == 'pval') {
+        title <- paste0('Cluster for region with name ', annotation$name[idx], 
+            ' and p-value ', signif(current$pvalues, 4))
+    } else if (titleUse == 'qval') {
+        title <- paste0('Cluster for region with name ', annotation$name[idx], 
+            ' and q-value ', signif(current$qvalues, 4))
     } else {
-        title <- paste0("Cluster for region with name ", annotation$name[idx])
+        title <- paste0('Cluster for region with name ', annotation$name[idx])
     }
     
     ## Plot the ideogram if not supplied
@@ -235,9 +235,9 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
         chr <- as.character(seqnames(wh))
         ## Now load the ideogram info
         hg19IdeogramCyto <- NULL
-        load(system.file("data", "hg19IdeogramCyto.rda", package = "biovizBase", 
+        load(system.file('data', 'hg19IdeogramCyto.rda', package = 'biovizBase', 
             mustWork = TRUE))
-        p.ideogram <- plotIdeogram(hg19IdeogramCyto, mapSeqlevels(chr, "UCSC"))
+        p.ideogram <- plotIdeogram(hg19IdeogramCyto, mapSeqlevels(chr, 'UCSC'))
     }
     
     ## Regions found (from the view)
@@ -245,22 +245,22 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
     neighbors$originalRegion <- neighbors == current
     ann_line <- data.frame(x = start(current), xend = end(current), 
         y = 1)
-    if (titleUse == "pval") {
+    if (titleUse == 'pval') {
         p.region <- autoplot(neighbors, aes(fill = significant)) + 
-            scale_fill_manual(values = c("chartreuse4", "wheat2"), 
-                limits = c("TRUE", "FALSE")) + geom_segment(aes(x = x, 
+            scale_fill_manual(values = c('chartreuse4', 'wheat2'), 
+                limits = c('TRUE', 'FALSE')) + geom_segment(aes(x = x, 
             xend = xend, y = y, yend = y, size = 3), data = ann_line, 
-            colour = "red") + guides(size = FALSE)
-    } else if (titleUse == "qval") {
+            colour = 'red') + guides(size = FALSE)
+    } else if (titleUse == 'qval') {
         p.region <- autoplot(neighbors, aes(fill = significantQval)) + 
-            scale_fill_manual(values = c("chartreuse4", "wheat2"), 
-                limits = c("TRUE", "FALSE")) + geom_segment(aes(x = x, 
+            scale_fill_manual(values = c('chartreuse4', 'wheat2'), 
+                limits = c('TRUE', 'FALSE')) + geom_segment(aes(x = x, 
             xend = xend, y = y, yend = y, size = 3), data = ann_line, 
-            colour = "red") + guides(size = FALSE)
+            colour = 'red') + guides(size = FALSE)
     } else {
         p.region <- autoplot(neighbors) + geom_segment(aes(x = x, 
             xend = xend, y = y, yend = y, size = 3), data = ann_line, 
-            colour = "red") + guides(size = FALSE)
+            colour = 'red') + guides(size = FALSE)
     }
     
     ## Graphical parameters
@@ -270,14 +270,14 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
     pos <- start(wh):end(wh)
     rawData <- as.data.frame(coverageInfo[pos, colsubset])
     rawData$position <- pos
-    covData <- melt(rawData, id.vars = "position")
+    covData <- melt(rawData, id.vars = 'position')
     covData$group <- rep(groupInfo, each = nrow(rawData))
     p.coverage <- ggplot(covData, aes(x = position, y = value, 
         group = variable, colour = group)) + geom_line(alpha = 1/nGroups) + 
         scale_y_continuous(trans = log2_trans())
     
     ## Construct mean by group coverage plot
-    meanCoverage <- ddply(covData, c("position", "group"), summarise, 
+    meanCoverage <- ddply(covData, c('position', 'group'), summarise, 
         meanCov = mean(value))
     p.meanCov <- ggplot(meanCoverage, aes(x = position, y = meanCov, 
         colour = group)) + geom_line(alpha = 1/max(1, 1/2 * nGroups)) + 
@@ -290,7 +290,7 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
         ## The tryCatch is needed because not all regions overlap a
         ## transcript
         p.transcripts <- tryCatch(autoplot(txdb, which = wh, 
-            names.expr = "tx_name(gene_id)"), error = function(e) {
+            names.expr = 'tx_name(gene_id)'), error = function(e) {
             FALSE
         })
     }
@@ -298,11 +298,11 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
         result <- tracks(p.ideogram, Coverage = p.coverage, `Mean coverage` =
             p.meanCov, Regions = p.region, `tx_name\n(gene_id)` = p.transcripts, 
             heights = c(2, 4, 4, 1.5, 3), xlim = wh, title = title) + 
-            ylab("") + theme_tracks_sunset()
+            ylab('') + theme_tracks_sunset()
     } else {
         result <- tracks(p.ideogram, Coverage = p.coverage, `Mean coverage` =
             p.meanCov, Regions = p.region, heights = c(2, 5, 5, 2), xlim = wh, 
-            title = title) + ylab("") + theme_tracks_sunset()
+            title = title) + ylab('') + theme_tracks_sunset()
     }
     return(result)
 } 

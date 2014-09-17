@@ -1,4 +1,4 @@
-Package: derfinder
+Package: derfinderPlot
 Type: Package
 Title: Plotting functions for derfinder
 Version: 0.0.2
@@ -10,11 +10,11 @@ Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
 Depends:
     R(>= 3.1.1)
 Imports:
-    GenomeInfoDb (>= 1.1.5),
-    GenomicRanges (>= 1.17.16),
-    ggbio (>= 1.12.3),
+    GenomeInfoDb (>= 1.1.19),
+    GenomicRanges (>= 1.17.40),
+    ggbio (>= 1.13.13),
     ggplot2,
-    IRanges (>= 1.99.15),
+    IRanges (>= 1.99.28),
     plyr,
     reshape2,
     scales
@@ -23,6 +23,7 @@ Suggests:
     bumphunter,
     derfinder (>= 0.0.74),
     RColorBrewer,
+    testthat,
     TxDb.Hsapiens.UCSC.hg19.knownGene
 Description: Plotting functions for derfinder
 License: Artistic-2.0

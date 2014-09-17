@@ -5,9 +5,9 @@
     tips <- c(
         "Found a bug? Report it at https://github.com/lcolladotor/derfinderPlot/issues",
         "Want to contribute a new feature? Fork derfinderPlot at\n https://github.com/lcolladotor/derfinderPlot/fork\nThen submit a pull request =)",
-        paste("Find out what's changed in derfinder with\n",
-            "news(Version == \"", utils::packageVersion("derfinder"),
-            "\", package = \"derfinder\")", sep = ""),
+        paste("Find out what's changed in derfinderPlot with\n",
+            "news(Version == \"", utils::packageVersion("derfinderPlot"),
+            "\", package = \"derfinderPlot\")", sep = ""),
         "Create HTML reports from derfinder results using derfinderReport available at\nhttps://github.com/lcolladotor/derfinderReport",
         "Use suppressPackageStartupMessages to eliminate package startup messages."
     )

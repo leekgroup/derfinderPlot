@@ -8,7 +8,7 @@ Addon package with plotting functions for
 
 Get R 3.1.1 or newer from [CRAN](http://cran.r-project.org/).
 
-```S
+```R
 ## If needed
 install.packages('devtools')
 

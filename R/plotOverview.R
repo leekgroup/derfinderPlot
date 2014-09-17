@@ -84,10 +84,10 @@
 #' plotOverview
 #' }
 
-plotOverview <- function(regions, annotation = NULL, type = "pval", 
+plotOverview <- function(regions, annotation = NULL, type = 'pval', 
     base_size = 12, areaRel = 4, legend.position = c(0.85, 0.12), 
-    significantCut = c(0.05, 0.1), chrsStyle = "UCSC") {
-    stopifnot(type %in% c("pval", "qval", "annotation"))
+    significantCut = c(0.05, 0.1), chrsStyle = 'UCSC') {
+    stopifnot(type %in% c('pval', 'qval', 'annotation'))
     stopifnot(length(significantCut) == 2 & all(significantCut >= 
         0 & significantCut <= 1))
     
@@ -101,53 +101,53 @@ plotOverview <- function(regions, annotation = NULL, type = "pval",
     ## Assign chr lengths if needed
     if (any(is.na(seqlengths(regions)))) {
         message(paste(Sys.time(), 
-            "plotOverview: assigning chromosome lengths from hg19!!!"))
-        data(hg19Ideogram, package = "biovizBase", envir = environment())
+            'plotOverview: assigning chromosome lengths from hg19!!!'))
+        data(hg19Ideogram, package = 'biovizBase', envir = environment())
         seqlengths(regions) <- seqlengths(hg19Ideogram)[
             names(seqlengths(regions))]
     }
     
     ## Graphical setup
-    ann_chr <- ifelse(any(seqnames(regions) == "chrX"), "chrX",
+    ann_chr <- ifelse(any(seqnames(regions) == 'chrX'), 'chrX',
         levels(seqnames(regions))[length(levels(seqnames(regions)))])
-    ann_text <- data.frame(x = 2.25e+08, y = 10, lab = "Area", 
+    ann_text <- data.frame(x = 2.25e+08, y = 10, lab = 'Area', 
         seqnames = ann_chr)
     ann_line <- data.frame(x = 2e+08, xend = 2.15e+08, y = 10, 
         seqnames = ann_chr)
     
     ## Make the plot
-    if (type == "pval") {
+    if (type == 'pval') {
         ## P-value plot
         result <- autoplot(seqinfo(regions)) + layout_karyogram(regions, 
-            aes(fill = significant, color = significant), geom = "rect", 
+            aes(fill = significant, color = significant), geom = 'rect', 
             base_size = 30) + layout_karyogram(regions, aes(x = midpoint, 
-            y = area), geom = "line", color = "coral1", ylim = c(10, 
-            20)) + labs(title = paste0("Overview of regions found in the genome; significant: p-value <", 
-            significantCut[1])) + scale_colour_manual(values = c("chartreuse4", 
-            "wheat2"), limits = c("TRUE", "FALSE")) + scale_fill_manual(
-                values = c("chartreuse4", "wheat2"), limits = c("TRUE", 
-                "FALSE")) + geom_text(aes(x = x, y = y), data = ann_text,
-                label = "Area", size = rel(areaRel)) + 
+            y = area), geom = 'line', color = 'coral1', ylim = c(10, 
+            20)) + labs(title = paste0('Overview of regions found in the genome; significant: p-value <', 
+            significantCut[1])) + scale_colour_manual(values = c('chartreuse4', 
+            'wheat2'), limits = c('TRUE', 'FALSE')) + scale_fill_manual(
+                values = c('chartreuse4', 'wheat2'), limits = c('TRUE', 
+                'FALSE')) + geom_text(aes(x = x, y = y), data = ann_text,
+                label = 'Area', size = rel(areaRel)) + 
             geom_segment(aes(x = x, xend = xend, y = y, yend = y), 
-                data = ann_line, colour = "coral1") + 
-                xlab("Genomic coordinate") + theme(text = element_text(
+                data = ann_line, colour = 'coral1') + 
+                xlab('Genomic coordinate') + theme(text = element_text(
                     size = base_size), legend.background = element_blank(), 
                 legend.position = legend.position)
-    } else if (type == "qval") {
+    } else if (type == 'qval') {
         ## Adjusted p-value plot
         result <- autoplot(seqinfo(regions)) + layout_karyogram(regions, 
             aes(fill = significantQval, color = significantQval), 
-            geom = "rect") + layout_karyogram(regions, aes(x = midpoint, 
-            y = area), geom = "line", color = "coral1", ylim = c(10, 
-            20)) + labs(title = paste0("Overview of regions found in the genome; significant: q-value <", 
-            significantCut[2])) + scale_colour_manual(values = c("chartreuse4", 
-            "wheat2"), limits = c("TRUE", "FALSE")) + scale_fill_manual(
-                values = c("chartreuse4", "wheat2"), limits = c("TRUE",
-                "FALSE")) + geom_text(aes(x = x, y = y), data = ann_text,
-                label = "Area", size = rel(areaRel)) + 
+            geom = 'rect') + layout_karyogram(regions, aes(x = midpoint, 
+            y = area), geom = 'line', color = 'coral1', ylim = c(10, 
+            20)) + labs(title = paste0('Overview of regions found in the genome; significant: q-value <', 
+            significantCut[2])) + scale_colour_manual(values = c('chartreuse4', 
+            'wheat2'), limits = c('TRUE', 'FALSE')) + scale_fill_manual(
+                values = c('chartreuse4', 'wheat2'), limits = c('TRUE',
+                'FALSE')) + geom_text(aes(x = x, y = y), data = ann_text,
+                label = 'Area', size = rel(areaRel)) + 
             geom_segment(aes(x = x, xend = xend, y = y, yend = y), 
-                data = ann_line, colour = "coral1") +
-                xlab("Genomic coordinate") + theme(text = element_text(
+                data = ann_line, colour = 'coral1') +
+                xlab('Genomic coordinate') + theme(text = element_text(
                     size = base_size), legend.background = element_blank(), 
                 legend.position = legend.position)
     } else {
@@ -155,9 +155,9 @@ plotOverview <- function(regions, annotation = NULL, type = "pval",
         stopifnot(is.null(annotation) == FALSE)
         regions$region <- annotation$region
         result <- autoplot(seqinfo(regions)) + layout_karyogram(regions, 
-            aes(fill = region, color = region), geom = "rect") + 
-            labs(title = "Annotation region (if available)") + 
-            xlab("Genomic location") + theme(text = element_text(
+            aes(fill = region, color = region), geom = 'rect') + 
+            labs(title = 'Annotation region (if available)') + 
+            xlab('Genomic location') + theme(text = element_text(
                 size = base_size), legend.background = element_blank(),
                 legend.position = legend.position)
     }

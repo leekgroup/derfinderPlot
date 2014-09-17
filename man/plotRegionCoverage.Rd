@@ -57,8 +57,8 @@ library('derfinder')
 
 ## Annotate regions, first two regions only
 regions <- genomeRegions$regions[1:2]
-annotatedRegions <- annotateRegions(regions=regions,
-    genomicState=genomicState, minoverlap=1)
+annotatedRegions <- annotateRegions(regions = regions,
+    genomicState = genomicState$fullGenome, minoverlap = 1)
 
 ## Find nearest annotation
 library('bumphunter')
