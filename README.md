@@ -13,7 +13,8 @@ Get R 3.1.1 or newer from [CRAN](http://cran.r-project.org/).
 install.packages('devtools')
 
 ## Pre-requisites from CRAN
-install.packages(c('ggplot2', 'reshape2', 'plyr', 'RColorBrewer', 'scales'))
+install.packages(c('ggplot2', 'reshape2', 'plyr', 'RColorBrewer', 'scales', 
+    'testthat'))
 
 ## Pre-requisites from Bioconductor
 source('http://bioconductor.org/biocLite.R')

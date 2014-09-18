@@ -115,13 +115,14 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
     anno <- annotatedRegions$annotationList
     
     layout(matrix(c(1, 1, 2), ncol = 1))
-    for (i in whichRegions) {
+    for (idx in seq_len(length(whichRegions))) {
         ## Status update
-        if ((i - 1)%%10 == 0 & verbose) {
+        if ((idx - 1)%%10 == 0 & verbose) {
             par(mar = c(5, 4, 4, 2) + 0.1, oma = c(0, 0, 0, 0))
             plot.new()
-            text(0.5, 0.5, i, cex = 20)
+            text(0.5, 0.5, idx, cex = 20)
         }
+        i <- whichRegions[idx]
         
         ## For subsetting the named lists
         ichar <- as.character(i)
