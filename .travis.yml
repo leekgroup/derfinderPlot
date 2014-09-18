@@ -11,18 +11,18 @@ install:
   - ./travis-tool.sh install_bioc IRanges
   - ./travis-tool.sh install_r Matrix
   - ./travis-tool.sh install_github lcolladotor/derfinderHelper
+  - ./travis-tool.sh install_bioc GenomeInfoDb
   - ./travis-tool.sh install_bioc AnnotationDbi
   - ./travis-tool.sh install_bioc BiocParallel
+  - ./travis-tool.sh install_bioc GenomicRanges
   - ./travis-tool.sh install_bioc bumphunter
-  - ./travis-tool.sh install_bioc GenomeInfoDb
+  - ./travis-tool.sh install_bioc Rsamtools
   - ./travis-tool.sh install_bioc GenomicAlignments
+  - ./travis-tool.sh install_bioc rtracklayer
   - ./travis-tool.sh install_bioc GenomicFeatures
   - ./travis-tool.sh install_bioc GenomicFiles
-  - ./travis-tool.sh install_bioc GenomicRanges
   - ./travis-tool.sh install_r Hmisc
   - ./travis-tool.sh install_bioc qvalue
-  - ./travis-tool.sh install_bioc Rsamtools
-  - ./travis-tool.sh install_bioc rtracklayer
   - ./travis-tool.sh install_bioc biovizBase
   - ./travis-tool.sh install_r ggplot2
   - ./travis-tool.sh install_r testthat
