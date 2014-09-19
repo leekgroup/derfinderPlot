@@ -228,6 +228,13 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
                 'intron', 'lightblue', 'white'))
             Lwd <- ifelse(a$theRegion == 'exon', 1, ifelse(a$theRegion == 
                 'intron', 0.5, 0))
+            ## Fix intron start/end
+            idx.intron <- which(a$theRegion == 'intron')
+            if(length(idx.intron) > 0) {
+                a$start[idx.intron] <- a$start[idx.intron] - 1
+                a$end[idx.intron] <- a$end[idx.intron] + 1
+            }
+            
         }
         axis(2, c(-1, 1), c('-', '+'), tick = FALSE, las = 1, 
             cex.axis = 3)
