@@ -1,3 +1,13 @@
+CHANGES IN VERSION 0.0.3
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o plotRegionCoverage() now has a 'txdb' argument. When specified, this 
+        function will extract the transcript information needed and display
+        the transcripts.
+
+
 CHANGES IN VERSION 0.0.1
 ------------------------
 

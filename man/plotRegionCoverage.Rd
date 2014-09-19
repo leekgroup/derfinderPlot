@@ -4,9 +4,9 @@
 \title{Makes plots for every region while summarizing the annotation}
 \usage{
 plotRegionCoverage(regions, regionCoverage, groupInfo, nearestAnnotation,
-  annotatedRegions, whichRegions = seq_len(min(100, length(regions))),
-  colors = NULL, scalefac = 32, ask = interactive(), ylab = "Coverage",
-  verbose = TRUE)
+  annotatedRegions, txdb = NULL, whichRegions = seq_len(min(100,
+  length(regions))), colors = NULL, scalefac = 32, ask = interactive(),
+  ylab = "Coverage", verbose = TRUE)
 }
 \arguments{
 \item{regions}{The \code{$regions} output from
@@ -23,6 +23,10 @@ used on \code{regions}.}
 
 \item{annotatedRegions}{The output from \link[derfinder]{annotateRegions}
 used on \code{regions}.}
+
+\item{txdb}{A \link[GenomicFeatures]{TxDb} object. If specified, transcript
+annotation will be extracted from this object and used to plot the
+transcripts.}
 
 \item{whichRegions}{An integer vector with the index of the regions to plot.}
 
@@ -79,6 +83,13 @@ regionCov <- getRegionCoverage(fullCov=fullCov, regions=regions)
 plotRegionCoverage(regions=regions, regionCoverage=regionCov,
     groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation,
     annotatedRegions=annotatedRegions, whichRegions=1:2)
+
+## Re-make plots with transcript information
+library('TxDb.Hsapiens.UCSC.hg19.knownGene')
+txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+plotRegionCoverage(regions=regions, regionCoverage=regionCov,
+    groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation,
+    annotatedRegions=annotatedRegions, whichRegions=1:2, txdb = txdb)
 
 \dontrun{
 ## If you prefer, you can save the plots to a pdf file

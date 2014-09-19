@@ -19,7 +19,7 @@ install.packages(c('ggplot2', 'reshape2', 'plyr', 'RColorBrewer', 'scales',
 ## Pre-requisites from Bioconductor
 source('http://bioconductor.org/biocLite.R')
 biocLite(c('IRanges', 'GenomicRanges', 'bumphunter', 'biovizBase', 'ggbio',
-    'TxDb.Hsapiens.UCSC.hg19.knownGene', 'GenomeInfoDb'))
+    'TxDb.Hsapiens.UCSC.hg19.knownGene', 'GenomeInfoDb', 'GenomicFeatures'))
 
 ## derfinder
 library('devtools')

@@ -18,6 +18,9 @@
 #' used on \code{regions}.
 #' @param annotatedRegions The output from \link[derfinder]{annotateRegions} 
 #' used on \code{regions}.
+#' @param txdb A \link[GenomicFeatures]{TxDb} object. If specified, transcript 
+#' annotation will be extracted from this object and used to plot the 
+#' transcripts.
 #' @param whichRegions An integer vector with the index of the regions to plot.
 #' @param colors If \code{NULL} then \link[RColorBrewer]{brewer.pal} with the 
 #' \code{'Dark2'} color scheme is used.
@@ -36,8 +39,11 @@
 #' \link[bumphunter]{annotateNearest}, \link[derfinder]{annotateRegions}, 
 #' \link{plotCluster}
 #' @export
+#'
+#' @importFrom GenomicRanges GRangesList
 #' @importMethodsFrom GenomicRanges mcols names start end '$' '[[' as.data.frame
-#' @importFrom GenomeInfoDb seqlengths 'seqlengths<-'
+#' @importFrom GenomeInfoDb seqlengths 'seqlengths<-' 'seqlevels<-' 
+#' seqlevelsInUse
 #'
 #' @examples
 #' ## Load data
@@ -67,7 +73,14 @@
 #' plotRegionCoverage(regions=regions, regionCoverage=regionCov, 
 #'     groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation, 
 #'     annotatedRegions=annotatedRegions, whichRegions=1:2)
-#' 
+#'
+#' ## Re-make plots with transcript information
+#' library('TxDb.Hsapiens.UCSC.hg19.knownGene')
+#' txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+#' plotRegionCoverage(regions=regions, regionCoverage=regionCov, 
+#'     groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation, 
+#'     annotatedRegions=annotatedRegions, whichRegions=1:2, txdb = txdb)
+#'  
 #' \dontrun{
 #' ## If you prefer, you can save the plots to a pdf file
 #' pdf('ders.pdf', h = 6, w = 9)
@@ -76,11 +89,12 @@
 #'     annotatedRegions=annotatedRegions, whichRegions=1:2, ask=FALSE)
 #' dev.off()
 #' }
+#'
 
 plotRegionCoverage <- function(regions, regionCoverage, groupInfo, 
-    nearestAnnotation, annotatedRegions, whichRegions = seq_len(min(100, 
-        length(regions))), colors = NULL, scalefac = 32, ask = interactive(), 
-    ylab = 'Coverage', verbose = TRUE) {
+    nearestAnnotation, annotatedRegions, txdb = NULL, 
+    whichRegions = seq_len(min(100, length(regions))), colors = NULL,
+    scalefac = 32, ask = interactive(), ylab = 'Coverage', verbose = TRUE) {
         
     ## Check inputs
     stopifnot(length(intersect(names(annotatedRegions), 
@@ -114,7 +128,32 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
     ## Annotation information
     anno <- annotatedRegions$annotationList
     
-    layout(matrix(c(1, 1, 2), ncol = 1))
+    ## Get transcript info
+    if(!is.null(txdb)) {
+        stopifnot(is(txdb, "TxDb"))
+        if (verbose) 
+            message(paste(Sys.time(), 'plotRegionCoverage: extracting Tx info'))
+        tx <- exonsBy(txdb)
+        ov <- findOverlaps(regions, tx)
+        txList <- split(tx[subjectHits(ov)], queryHits(ov))
+        if(length(txList) > 0) {
+            if (verbose) 
+                message(paste(Sys.time(), 'plotRegionCoverage: getting Tx plot info'))
+            poly.data <- lapply(txList, .plotData)
+            gotTx <- TRUE     
+        } else {
+            gotTx <- FALSE
+        }
+    } else {
+        gotTx <- FALSE
+    }
+    
+    if(!gotTx) {
+        layout(matrix(c(1, 1, 2), ncol = 1))
+    } else {
+        layout(matrix(c(1, 1, 1, 1, 2, 3), ncol = 1)) 
+    }
+    
     for (idx in seq_len(length(whichRegions))) {
         ## Status update
         if ((idx - 1)%%10 == 0 & verbose) {
@@ -137,6 +176,7 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
         
         ## Plot coverage
         par(mar = c(0, 4.5, 0.25, 1.1), oma = c(0, 0, 2, 0))
+        
         if (length(x) > 1) {
             matplot(x, y, lty = 1, col = as.numeric(groupInfo), 
                 type = 'l', yaxt = 'n', ylab = '', xlab = '', 
@@ -160,15 +200,25 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
             nearestAnnotation$distance[i], 'bp from tss:',
             nearestAnnotation$region[i]), outer = TRUE, cex = 1.3)
         
-        ## Plot annotation
-        par(mar = c(3.5, 4.5, 0.25, 1.1))
+        ## Plot gene annotation
         xrange <- range(x)
         if (length(x) == 1) {
             xrange <- xrange + c(-1, 1)
         }
-        plot(0, 0, type = 'n', xlim = xrange, ylim = c(-1.5, 
-            1.5), yaxt = 'n', ylab = '', xlab = '', cex.axis = 1.5, 
-            cex.lab = 1.5)
+        
+        
+        if(!gotTx) {
+            par(mar = c(3.5, 4.5, 0.25, 1.1))
+            plot(0, 0, type = 'n', xlim = xrange, ylim = c(-1.5, 
+                1.5), yaxt = 'n', ylab = '', xlab = '', cex.axis = 1.5, 
+                cex.lab = 1.5)
+        } else {
+            par(mar = c(0, 4.5, 0.25, 1.1))
+            plot(0, 0, type = 'n', xlim = xrange, ylim = c(-1.5, 
+                1.5), yaxt = 'n', ylab = '', xaxt = 'n', xlab = '',
+                cex.axis = 1.5, cex.lab = 1.5)
+        }
+        
         gotAnno <- !is.null(anno[[ichar]])
         if (gotAnno) {
             a <- as.data.frame(anno[[ichar]])
@@ -200,9 +250,61 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
             
         }
         mtext('Genes', side = 2, line = 2.5, cex = 1.3)
+        
+        ## Plot transcript annotation
+        if(gotTx) {
+            par(mar = c(3.5, 4.5, 0.25, 1.1))
+            poly.current <- poly.data[[ichar]]
+            gotTx.current <- !is.null(poly.current)
+            if(!gotTx.current) {
+                yrange <- c(-0.5, 0.5)
+            } else {
+                yrange <- range(poly.current$exon$y)
+            } 
+            plot(0,0, type="n", xlim = xrange, ylim = yrange + c(-0.75, 0.75), yaxt="n", ylab="", xlab="", cex.axis = 1.5, cex.lab =1.5)
+            if(gotTx.current) {
+                .plotPolygon(poly.current$exon, 'blue')
+                .plotPolygon(poly.current$intron, 'lightblue')
+            }           
+            yTx <- unique(yrange / abs(yrange))
+            axis(2, yTx, c('-', '+')[c(-1, 1) %in% yTx], tick = FALSE, las = 1, cex.axis = 3)
+            if(length(yTx) > 1) 
+                abline(h = 0, lty = 3)
+            mtext('Tx', side = 2, line = 2.5, cex = 1.3)
+        }
+        
+        ## Label genome axis
         mtext(as.character(seqnames(regions)[i]), side = 1, line = 2.2, 
             cex = 1.1)
         
     }
     return(invisible(NULL))
 } 
+
+
+.plotData <- function(eList) {
+    seqlevels(eList) <- seqlevelsInUse(eList)
+    polygon.exon <- .polygonData(eList, 0.25)
+    polygon.intron <- .polygonData(GRangesList(lapply(eList, gaps)), 0.15, TRUE)
+    res <- list(exon = polygon.exon, intron = polygon.intron)
+}
+
+.polygonData <- function(grl, pad, intron = FALSE) {
+    d <- as.data.frame(grl)
+    if(intron) {
+        d <- subset(d, start > 1)
+        d$start <- d$start - 1
+        d$end <- d$end + 1
+    }
+    strand <- ifelse(d$strand == "+", 1, 0)
+    x <- matrix(c(d$start, d$end, d$end, d$start), nrow = nrow(d), ncol = 4)
+    y <- matrix(rep(d$group, 4), nrow = nrow(d), ncol = 4) + matrix(c(-pad, -pad, pad, pad), nrow = nrow(d), ncol = 4, byrow = TRUE)
+    y <- y * strand
+    res <- list(x = x, y = y)    
+}
+
+.plotPolygon <- function(info, color) {
+    for(row in seq_len(nrow(info$x))) {
+        polygon(info$x[row, ], info$y[row, ], col = color)
+    }
+}
