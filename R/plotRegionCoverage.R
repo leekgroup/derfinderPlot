@@ -260,7 +260,7 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
                 yrange <- c(-0.5, 0.5)
             } else {
                 yrange <- range(poly.current$exon$y)
-            } 
+            }
             plot(0,0, type="n", xlim = xrange, ylim = yrange + c(-0.75, 0.75), yaxt="n", ylab="", xlab="", cex.axis = 1.5, cex.lab =1.5)
             if(gotTx.current) {
                 .plotPolygon(poly.current$exon, 'blue')
@@ -296,7 +296,7 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
         d$start <- d$start - 1
         d$end <- d$end + 1
     }
-    strand <- ifelse(d$strand == "+", 1, 0)
+    strand <- ifelse(d$strand == "+", 1, -1)
     x <- matrix(c(d$start, d$end, d$end, d$start), nrow = nrow(d), ncol = 4)
     y <- matrix(rep(d$group, 4), nrow = nrow(d), ncol = 4) + matrix(c(-pad, -pad, pad, pad), nrow = nrow(d), ncol = 4, byrow = TRUE)
     y <- y * strand
