@@ -223,11 +223,6 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
         gotAnno <- !is.null(anno[[ichar]])
         if (gotAnno) {
             a <- as.data.frame(anno[[ichar]])
-            a.intron <- which(a$theRegion == 'intron')
-            if(length(a.intron) > 0) {
-                a$start[a.intron] <- a$start[a.intron] - 1
-                a$end[a.intron] <- a$end[a.intron] - 1
-            }
             Strand <- ifelse(a$strand == '+', 1, ifelse(a$strand == 
                 '-', -1, 0))
             Col <- ifelse(a$theRegion == 'exon', 'blue', ifelse(a$theRegion == 
