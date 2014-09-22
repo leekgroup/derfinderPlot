@@ -140,7 +140,7 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
             if (verbose) 
                 message(paste(Sys.time(), 'plotRegionCoverage: getting Tx plot info'))
             poly.data <- lapply(txList, .plotData)
-            names(poly.data) <- seq_len(length(regions))[as.integer(names(poly.data))]
+            names(poly.data) <- seq_len(length(regions))[whichRegions[as.integer(names(poly.data))]]
             gotTx <- TRUE     
         } else {
             gotTx <- FALSE
