@@ -134,12 +134,13 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
         if (verbose) 
             message(paste(Sys.time(), 'plotRegionCoverage: extracting Tx info'))
         tx <- exonsBy(txdb)
-        ov <- findOverlaps(regions, tx)
+        ov <- findOverlaps(regions[whichRegions], tx)
         txList <- split(tx[subjectHits(ov)], queryHits(ov))
         if(length(txList) > 0) {
             if (verbose) 
                 message(paste(Sys.time(), 'plotRegionCoverage: getting Tx plot info'))
             poly.data <- lapply(txList, .plotData)
+            names(poly.data) <- seq_len(length(regions))[as.integer(names(poly.data))]
             gotTx <- TRUE     
         } else {
             gotTx <- FALSE
@@ -222,6 +223,11 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
         gotAnno <- !is.null(anno[[ichar]])
         if (gotAnno) {
             a <- as.data.frame(anno[[ichar]])
+            a.intron <- which(a$theRegion == 'intron')
+            if(length(a.intron) > 0) {
+                a$start[a.intron] <- a$start[a.intron] - 1
+                a$end[a.intron] <- a$end[a.intron] - 1
+            }
             Strand <- ifelse(a$strand == '+', 1, ifelse(a$strand == 
                 '-', -1, 0))
             Col <- ifelse(a$theRegion == 'exon', 'blue', ifelse(a$theRegion == 
@@ -304,6 +310,9 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
         d$end <- d$end + 1
     }
     strand <- ifelse(d$strand == "+", 1, -1)
+    if(all(c(-1, 1) %in% strand)) {
+        d$group[d$strand == '-'] <- d$group[d$strand == '-'] - max(d$group[d$strand == '+'])
+    }
     x <- matrix(c(d$start, d$end, d$end, d$start), nrow = nrow(d), ncol = 4)
     y <- matrix(rep(d$group, 4), nrow = nrow(d), ncol = 4) + matrix(c(-pad, -pad, pad, pad), nrow = nrow(d), ncol = 4, byrow = TRUE)
     y <- y * strand
