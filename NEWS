@@ -1,3 +1,16 @@
+CHANGES IN VERSION 0.0.4
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Hid some arguments in plotCluster() and plotOverview() as advanced just
+        like in derfinder v0.0.74
+
+BUG FIXES
+
+    o Improved the speed in plotRegionCoverage() then 'txdb' is specified. Also
+        fixed the introns on the gene track.
+
 CHANGES IN VERSION 0.0.3
 ------------------------
 

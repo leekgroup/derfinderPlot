@@ -86,7 +86,8 @@
 #' pdf('ders.pdf', h = 6, w = 9)
 #' plotRegionCoverage(regions=regions, regionCoverage=regionCov, 
 #'     groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation, 
-#'     annotatedRegions=annotatedRegions, whichRegions=1:2, ask=FALSE)
+#'     annotatedRegions=annotatedRegions, whichRegions=1:2, txdb = txdb, 
+#'     ask=FALSE)
 #' dev.off()
 #' }
 #'
@@ -152,7 +153,7 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
     if(!gotTx) {
         layout(matrix(c(1, 1, 2), ncol = 1))
     } else {
-        layout(matrix(c(1, 1, 1, 1, 2, 3), ncol = 1)) 
+        layout(matrix(rep(1:3, c(8, 1, 3)), ncol = 1)) 
     }
     
     for (idx in seq_len(length(whichRegions))) {

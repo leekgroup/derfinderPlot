@@ -4,11 +4,11 @@
 \title{Plot the coverage information surrounding a region cluster}
 \usage{
 plotCluster(idx, regions, annotation, coverageInfo, groupInfo,
-  titleUse = "qval", txdb = NULL, p.ideogram = NULL, maxExtend = 300L,
-  colsubset = NULL, forceLarge = FALSE, chrsStyle = "UCSC")
+  titleUse = "qval", txdb = NULL, p.ideogram = NULL, ...)
 }
 \arguments{
-\item{idx}{A integer specifying the index number of the region of interest.}
+\item{idx}{A integer specifying the index number of the region of interest.
+This region is graphically highlighted by a red bar.}
 
 \item{regions}{The \code{$regions} output from
 \link[derfinder]{calculatePvalues}.}
@@ -27,27 +27,15 @@ will be used to color the samples by group.}
 q-value information is used; useful if no permutations were performed and
 thus p-value and q-value information is absent.}
 
-\item{txdb}{A transcript data base such as TxDb.Hsapiens.UCSC.hg19.knownGene
-If \code{NULL} then no annotation information is used.}
+\item{txdb}{A transcript data base such as
+\code{TxDb.Hsapiens.UCSC.hg19.knownGene}. If \code{NULL} then no annotation
+information is used.}
 
 \item{p.ideogram}{If \code{NULL}, the ideogram for hg19 is built for the
 corresponding chromosome. Otherwise an ideogram resuling from
 \link[ggbio]{plotIdeogram}.}
 
-\item{maxExtend}{The maximum number of base-pairs to extend the view (on
-each side) before and after the region cluster of interest. For small region
-clusters, the one side extension is equal to the width of the region cluster.}
-
-\item{colsubset}{Column subset in case that it was specified in
-\link[derfinder]{preprocessCoverage}.}
-
-\item{forceLarge}{If \code{TRUE} then the data size limitations are ignored.
-The window size (region cluster width + 2 times \code{maxExtend}) has to be
-less than 100 kb. Note that a single plot at the 300kb range can take around
-2 hours to complete.}
-
-\item{chrsStyle}{The naming style of the chromosomes. By default, UCSC. See
-\link[GenomeInfoDb]{seqlevelsStyle}.}
+\item{...}{Arguments passed to other methods and/or advanced arguments.}
 }
 \value{
 A ggplot2 plot that is ready to be printed out. Tecnically it is a
@@ -85,111 +73,6 @@ plotCluster(idx=1, regions=genomeRegions$regions, annotation=annotation,
 ## For a custom plot, check the ggbio and ggplot2 packages.
 ## Also feel free to look at the code for this function:
 plotCluster
-
-#### This is a detailed example for a specific cluster of candidate DERs
-## The purpose is to illustrate how data filtering (and availability),
-## F-stat cutoff, cluster cutoff interact into determing the candidate DERs.
-
-## Collapse the coverage information
-collapsedFull <- collapseFullCoverage(list(genomeDataRaw), verbose=TRUE)
-
-## Calculate library size adjustments
-sampleDepths <- sampleDepth(collapsedFull, probs=c(0.5), nonzero=TRUE,
-    verbose=TRUE)
-
-## Build the models
-adjustvars <- data.frame(genomeInfo$gender)
-models <- makeModels(sampleDepths, testvars=genomeInfo$pop,
-    adjustvars=adjustvars)
-
-## Preprocess the data
-prep <- preprocessCoverage(genomeData, cutoff=0, scalefac=32,
-    chunksize=NULL, colsubset=NULL, mc.cores=4)
-
-## Get the F statistics
-fstats <- calculateStats(prep, models, mc.cores=1, verbose=FALSE)
-
-## Using as example candidate DER #7
-## Note how despite having data and using a very small F-stat cutoff, some
-## regions with data are split into different DERs
-plotCluster(idx=7, regions=genomeRegions$regions, annotation=annotation,
-    coverageInfo=genomeDataRaw$coverage, groupInfo=genomeInfo$pop,
-    txdb=TxDb.Hsapiens.UCSC.hg19.knownGene)
-
-## Identify DERs clusters and regions of the genome where we have data
-clusters <- clusterMakerRle(prep$position, ranges=TRUE)
-dataRegions <- clusterMakerRle(prep$position, maxGap=0, ranges=TRUE)
-
-## Apply F-stat cutoff of 1
-segs <- getSegmentsRle(fstats, 1)$upIndex
-
-## Separate the sections that passed the F-stat cutoff by regions in the
-## genome
-library('IRanges')
-pieces <- disjoin(c(segs, dataRegions))
-
-## The DERs are actually the following ones:
-ders <- pieces[queryHits(findOverlaps(pieces, segs))]
-## You can very that this is the case:
-identical(width(ders), width(sort(ranges(genomeRegions$regions))))
-
-## Ranges plotting function (from IRanges documentation)
-plotRanges <- function(x, xlim = x, main = deparse(substitute(x)), col =
-    'black',
-    sep = 0.5, ...) {
-    height <- 1
-    if (is(xlim, 'Ranges'))
-    xlim <- c(min(start(xlim)), max(end(xlim)))
-    bins <- disjointBins(IRanges(start(x), end(x) + 1))
-    plot.new()
-    plot.window(xlim, c(0, max(bins) * (height + sep)))
-    ybottom <- bins * (sep + height) - height
-    rect(start(x) - 0.5, ybottom, end(x) + 0.5, ybottom + height, col = col,
-        ...)
-    title(main)
-    axis(1)
-}
-
-## Visualize the different DER clusters
-plotRanges(clusters)
-## Note that region 7 is part of cluster #5.
-genomeRegions$regions$cluster[7]
-
-clus.range <- c(min(genomeRegions$regions[ genomeRegions$regions$cluster ==
-    5]$indexStart), max(genomeRegions$regions[ genomeRegions$regions$cluster
-    == 5]$indexEnd))
-
-## Plot the different segmentation steps, the final DERs, and the fstats
-## with the cutoff
-par(mfrow=c(5, 1))
-plotRanges(dataRegions, xlim=clus.range)
-plotRanges(segs, xlim=clus.range)
-plotRanges(pieces, xlim=clus.range)
-plotRanges(ders, xlim=clus.range)
-f <- as.numeric(fstats)
-plot(f, type='l', xlim=clus.range)
-abline(h=1, col='red')
-
-## We can see that the different data regions match with how
-## many sections of the genome have data in plotCluster(idx=7, ...)
-
-## The F-stat cutoff applied to F-stats leads to 5 different segments
-## passing the cutoff.
-## We can see this both in the F-stat panel as well as in the segs panel.
-
-## Between the regions with data and the segments, we have lots
-## of different pieces to take into account.
-
-## From the pieces, only 6 of them correspond to unique regions in
-## the genome that passed the F-stat cutoff.
-
-## They are the 6 different DERs we see in cluster 5 as shown in
-## plotCluster(idx=7, ...)
-
-## So despite using a very low F-stat cutoff, with the intention of getting
-## anything that had data (for illustrative purposes, in reality you will
-## want to use a higher cutoff), some regions were not considered to be
-## candidate DERs.
 
 }
 }

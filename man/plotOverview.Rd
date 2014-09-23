@@ -3,9 +3,8 @@
 \alias{plotOverview}
 \title{Plot a karyotype overview of the genome with the identified regions}
 \usage{
-plotOverview(regions, annotation = NULL, type = "pval", base_size = 12,
-  areaRel = 4, legend.position = c(0.85, 0.12), significantCut = c(0.05,
-  0.1), chrsStyle = "UCSC")
+plotOverview(regions, annotation = NULL, type = "pval",
+  significantCut = c(0.05, 0.1), ...)
 }
 \arguments{
 \item{regions}{The \code{$regions} output from
@@ -19,20 +18,11 @@ if \code{type='annotation'}.}
 determines whether the plot coloring should be done according to significant
 p-values (<0.05), significant q-values (<0.10) or annotation regions.}
 
-\item{base_size}{Base point size of the plot. This argument is passed to
-\link[ggplot2]{element_text} (\code{size} argument).}
-
-\item{areaRel}{The relative size for the area label when \code{type='pval'}
-or \code{type='qval'}. Can be useful when making high resolution versions of
-these plots in devices like CairoPNG.}
-
-\item{legend.position}{This argument is passed to \link[ggplot2]{theme}.
-From ggplot2: the position of legends. ('left', 'right', 'bottom', 'top', or
-two-element numeric vector).}
-
 \item{significantCut}{A vector of length two specifiying the cutoffs used to
 determine significance. The first element is used to determine significance
 for the p-values and the second element is used for the q-values.}
+
+\item{...}{Arguments passed to other methods and/or advanced arguments.}
 
 \item{chrsStyle}{The naming style of the chromosomes. By default, UCSC. See
 \link[GenomeInfoDb]{seqlevelsStyle}.}

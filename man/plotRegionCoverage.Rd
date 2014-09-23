@@ -96,7 +96,8 @@ plotRegionCoverage(regions=regions, regionCoverage=regionCov,
 pdf('ders.pdf', h = 6, w = 9)
 plotRegionCoverage(regions=regions, regionCoverage=regionCov,
     groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation,
-    annotatedRegions=annotatedRegions, whichRegions=1:2, ask=FALSE)
+    annotatedRegions=annotatedRegions, whichRegions=1:2, txdb = txdb,
+    ask=FALSE)
 dev.off()
 }
 }

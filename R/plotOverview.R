@@ -15,19 +15,12 @@
 #' @param type Must be either \code{pval}, \code{qval} or \code{annotation}. It 
 #' determines whether the plot coloring should be done according to significant 
 #' p-values (<0.05), significant q-values (<0.10) or annotation regions.
-#' @param base_size Base point size of the plot. This argument is passed to 
-#' \link[ggplot2]{element_text} (\code{size} argument).
-#' @param areaRel The relative size for the area label when \code{type='pval'} 
-#' or \code{type='qval'}. Can be useful when making high resolution versions of 
-#' these plots in devices like CairoPNG.
-#' @param legend.position This argument is passed to \link[ggplot2]{theme}. 
-#' From ggplot2: the position of legends. ('left', 'right', 'bottom', 'top', or 
-#' two-element numeric vector).
 #' @param significantCut A vector of length two specifiying the cutoffs used to 
 #' determine significance. The first element is used to determine significance 
 #' for the p-values and the second element is used for the q-values.
 #' @param chrsStyle The naming style of the chromosomes. By default, UCSC. See 
 #' \link[GenomeInfoDb]{seqlevelsStyle}.
+#' @param ... Arguments passed to other methods and/or advanced arguments.
 #'
 #' @return A ggplot2 plot that is ready to be printed out. Tecnically it is a 
 #' ggbio object.
@@ -84,12 +77,30 @@
 #' plotOverview
 #' }
 
-plotOverview <- function(regions, annotation = NULL, type = 'pval', 
-    base_size = 12, areaRel = 4, legend.position = c(0.85, 0.12), 
-    significantCut = c(0.05, 0.1), chrsStyle = 'UCSC') {
+plotOverview <- function(regions, annotation = NULL, type = 'pval',  
+    significantCut = c(0.05, 0.1), ...) {
     stopifnot(type %in% c('pval', 'qval', 'annotation'))
     stopifnot(length(significantCut) == 2 & all(significantCut >= 
         0 & significantCut <= 1))
+        
+    ## Advanced parameters
+#' @param chrsStyle The naming style of the chromosomes. By default, UCSC. See 
+#' \link[GenomeInfoDb]{seqlevelsStyle}.    
+    chrsStyle <- .advanced_argument('chrsStyle', 'UCSC', ...)
+    
+#' @param base_size Base point size of the plot. This argument is passed to 
+#' \link[ggplot2]{element_text} (\code{size} argument).
+    base_size <- .advanced_argument('base_size', 12, ...)
+    
+#' @param areaRel The relative size for the area label when \code{type='pval'} 
+#' or \code{type='qval'}. Can be useful when making high resolution versions of 
+#' these plots in devices like CairoPNG.
+    areaRel <- .advanced_argument('areaRel', 4, ...)
+    
+#' @param legend.position This argument is passed to \link[ggplot2]{theme}. 
+#' From ggplot2: the position of legends. ('left', 'right', 'bottom', 'top', or 
+#' two-element numeric vector).
+    legend.position <- .advanced_argument('legend.position', c(0.85, 0.12), ...)
     
     ## Keeping R CMD check happy
     hg19Ideogram <- significant <- midpoint <- area <- x <- y <- xend <-
