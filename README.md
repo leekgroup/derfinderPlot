@@ -14,7 +14,8 @@ install.packages('devtools')
 
 ## Pre-requisites from CRAN
 install.packages(c('ggplot2', 'reshape2', 'plyr', 'RColorBrewer', 'scales', 
-    'testthat'))
+    'testthat', 'knitr', 'knitrBoostrap', 'knitcitations', 'rmarkdown', 
+    'xtable'))
 
 ## Pre-requisites from Bioconductor
 source('http://bioconductor.org/biocLite.R')
@@ -29,6 +30,17 @@ install_github('lcolladotor/derfinder@master')
 ## derfinderPlot itself
 install_github('lcolladotor/derfinderPlot')
 ```
+
+# Vignette
+
+The vignette for this package can be viewed [here](http://lcolladotor.github.io/derfinderPlot/). If you want to re-build the vignette when installing this package, you will need to use:
+
+```R
+## Install building the vignette
+install_github('lcolladotor/derfinderPlot', build_vignettes = TRUE)
+```
+
+Note that this can take much longer than installing the package without the vignette.
 
 # Citation
 

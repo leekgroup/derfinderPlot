@@ -29,6 +29,8 @@
 #' \link[bumphunter]{annotateNearest}
 #' @author Leonardo Collado-Torres
 #' @export
+#' @aliases plot_overview
+#'
 #' @importFrom GenomicRanges seqinfo
 #' @importFrom GenomeInfoDb seqlengths 'seqlengths<-' seqlevelsStyle 
 #' 'seqlevelsStyle<-'
@@ -174,3 +176,6 @@ plotOverview <- function(regions, annotation = NULL, type = 'pval',
     }
     return(result)
 } 
+
+#' @export
+plot_overview <- plotOverview
