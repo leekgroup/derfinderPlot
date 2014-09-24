@@ -70,7 +70,7 @@ We first load the required packages.
 
 ```{r 'start', bootstrap.show.message=FALSE}
 ## Load libraries
-supressPackageStartupMessages(library('derfinder'))
+suppressPackageStartupMessages(library('derfinder'))
 library('derfinderPlot')
 ```
 
