@@ -17,8 +17,9 @@
 #' \link[derfinder]{loadCoverage} using \code{cutoff=NULL}.
 #' @param groupInfo A factor specifying the group membership of each sample. It 
 #' will be used to color the samples by group.
-#' @param titleUse Whether to show the p-value (\code{pval}) or the q-value 
-#' (\code{qval}) in the title. If \code{titleUse=none} then no p-value or 
+#' @param titleUse Whether to show the p-value (\code{pval}), the q-value 
+#' (\code{qval}) or the FWER adjusted p-value (\code{fwer}) in the title. If 
+#' \code{titleUse=none} then no p-value or 
 #' q-value information is used; useful if no permutations were performed and 
 #' thus p-value and q-value information is absent.
 #' @param txdb A transcript data base such as
@@ -80,7 +81,7 @@
 
 plotCluster <- function(idx, regions, annotation, coverageInfo, 
     groupInfo, titleUse = 'qval', txdb = NULL, p.ideogram = NULL,  ...) {
-    stopifnot(titleUse %in% c('pval', 'qval', 'none'))
+    stopifnot(titleUse %in% c('pval', 'qval', 'fwer', 'none'))
     stopifnot(is.factor(groupInfo))
 
     ## Advanced parameters
@@ -132,6 +133,10 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
     } else if (titleUse == 'qval') {
         title <- paste0('Cluster for region with name ', annotation$name[idx], 
             ' and q-value ', signif(current$qvalues, 4))
+    } else if (titleUse == 'fwer') {
+        stopifnot(all(c('fwer', 'significantFWER') %in% names(mcols(current))))
+        title <- paste0('Cluster for region with name ', annotation$name[idx], 
+            ' and FWER adjusted p-value ', signif(current$fwer, 4))
     } else {
         title <- paste0('Cluster for region with name ', annotation$name[idx])
     }
@@ -159,6 +164,12 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
             colour = 'red') + guides(size = FALSE)
     } else if (titleUse == 'qval') {
         p.region <- autoplot(neighbors, aes(fill = significantQval)) + 
+            scale_fill_manual(values = c('chartreuse4', 'wheat2'), 
+                limits = c('TRUE', 'FALSE')) + geom_segment(aes(x = x, 
+            xend = xend, y = y, yend = y, size = 3), data = ann_line, 
+            colour = 'red') + guides(size = FALSE)
+    } else if (titleUse == 'fwer') {
+        p.region <- autoplot(neighbors, aes(fill = significantFWER)) + 
             scale_fill_manual(values = c('chartreuse4', 'wheat2'), 
                 limits = c('TRUE', 'FALSE')) + geom_segment(aes(x = x, 
             xend = xend, y = y, yend = y, size = 3), data = ann_line, 

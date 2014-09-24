@@ -5,7 +5,11 @@ NEW FEATURES
 
     o Preparing to submit to Bioconductor.
     o Added tests and vignette.
+    
+SIGNIFICANT USER-VISIBLE CHANGES
 
+    o plotOverview() and plotCluster() can now plot FWER adjusted p-values if
+        calculated with derfinder::mergeResults()
 
 CHANGES IN VERSION 0.0.4
 ------------------------

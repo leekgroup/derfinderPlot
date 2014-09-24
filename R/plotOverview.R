@@ -12,9 +12,11 @@
 #' @param annotation The output from running \link[bumphunter]{annotateNearest} 
 #' on the output from \link[derfinder]{calculatePvalues}. It is only required 
 #' if \code{type='annotation'}.
-#' @param type Must be either \code{pval}, \code{qval} or \code{annotation}. It 
+#' @param type Must be either \code{pval}, \code{qval}, \code{fwer} or 
+#' \code{annotation}. It 
 #' determines whether the plot coloring should be done according to significant 
-#' p-values (<0.05), significant q-values (<0.10) or annotation regions.
+#' p-values (<0.05), significant q-values (<0.10), significant FWER adjusted 
+#' p-values (<0.05) or annotation regions.
 #' @param significantCut A vector of length two specifiying the cutoffs used to 
 #' determine significance. The first element is used to determine significance 
 #' for the p-values and the second element is used for the q-values.
@@ -81,7 +83,7 @@
 
 plotOverview <- function(regions, annotation = NULL, type = 'pval',  
     significantCut = c(0.05, 0.1), ...) {
-    stopifnot(type %in% c('pval', 'qval', 'annotation'))
+    stopifnot(type %in% c('pval', 'qval', 'fwer', 'annotation'))
     stopifnot(length(significantCut) == 2 & all(significantCut >= 
         0 & significantCut <= 1))
         
@@ -133,47 +135,41 @@ plotOverview <- function(regions, annotation = NULL, type = 'pval',
         ## P-value plot
         result <- autoplot(seqinfo(regions)) + layout_karyogram(regions, 
             aes(fill = significant, color = significant), geom = 'rect', 
-            base_size = 30) + layout_karyogram(regions, aes(x = midpoint, 
-            y = area), geom = 'line', color = 'coral1', ylim = c(10, 
-            20)) + labs(title = paste0('Overview of regions found in the genome; significant: p-value <', 
-            significantCut[1])) + scale_colour_manual(values = c('chartreuse4', 
-            'wheat2'), limits = c('TRUE', 'FALSE')) + scale_fill_manual(
-                values = c('chartreuse4', 'wheat2'), limits = c('TRUE', 
-                'FALSE')) + geom_text(aes(x = x, y = y), data = ann_text,
-                label = 'Area', size = rel(areaRel)) + 
-            geom_segment(aes(x = x, xend = xend, y = y, yend = y), 
-                data = ann_line, colour = 'coral1') + 
-                xlab('Genomic coordinate') + theme(text = element_text(
-                    size = base_size), legend.background = element_blank(), 
-                legend.position = legend.position)
+            base_size = 30) + labs(title = paste0('Overview of regions found in the genome; significant: p-value <', significantCut[1]))
     } else if (type == 'qval') {
-        ## Adjusted p-value plot
+        ## FDR adjusted p-value plot
         result <- autoplot(seqinfo(regions)) + layout_karyogram(regions, 
             aes(fill = significantQval, color = significantQval), 
-            geom = 'rect') + layout_karyogram(regions, aes(x = midpoint, 
-            y = area), geom = 'line', color = 'coral1', ylim = c(10, 
-            20)) + labs(title = paste0('Overview of regions found in the genome; significant: q-value <', 
-            significantCut[2])) + scale_colour_manual(values = c('chartreuse4', 
-            'wheat2'), limits = c('TRUE', 'FALSE')) + scale_fill_manual(
-                values = c('chartreuse4', 'wheat2'), limits = c('TRUE',
-                'FALSE')) + geom_text(aes(x = x, y = y), data = ann_text,
-                label = 'Area', size = rel(areaRel)) + 
-            geom_segment(aes(x = x, xend = xend, y = y, yend = y), 
-                data = ann_line, colour = 'coral1') +
-                xlab('Genomic coordinate') + theme(text = element_text(
-                    size = base_size), legend.background = element_blank(), 
-                legend.position = legend.position)
+            geom = 'rect') + labs(title = paste0('Overview of regions found in the genome; significant: q-value <', significantCut[2]))
+    } else if (type == 'fwer') {
+        stopifnot(all(c('fwer', 'significantFWER') %in% names(mcols(regions))))
+        ## FWER adjusted p-value plot
+        result <- autoplot(seqinfo(regions)) + layout_karyogram(regions, 
+            aes(fill = significantFWER, color = significantFWER), 
+            geom = 'rect') + labs(title = paste0('Overview of regions found in the genome; significant: FWER adjusted p-value <', significantCut[1]))
     } else {
         ## Annotation region plot
         stopifnot(is.null(annotation) == FALSE)
         regions$region <- annotation$region
         result <- autoplot(seqinfo(regions)) + layout_karyogram(regions, 
             aes(fill = region, color = region), geom = 'rect') + 
-            labs(title = 'Annotation region (if available)') + 
-            xlab('Genomic location') + theme(text = element_text(
-                size = base_size), legend.background = element_blank(),
-                legend.position = legend.position)
+            labs(title = 'Annotation region (if available)')
     }
+    
+    if(type %in% c('pval', 'qval', 'fwer')) {
+        result <- result + layout_karyogram(regions, aes(x = midpoint, 
+            y = area), geom = 'line', color = 'coral1', ylim = c(10, 20)) +
+            scale_colour_manual(values = c('chartreuse4', 'wheat2'), 
+                limits = c('TRUE', 'FALSE')) + 
+            scale_fill_manual( values = c('chartreuse4', 'wheat2'),
+                limits = c('TRUE', 'FALSE')) + geom_text(aes(x = x,
+                y = y), data = ann_text, label = 'Area', size = rel(areaRel)) + 
+            geom_segment(aes(x = x, xend = xend, y = y, yend = y), 
+                data = ann_line, colour ='coral1')
+    }
+    result <- result + xlab('Genomic location') + theme(text = element_text(
+        size = base_size), legend.background = element_blank(), 
+        legend.position = legend.position)
     return(result)
 } 
 
