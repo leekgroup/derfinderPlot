@@ -172,13 +172,13 @@ annoRegs <- annotateRegions(regions, genomicState$fullGenome)
 regionCov <- getRegionCoverage(fullCov, regions)
 ```
 
-Once we have the relevant information we can proceed to plotting the first 20 regions. In this case, we will supply `plotRegionCoverage()` with the information it needs to plot transcripts overlapping these 20 regions.
+Once we have the relevant information we can proceed to plotting the first 10 regions. In this case, we will supply `plotRegionCoverage()` with the information it needs to plot transcripts overlapping these 10 regions.
 
 ```{r 'plotRegCov', bootstrap.show.message=FALSE}
-## Plot top 20 regions
+## Plot top 10 regions
 plotRegionCoverage(regions = regions, regionCoverage = regionCov, 
     groupInfo = pheno$group, nearestAnnotation = results$annotation, 
-    annotatedRegions = annoRegs, whichRegions=1:20, txdb = txdb, scalefac = 1, ask = FALSE)
+    annotatedRegions = annoRegs, whichRegions=1:10, txdb = txdb, scalefac = 1, ask = FALSE)
 ```
 
 The base level coverage is shown in a log2 scale with any overlapping exons shown in dark blue and known introns in light blue. 
