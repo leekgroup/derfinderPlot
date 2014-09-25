@@ -79,7 +79,6 @@ seqlengths(regions) <- seqlengths(hg19Ideogram)[names(seqlengths(regions))]
 
 ## Get the region coverage
 regionCov <- getRegionCoverage(fullCov=fullCov, regions=regions)
-
 ## Make plots for the regions
 plotRegionCoverage(regions=regions, regionCoverage=regionCov,
     groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation,

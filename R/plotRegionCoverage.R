@@ -71,7 +71,7 @@
 #'
 #' ## Get the region coverage
 #' regionCov <- getRegionCoverage(fullCov=fullCov, regions=regions)
-#'
+#
 #' ## Make plots for the regions
 #' plotRegionCoverage(regions=regions, regionCoverage=regionCov, 
 #'     groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation, 
@@ -124,7 +124,6 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
     
     ## Color setup
     if (is.null(colors)) {
-        library('RColorBrewer')
         palette(brewer.pal(max(3, length(levels(groupInfo))), 
             'Dark2'))
     }
