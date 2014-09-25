@@ -21,7 +21,7 @@ Imports:
 Suggests:
     biovizBase,
     bumphunter,
-    derfinder (>= 0.0.79),
+    derfinder (>= 0.99.0),
     devtools (>= 1.6),
     GenomicFeatures,
     knitcitations (>= 1.0.1),
