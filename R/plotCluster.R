@@ -56,6 +56,8 @@
 #' @importFrom plyr ddply summarise
 #' @importFrom scales log2_trans log_trans
 #' @importFrom GenomeInfoDb seqlevelsStyle 'seqlevelsStyle<-' mapSeqlevels
+#' @importFrom GenomicFeatures exonsBy
+#' @importFrom RColorBrewer brewer.pal
 #' 
 #' @examples
 #' ## Load data

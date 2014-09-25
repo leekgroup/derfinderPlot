@@ -43,6 +43,8 @@
 #'
 #' @importFrom GenomicRanges GRangesList
 #' @importMethodsFrom GenomicRanges mcols names start end '$' '[[' as.data.frame
+#' gaps findOverlaps 
+#' @importMethodsFrom IRanges subjectHits queryHits
 #' @importFrom GenomeInfoDb seqlengths 'seqlengths<-' 'seqlevels<-' 
 #' seqlevelsInUse
 #'
