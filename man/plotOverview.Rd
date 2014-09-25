@@ -26,9 +26,6 @@ determine significance. The first element is used to determine significance
 for the p-values and the second element is used for the q-values.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.}
-
-\item{chrsStyle}{The naming style of the chromosomes. By default, UCSC. See
-\link[GenomeInfoDb]{seqlevelsStyle}.}
 }
 \value{
 A ggplot2 plot that is ready to be printed out. Tecnically it is a

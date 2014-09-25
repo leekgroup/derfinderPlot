@@ -20,8 +20,6 @@
 #' @param significantCut A vector of length two specifiying the cutoffs used to 
 #' determine significance. The first element is used to determine significance 
 #' for the p-values and the second element is used for the q-values.
-#' @param chrsStyle The naming style of the chromosomes. By default, UCSC. See 
-#' \link[GenomeInfoDb]{seqlevelsStyle}.
 #' @param ... Arguments passed to other methods and/or advanced arguments.
 #'
 #' @return A ggplot2 plot that is ready to be printed out. Tecnically it is a 
@@ -108,7 +106,7 @@ plotOverview <- function(regions, annotation = NULL, type = 'pval',
     
     ## Keeping R CMD check happy
     hg19Ideogram <- significant <- midpoint <- area <- x <- y <- xend <-
-        significantQval <- region <- NULL
+        significantQval <- region <- significantFWER <- NULL
         
     ## Use UCSC names by default
     seqlevelsStyle(regions) <- chrsStyle

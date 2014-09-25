@@ -111,7 +111,8 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
     
     ## Satisfying R CMD check
     x <- xend <- y <- meanCov <- significant <- significantQval <- position <-
-        valueScaled <- variable <- group <- value <- meanScaled <- NULL
+        valueScaled <- variable <- group <- value <- meanScaled <- 
+        significantFWER <- NULL
     
     ## Select region and build title
     cluster <- regions[seqnames(regions) == seqnames(current) & 
