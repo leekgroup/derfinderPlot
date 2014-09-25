@@ -9,4 +9,5 @@ all:
 
 clean:
 	rm -f *.bib *.md
+	rm -fr chr21
 	cp fakevignettes/*.Rmd .
