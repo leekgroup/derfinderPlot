@@ -53,7 +53,8 @@ bibs <- c(knitcitations = citation('knitcitations'),
     scales = citation('scales'),
     biovizBase = citation('biovizBase'),
     bumphunter = citation('bumphunter'),
-    TxDb.Hsapiens.UCSC.hg19.knownGene = citation('TxDb.Hsapiens.UCSC.hg19.knownGene')
+    TxDb.Hsapiens.UCSC.hg19.knownGene = citation('TxDb.Hsapiens.UCSC.hg19.knownGene'),
+    bumphunterPaper = RefManageR::BibEntry(bibtype = 'article', key = 'bumphunterPaper', title = 'Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies', author = 'Jaffe, Andrew E and Murakami, Peter and Lee, Hwajin and Leek, Jeffrey T and Fallin, M Daniele and Feinberg, Andrew P and Irizarry, Rafael A', year = 2012, journal = 'International Journal of Epidemiology')
 )
 write.bibtex(bibs,
     file = 'derfinderPlotRef.bib')
@@ -251,7 +252,7 @@ This package was made possible thanks to:
 * reshape2 `r citep(bib[['reshape2']])`
 * scales `r citep(bib[['scales']])`
 * biovizBase `r citep(bib[['biovizBase']])`
-* bumphunter `r citep(bib[['bumphunter']])`
+* bumphunter `r citep(bib[['bumphunter']])` and `r citep(bib[['bumphunterPaper']])`
 * derfinder `r citep(bib[['derfinder']])`
 * devtools `r citep(bib[['devtools']])`
 * knitcitations `r citep(bib[['knitcitations']])`
