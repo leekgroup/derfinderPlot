@@ -32,33 +32,48 @@ cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
 # https://github.com/cboettig/knitcitations/issues/63
 
 ## Write bibliography information
-write.bibtex(c(knitcitations = citation('knitcitations'),
+bibs <- c(knitcitations = citation('knitcitations'),
     derfinderPlot = citation('derfinderPlot'), 
     knitrBootstrap = citation('knitrBootstrap'), 
     knitr = citation('knitr')[3],
     rmarkdown = citation('rmarkdown'),
-    derPlot = citation('derfinderPlot'),
     derfinder = citation('derfinder'),
     ggbio = citation('ggbio'),
-    brainspan = RefManageR::BibEntry(bibtype = 'Unpublished', key = 'brainspan', title = 'Atlas of the Developing Human Brain [Internet]. Funded by ARRA Awards 1RC2MH089921-01, 1RC2MH090047-01, and 1RC2MH089929-01.', author = 'BrainSpan', year = 2011, url = 'http://developinghumanbrain.org')),
+    brainspan = RefManageR::BibEntry(bibtype = 'Unpublished', key = 'brainspan', title = 'Atlas of the Developing Human Brain [Internet]. Funded by ARRA Awards 1RC2MH089921-01, 1RC2MH090047-01, and 1RC2MH089929-01.', author = 'BrainSpan', year = 2011, url = 'http://developinghumanbrain.org'),
+    R = citation(),
+    IRanges = citation('IRanges'),
+    devtools = citation('devtools'),
+    testthat = citation('testthat'),
+    GenomeInfoDb = citation('GenomeInfoDb'),
+    GenomicRanges = citation('GenomicRanges'),
+    ggplot2 = citation('ggplot2'),
+    plyr = citation('plyr'),
+    RColorBrewer = citation('RColorBrewer'),
+    reshape2 = citation('reshape2'),
+    scales = citation('scales'),
+    biovizBase = citation('biovizBase'),
+    bumphunter = citation('bumphunter'),
+    TxDb.Hsapiens.UCSC.hg19.knownGene = citation('TxDb.Hsapiens.UCSC.hg19.knownGene')
+)
+write.bibtex(bibs,
     file = 'derfinderPlotRef.bib')
 bib <- read.bibtex('derfinderPlotRef.bib')
 
-## Fix some names to work with CRAN and GitHub versions
-names(bib)[names(bib) == 'hester2013knitrbootstrap'] <- 'hester2014knitrbootstrap'
+## Assign short names
+names(bib) <- names(bibs)
 ```
 
 
 # Overview
 
-`derfinderPlot` `r citep(bib[['colladotorres2014derfinderplot']])` is an addon package for `derfinder` `r citep(bib[['colladotorres2014derfinder']])` with functions that allow you to visualize the results.
+`derfinderPlot` `r citep(bib[['derfinderPlot']])` is an addon package for `derfinder` `r citep(bib[['derfinder']])` with functions that allow you to visualize the results.
 
 While the functions in `derfinderPlot` assume you generated the data with `derfinder`, they can be used with other `GRanges` objects properly formatted.
 
 The functions in `derfinderPlot` are:
 
-* `plotCluster()` is a tailored `ggbio` `r citep(bib[['yin2012ggbio']])` plot that shows all the regions in a cluster (defined by distance). It shows the base-level coverage for each sample as well as the mean for each group. If these regions overlap any known gene, the gene and the transcript annotation is displayed.
-* `plotOverview()` is another tailored `ggbio` `r citep(bib[['yin2012ggbio']])` plot showing an overview of the whole genome. This plot can be useful to observe if the regions are clustered in a subset of a chromosome. It can also be used to check whether the regions match predominantly one part of the gene structure (for example, 3' overlaps).
+* `plotCluster()` is a tailored `ggbio` `r citep(bib[['ggbio']])` plot that shows all the regions in a cluster (defined by distance). It shows the base-level coverage for each sample as well as the mean for each group. If these regions overlap any known gene, the gene and the transcript annotation is displayed.
+* `plotOverview()` is another tailored `ggbio` `r citep(bib[['ggbio']])` plot showing an overview of the whole genome. This plot can be useful to observe if the regions are clustered in a subset of a chromosome. It can also be used to check whether the regions match predominantly one part of the gene structure (for example, 3' overlaps).
 * `plotRegionCoverage()` is a fast plotting function using `R` base graphics that shows the base level coverage for each sample inside a specific region of the genome. If the region overlaps any known gene or intron, the information is displayed. Optionally, it can display the known transcripts. This function is most likely the easiest to use with `GRanges` objects from other packages.
 
 
@@ -81,8 +96,6 @@ library('derfinderPlot')
 For this example, we created a small table with the relevant phenotype data for 12 samples: 6 from fetal samples and 6 from adult samples. We chose at random a brain region, in this case the primary auditory cortex (core) and for the example we will only look at data from chromosome 21. Other variables include the age in years, the gender and the RNA Integrity Number (RIN). The data is shown below.
 
 ```{r 'phenoData', bootstrap.show.code=FALSE, results = 'asis'}
-library('xtable')
-
 ## Construct pheno table
 pheno <- data.frame(
     gender = c('M', 'M', 'M', 'M', 'F', 'F', 'F', 'M', 'F', 'M', 'M', 'F'),
@@ -97,7 +110,7 @@ pheno$group <- factor(ifelse(pheno$Age < 0, 'fetal', 'adult'), levels = c('fetal
 
 ## Display the main information
 p <- pheno[, -which(colnames(pheno) %in% c('structure_acronym', 'structure_name', 'file'))]
-print(xtable(p), type = 'html')
+kable(p, format = 'html', row.names = TRUE)
 ```
 
 Since the BigWig files are publicly available from _BrainSpan_ (see [here](http://download.alleninstitute.org/brainspan/MRF_BigWig_Gencode_v10/bigwig/)), we can extract the relevant coverage data using `derfinder::fullCoverage()`.
@@ -225,6 +238,29 @@ sapply(c('plotCluster', 'plotOverview'), derfinder::advancedArg, package = 'derf
 
 # Reproducibility
 
+This package was made possible thanks to:
+
+* R `r citep(bib[['R']])`
+* GenomeInfoDb `r citep(bib[['GenomeInfoDb']])`
+* GenomicRanges `r citep(bib[['GenomicRanges']])`
+* ggbio `r citep(bib[['ggbio']])`
+* ggplot2 `r citep(bib[['ggplot2']])`
+* IRanges `r citep(bib[['IRanges']])`
+* plyr `r citep(bib[['plyr']])`
+* RColorBrewer `r citep(bib[['RColorBrewer']])`
+* reshape2 `r citep(bib[['reshape2']])`
+* scales `r citep(bib[['scales']])`
+* biovizBase `r citep(bib[['biovizBase']])`
+* bumphunter `r citep(bib[['bumphunter']])`
+* derfinder `r citep(bib[['derfinder']])`
+* devtools `r citep(bib[['devtools']])`
+* knitcitations `r citep(bib[['knitcitations']])`
+* knitr `r citep(bib[['knitr']])`
+* knitrBootstrap `r citep(bib[['knitrBootstrap']])`
+* rmarkdown `r citep(bib[['rmarkdown']])`
+* testthat `r citep(bib[['testthat']])`
+* TxDb.Hsapiens.UCSC.hg19.knownGene `r citep(bib[['TxDb.Hsapiens.UCSC.hg19.knownGene']])`
+
 Code for creating the vignette
 
 ```{r createVignette, eval=FALSE, bootstrap.show.code=FALSE}
@@ -249,6 +285,9 @@ unlink('chr21', recursive = TRUE)
 ## Extract the R code
 library('knitr')
 knit('derfinderPlot.Rmd', tangle = TRUE)
+
+## Clean up
+file.remove('derfinderPlotRef.bib')
 ```
 
 Date the vignette was generated.
@@ -276,12 +315,12 @@ session_info()
 
 # Bibliography
 
-This vignette was generated using `knitrBootstrap` `r citep(bib[['hester2014knitrbootstrap']])`
-with `knitr` `r citep(bib[['xie2014knitr']])` and `rmarkdown` `r citep(bib[['allaire2014rmarkdown']])` running behind the scenes.
+This vignette was generated using `knitrBootstrap` `r citep(bib[['knitrBootstrap']])`
+with `knitr` `r citep(bib[['knitr']])` and `rmarkdown` `r citep(bib[['rmarkdown']])` running behind the scenes.
 
-Citations made with `r citep(bib[[1]])`.
+Citations made with `knitcitations` `r citep(bib[['knitcitations']])`.
 
-```{r vignetteBiblio, results='asis', echo=FALSE}
+```{r vignetteBiblio, results = 'asis', echo = FALSE, warning = FALSE}
 ## Print bibliography
 bibliography()
 ```
