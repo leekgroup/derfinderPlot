@@ -54,7 +54,8 @@ bibs <- c(knitcitations = citation('knitcitations'),
     biovizBase = citation('biovizBase'),
     bumphunter = citation('bumphunter'),
     TxDb.Hsapiens.UCSC.hg19.knownGene = citation('TxDb.Hsapiens.UCSC.hg19.knownGene'),
-    bumphunterPaper = RefManageR::BibEntry(bibtype = 'article', key = 'bumphunterPaper', title = 'Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies', author = 'Jaffe, Andrew E and Murakami, Peter and Lee, Hwajin and Leek, Jeffrey T and Fallin, M Daniele and Feinberg, Andrew P and Irizarry, Rafael A', year = 2012, journal = 'International Journal of Epidemiology')
+    bumphunterPaper = RefManageR::BibEntry(bibtype = 'article', key = 'bumphunterPaper', title = 'Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies', author = 'Jaffe, Andrew E and Murakami, Peter and Lee, Hwajin and Leek, Jeffrey T and Fallin, M Daniele and Feinberg, Andrew P and Irizarry, Rafael A', year = 2012, journal = 'International Journal of Epidemiology'),
+    derfinderData = citation('derfinderData')
 )
 write.bibtex(bibs,
     file = 'derfinderPlotRef.bib')
@@ -88,6 +89,7 @@ We first load the required packages.
 ```{r 'start', bootstrap.show.message=FALSE}
 ## Load libraries
 suppressPackageStartupMessages(library('derfinder'))
+library('derfinderData')
 library('derfinderPlot')
 ```
 
@@ -98,31 +100,34 @@ For this example, we created a small table with the relevant phenotype data for 
 
 ```{r 'phenoData', bootstrap.show.code=FALSE, results = 'asis'}
 library('knitr')
-## Construct pheno table
-pheno <- data.frame(
-    gender = c('M', 'M', 'M', 'M', 'F', 'F', 'F', 'M', 'F', 'M', 'M', 'F'),
-    lab = c('HSB114.A1C', 'HSB103.A1C', 'HSB178.A1C', 'HSB154.A1C', 'HSB150.A1C', 'HSB149.A1C', 'HSB130.A1C', 'HSB136.A1C', 'HSB126.A1C', 'HSB145.A1C', 'HSB123.A1C', 'HSB135.A1C'),
-    Age = c(-0.642857142857143, -0.642857142857143, -0.571428571428571, -0.571428571428571, -0.666666666666667, -0.642857142857143, 21, 23, 30, 36, 37, 40),
-    RIN = c(9.6, 9.7, 9.8, 9.9, 9.6, 9.4, 8.8, 9.2, 8.1, 8.4, 9.4, 8.5)
-)
-pheno$structure_acronym <- 'AIC'
-pheno$structure_name <- 'primary auditory cortex (core)'
-pheno$file <- paste0('http://download.alleninstitute.org/brainspan/MRF_BigWig_Gencode_v10/bigwig/', pheno$lab, '.bw')
-pheno$group <- factor(ifelse(pheno$Age < 0, 'fetal', 'adult'), levels = c('fetal', 'adult'))
+## Get pheno table
+pheno <- subset(brainspanPheno, structure_acronym == 'A1C')
 
 ## Display the main information
 p <- pheno[, -which(colnames(pheno) %in% c('structure_acronym', 'structure_name', 'file'))]
+rownames(p) <- NULL
 kable(p, format = 'html', row.names = TRUE)
 ```
 
-Since the BigWig files are publicly available from _BrainSpan_ (see [here](http://download.alleninstitute.org/brainspan/MRF_BigWig_Gencode_v10/bigwig/)), we can extract the relevant coverage data using `derfinder::fullCoverage()`.
+We can load the data from `derfinderData` `r citep(bib[['derfinderData']])` by first identifying the paths to the BigWig files with `derfinder::rawFiles()` and then loading the data with `derfinder::fullCoverage()`.
 
-```{r 'getData', bootstrap.show.message=FALSE}
+```{r 'getData'}
+## Determine the files to use and fix the names
+files <- rawFiles(system.file('extdata', 'A1C', package = 'derfinderData'), samplepatt = 'bw', fileterm = NULL)
+names(files) <- gsub('.bw', '', names(files))
+
+## Load the data from disk
+system.time(fullCov <- fullCoverage(files = files, chrs = 'chr21'))
+```
+
+Alternatively, since the BigWig files are publicly available from _BrainSpan_ (see [here](http://download.alleninstitute.org/brainspan/MRF_BigWig_Gencode_v10/bigwig/)), we can extract the relevant coverage data using `derfinder::fullCoverage()`.
+
+```{r 'webData', eval = FALSE}
 ## Determine the files to use and fix the names
 files <- pheno$file
 names(files) <- gsub('.A1C', '', pheno$lab)
 
-## Load the data
+## Load the data from the web
 system.time(fullCov <- fullCoverage(files = files, chrs = 'chr21'))
 ```
 
@@ -255,6 +260,7 @@ This package was made possible thanks to:
 * biovizBase `r citep(bib[['biovizBase']])`
 * bumphunter `r citep(bib[['bumphunter']])` and `r citep(bib[['bumphunterPaper']])`
 * derfinder `r citep(bib[['derfinder']])`
+* derfinderData `r citep(bib[['derfinderData']])`
 * devtools `r citep(bib[['devtools']])`
 * knitcitations `r citep(bib[['knitcitations']])`
 * knitr `r citep(bib[['knitr']])`

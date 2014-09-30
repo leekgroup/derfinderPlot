@@ -22,8 +22,10 @@ source('http://bioconductor.org/biocLite.R')
 biocLite(c('IRanges', 'GenomicRanges', 'bumphunter', 'biovizBase', 'ggbio',
     'TxDb.Hsapiens.UCSC.hg19.knownGene', 'GenomeInfoDb', 'GenomicFeatures'))
 
-## derfinder
+## GitHub dependencies
 library('devtools')
+install_github('lcolladotor/derfinderHelper')
+install_github('lcolladotor/derfinderData')
 install_github('lcolladotor/derfinder@master')
 # More details at https://github.com/lcolladotor/derfinder/blob/master/README.md
 
