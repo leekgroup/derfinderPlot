@@ -63,6 +63,9 @@ bib <- read.bibtex('derfinderPlotRef.bib')
 
 ## Assign short names
 names(bib) <- names(bibs)
+
+## Working on Windows?
+windowsFlag <- .Platform$OS.type == 'windows'
 ```
 
 
@@ -96,7 +99,7 @@ library('derfinderPlot')
 
 ## Analyze data
 
-For this example, we created a small table with the relevant phenotype data for 12 samples: 6 from fetal samples and 6 from adult samples. We chose at random a brain region, in this case the primary auditory cortex (core) and for the example we will only look at data from chromosome 21. Other variables include the age in years, the gender and the RNA Integrity Number (RIN). The data is shown below.
+For this example, we created a small table with the relevant phenotype data for 12 samples: 6 from fetal samples and 6 from adult samples. We chose at random a brain region, in this case the primary auditory cortex (core) and for the example we will only look at data from chromosome 21. Other variables include the age in years and the gender. The data is shown below.
 
 ```{r 'phenoData', bootstrap.show.code=FALSE, results = 'asis'}
 library('knitr')
@@ -111,7 +114,7 @@ kable(p, format = 'html', row.names = TRUE)
 
 We can load the data from `derfinderData` `r citep(bib[['derfinderData']])` by first identifying the paths to the BigWig files with `derfinder::rawFiles()` and then loading the data with `derfinder::fullCoverage()`.
 
-```{r 'getData'}
+```{r 'getData', eval = !windowsFlag}
 ## Determine the files to use and fix the names
 files <- rawFiles(system.file('extdata', 'A1C', package = 'derfinderData'), samplepatt = 'bw', fileterm = NULL)
 names(files) <- gsub('.bw', '', names(files))
@@ -120,7 +123,17 @@ names(files) <- gsub('.bw', '', names(files))
 system.time(fullCov <- fullCoverage(files = files, chrs = 'chr21'))
 ```
 
-Alternatively, since the BigWig files are publicly available from _BrainSpan_ (see [here](http://download.alleninstitute.org/brainspan/MRF_BigWig_Gencode_v10/bigwig/)), we can extract the relevant coverage data using `derfinder::fullCoverage()`.
+```{r 'getDataWindows', eval = windowsFlag, echo = FALSE}
+## Load data in Windows case
+foo <- function() { 
+    load(system.file('extdata', 'fullCov', 'fullCovA1C.RData', package = 'derfinderData'))
+    return(fullCovA1C) 
+}
+fullCov <- foo()
+```
+
+
+Alternatively, since the BigWig files are publicly available from _BrainSpan_ (see [here](http://download.alleninstitute.org/brainspan/MRF_BigWig_Gencode_v10/bigwig/)), we can extract the relevant coverage data using `derfinder::fullCoverage()`. Note that as of `rtracklayer` 1.25.16 BigWig files are not supported on Windows: you can find the `fullCov` object inside `derfinderData` to follow the examples.
 
 ```{r 'webData', eval = FALSE}
 ## Determine the files to use and fix the names
@@ -131,14 +144,14 @@ names(files) <- gsub('.A1C', '', pheno$lab)
 system.time(fullCov <- fullCoverage(files = files, chrs = 'chr21'))
 ```
 
-Once we have the base-level coverage data for all 12 samples, we can construct the models. In this case, we want to find differences between fetal and adult samples while adjusting for gender, RIN and a proxy of the library size.
+Once we have the base-level coverage data for all 12 samples, we can construct the models. In this case, we want to find differences between fetal and adult samples while adjusting for gender and a proxy of the library size.
 
 ```{r 'models', bootstrap.show.message=FALSE}
 ## Get some idea of the library sizes
 sampleDepths <- sampleDepth(collapseFullCoverage(fullCov), 1)
 
 ## Define models
-models <- makeModels(sampleDepths, testvars = pheno$group, adjustvars = pheno[, c('gender', 'RIN')])
+models <- makeModels(sampleDepths, testvars = pheno$group, adjustvars = pheno[, c('gender')])
 ```
 
 Next, we can find candidate differentially expressed regions (DERs) using as input the segments of the genome where at least one sample has coverage greater than 3. In this particular example, we chose a low theoretical F-statistic cutoff and used 20 permutations.
@@ -149,7 +162,7 @@ filteredCov <- lapply(fullCov, filterData, cutoff = 3)
 
 ## Perform differential expression analysis
 suppressPackageStartupMessages(library('bumphunter'))
-system.time(results <- analyzeChr(chr = 'chr21', filteredCov$chr21, models, groupInfo = pheno$group, writeOutput = FALSE, cutoffFstat = 1e-02, nPermute = 20, seeds = 20140923 + seq_len(20)))
+system.time(results <- analyzeChr(chr = 'chr21', filteredCov$chr21, models, groupInfo = pheno$group, writeOutput = FALSE, cutoffFstat = 5e-02, nPermute = 20, seeds = 20140923 + seq_len(20)))
 
 ## Quick access to the results
 regions <- results$regions$regions
@@ -215,14 +228,14 @@ In the plot below we observe one large candidate DER with other nearby ones that
 
 ```{r 'plotCluster', bootstrap.show.message=FALSE, bootstrap.show.warning=FALSE}
 ## First cluster
-plotCluster(idx = 1, regions = regions, annotation = results$annotation, coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group)
+plotCluster(idx = 1, regions = regions, annotation = results$annotation, coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group, titleUse = 'pval')
 ```
 
-The second cluster shows a larger number of potential DERs (again without q-values less than 0.10) in a segment of the genome where the coverage data is highly variable. This is a common occurrence with RNA-seq data and 
+The second cluster shows a larger number of potential DERs (again without q-values less than 0.10) in a segment of the genome where the coverage data is highly variable. This is a common occurrence with RNA-seq data.
 
 ```{r 'plotCluster2', bootstrap.show.message=FALSE, bootstrap.show.warning=FALSE}
 ## Second cluster
-plotCluster(idx = 2, regions = regions, annotation = results$annotation, coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group)
+plotCluster(idx = 2, regions = regions, annotation = results$annotation, coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group, titleUse = 'pval')
 ```
 
 These plots show an ideogram which helps quickly identify which region of the genome we are focusing on. Then, the coverage level information for each sample is displayed in log2. Next, the coverage group means are shown in the log2 scale. The plot is completed with the potential and candidate DERs as well as any known transcripts.
