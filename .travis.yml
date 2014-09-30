@@ -32,6 +32,7 @@ install:
   - ./travis-tool.sh install_r ggplot2
   - ./travis-tool.sh install_r testthat
   - ./travis-tool.sh install_bioc TxDb.Hsapiens.UCSC.hg19.knownGene
+  - ./travis-tool.sh install_github lcolladotor/derfinderData
   - ./travis-tool.sh install_github lcolladotor/derfinder@master
   - ./travis-tool.sh install_bioc_deps
  
