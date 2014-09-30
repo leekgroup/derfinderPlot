@@ -1,7 +1,7 @@
 Package: derfinderPlot
 Type: Package
 Title: Plotting functions for derfinder
-Version: 0.99.2
+Version: 0.99.3
 Date: 2014-09-29
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person("Andrew", "Jaffe", role = "aut", email =
@@ -23,7 +23,7 @@ Imports:
 Suggests:
     biovizBase,
     bumphunter,
-    derfinder (>= 0.99.2),
+    derfinder (>= 0.99.0),
     devtools (>= 1.6),
     knitcitations (>= 1.0.1),
     knitr (>= 1.6),
