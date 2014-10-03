@@ -1,0 +1,42 @@
+CHANGES IN VERSION 0.99.0
+-------------------------
+
+NEW FEATURES
+
+    o Preparing to submit to Bioconductor.
+    o Added tests and vignette.
+    
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o plotOverview() and plotCluster() can now plot FWER adjusted p-values if
+        calculated with derfinder::mergeResults()
+
+CHANGES IN VERSION 0.0.4
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Hid some arguments in plotCluster() and plotOverview() as advanced just
+        like in derfinder v0.0.74
+
+BUG FIXES
+
+    o Improved the speed in plotRegionCoverage() then 'txdb' is specified. Also
+        fixed the introns on the gene track.
+
+CHANGES IN VERSION 0.0.3
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o plotRegionCoverage() now has a 'txdb' argument. When specified, this 
+        function will extract the transcript information needed and display
+        the transcripts.
+
+
+CHANGES IN VERSION 0.0.1
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Moved plotting functions from derfinder into this package
