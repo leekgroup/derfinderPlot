@@ -8,7 +8,7 @@
         paste("Find out what's changed in derfinderPlot with\n",
             "news(Version == \"", utils::packageVersion("derfinderPlot"),
             "\", package = \"derfinderPlot\")", sep = ""),
-        "Create HTML reports from derfinder results using derfinderReport available at\nhttps://github.com/lcolladotor/derfinderReport",
+        "Create HTML reports from derfinder results using regionReport available at\nhttp://www.bioconductor.org/packages/devel/bioc/html/regionReport.html",
         "Use suppressPackageStartupMessages to eliminate package startup messages."
     )
     
