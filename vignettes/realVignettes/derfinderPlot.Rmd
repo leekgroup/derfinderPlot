@@ -226,7 +226,7 @@ To visualize the clusters, we can use `plotCluster()` which takes similar input 
 
 In the plot below we observe one large candidate DER with other nearby ones that do not have a q-value less than 0.10. In a real analysis, we would probably discard this region as the coverage is fairly low.
 
-```{r 'plotCluster', bootstrap.show.message=FALSE, bootstrap.show.warning=FALSE}
+```{r 'plotCluster', bootstrap.show.message=FALSE, warning=FALSE}
 ## First cluster
 plotCluster(idx = 1, regions = regions, annotation = results$annotation, coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group, titleUse = 'pval')
 ```
