@@ -55,9 +55,10 @@
 #' guides scale_y_continuous geom_segment
 #' @importFrom plyr ddply summarise
 #' @importFrom scales log2_trans log_trans
-#' @importFrom GenomeInfoDb seqlevelsStyle 'seqlevelsStyle<-' mapSeqlevels
+#' @importFrom GenomeInfoDb seqlevels renameSeqlevels
 #' @importFrom GenomicFeatures exonsBy
 #' @importFrom RColorBrewer brewer.pal
+#' @importFrom derfinder extendedMapSeqlevels
 #' 
 #' @examples
 #' ## Load data
@@ -86,11 +87,7 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
     stopifnot(titleUse %in% c('pval', 'qval', 'fwer', 'none'))
     stopifnot(is.factor(groupInfo))
 
-    ## Advanced parameters
-#' @param chrsStyle The naming style of the chromosomes. By default, UCSC. See 
-#' \link[GenomeInfoDb]{seqlevelsStyle}.    
-    chrsStyle <- .advanced_argument('chrsStyle', 'UCSC', ...)
-    
+    ## Advanced parameters    
 #' @param maxExtend The maximum number of base-pairs to extend the view (on 
 #' each side) before and after the region cluster of interest. For small region 
 #' clusters, the one side extension is equal to the width of the region cluster.
@@ -106,8 +103,9 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
 #' 2 hours to complete.
     forceLarge <- .advanced_argument('forceLarge', FALSE, ...)
 
-    ## Use UCSC names by default
-    seqlevelsStyle(regions) <- chrsStyle
+    ## Use UCSC names for homo_sapiens by default
+    regions <- renameSeqlevels(regions, 
+        extendedMapSeqlevels(seqlevels(regions), ...))
     
     current <- regions[idx]
     
