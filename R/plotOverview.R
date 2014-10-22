@@ -32,11 +32,11 @@
 #' @aliases plot_overview
 #'
 #' @importFrom GenomicRanges seqinfo
-#' @importFrom GenomeInfoDb seqlengths 'seqlengths<-' seqlevelsStyle 
-#' 'seqlevelsStyle<-'
+#' @importFrom GenomeInfoDb seqlengths 'seqlengths<-' seqlevels renameSeqlevels
 #' @importMethodsFrom ggbio autoplot layout_karyogram
 #' @importFrom ggplot2 aes labs scale_colour_manual scale_fill_manual geom_text 
 #' rel geom_segment xlab theme element_text element_blank
+#' @importFrom derfinder extendedMapSeqlevels
 #' 
 #' @examples
 #' ## Construct toy data
@@ -86,10 +86,6 @@ plotOverview <- function(regions, annotation = NULL, type = 'pval',
         0 & significantCut <= 1))
         
     ## Advanced parameters
-#' @param chrsStyle The naming style of the chromosomes. By default, UCSC. See 
-#' \link[GenomeInfoDb]{seqlevelsStyle}.    
-    chrsStyle <- .advanced_argument('chrsStyle', 'UCSC', ...)
-    
 #' @param base_size Base point size of the plot. This argument is passed to 
 #' \link[ggplot2]{element_text} (\code{size} argument).
     base_size <- .advanced_argument('base_size', 12, ...)
@@ -108,8 +104,9 @@ plotOverview <- function(regions, annotation = NULL, type = 'pval',
     hg19Ideogram <- significant <- midpoint <- area <- x <- y <- xend <-
         significantQval <- region <- significantFWER <- NULL
         
-    ## Use UCSC names by default
-    seqlevelsStyle(regions) <- chrsStyle
+    ## Use UCSC names for homo_sapiens by default
+    regions <- renameSeqlevels(regions, 
+        extendedMapSeqlevels(seqlevels(regions), ...))
     
     ## Assign chr lengths if needed
     if (any(is.na(seqlengths(regions)))) {
