@@ -1,6 +1,6 @@
 c(
     bibentry(bibtype="manual",
-        title = "Plotting functions for derfinder",
+        title = "derfinderPlot: Plotting functions for derfinder",
         author = personList(
             as.person("Leonardo Collado-Torres"),
             as.person("Andrew E. Jaffe"),
