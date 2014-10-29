@@ -33,11 +33,11 @@ cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
 
 ## Write bibliography information
 bibs <- c(knitcitations = citation('knitcitations'),
-    derfinderPlot = citation('derfinderPlot'), 
+    derfinderPlot = citation('derfinderPlot')[1], 
     knitrBootstrap = citation('knitrBootstrap'), 
     knitr = citation('knitr')[3],
     rmarkdown = citation('rmarkdown'),
-    derfinder = citation('derfinder'),
+    derfinder = citation('derfinder')[1],
     ggbio = citation('ggbio'),
     brainspan = RefManageR::BibEntry(bibtype = 'Unpublished', key = 'brainspan', title = 'Atlas of the Developing Human Brain [Internet]. Funded by ARRA Awards 1RC2MH089921-01, 1RC2MH090047-01, and 1RC2MH089929-01.', author = 'BrainSpan', year = 2011, url = 'http://developinghumanbrain.org'),
     R = citation(),
