@@ -1,0 +1,25 @@
+c(
+    bibentry(bibtype="manual",
+        title = "Plotting functions for derfinder",
+        author = personList(
+            as.person("Leonardo Collado-Torres"),
+            as.person("Andrew E. Jaffe"),
+            as.person("Jeffrey T. Leek")
+        ),
+        year = 2014,
+        url = "http://www.bioconductor.org/packages/release/bioc/html/derfinderPlot.html",
+        note = "https://github.com/lcolladotor/derfinderPlot"
+    ),
+    bibentry(bibtype="manual",
+        title = "derfinder: Annotation-agnostic differential expression analysis of RNA-seq data at base-pair resolution",
+        author = personList(
+            as.person("Leonardo Collado-Torres"),
+            as.person("Alyssa C. Frazee"),
+            as.person("Andrew E. Jaffe"),
+            as.person("Jeffrey T. Leek")
+        ),
+        year = 2014,
+        url = "http://www.bioconductor.org/packages/release/bioc/html/derfinder.html",
+        note = "https://github.com/lcolladotor/derfinder"
+    )
+)
