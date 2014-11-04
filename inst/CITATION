@@ -1,3 +1,8 @@
+pkgVer <- function(pkg, default) { 
+    x <- packageDescription(pkg, fields = 'Version')
+    ver <- ifelse(is.na(x), default, x)
+    paste0('https://github.com/lcolladotor/', pkg, ' - R package version ', ver)
+}
 c(
     bibentry(bibtype="manual",
         title = "derfinderPlot: Plotting functions for derfinder",
@@ -8,8 +13,7 @@ c(
         ),
         year = 2014,
         url = "http://www.bioconductor.org/packages/release/bioc/html/derfinderPlot.html",
-        note = "https://github.com/lcolladotor/derfinderPlot",
-        version = paste("R package version", packageVersion("derfinderPlot"))
+        note = pkgVer('derfinderPlot', '1.1.5')
     ),
     bibentry(bibtype="manual",
         title = "derfinder: Annotation-agnostic differential expression analysis of RNA-seq data at base-pair resolution",
@@ -21,7 +25,6 @@ c(
         ),
         year = 2014,
         url = "http://www.bioconductor.org/packages/release/bioc/html/derfinder.html",
-        note = "https://github.com/lcolladotor/derfinder",
-        version = paste("R package version", packageVersion("derfinder"))
+        note = pkgVer('derfinder', '1.1.9')
     )
 )
