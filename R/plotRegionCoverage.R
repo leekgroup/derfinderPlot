@@ -126,6 +126,8 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
     if (is.null(colors)) {
         palette(brewer.pal(max(3, length(levels(groupInfo))), 
             'Dark2'))
+    } else {
+        palette(colors)
     }
     
     ## Annotation information
