@@ -2,9 +2,11 @@
 library('derfinder')
 library('TxDb.Hsapiens.UCSC.hg19.knownGene')
 
-## Annotate regions
-suppressMessages(library('bumphunter'))
-annotation <- annotateNearest(genomeRegions$regions, 'hg19')
+## Find nearest annoation with bumphunter::matchGenes()
+library('bumphunter')
+library('TxDb.Hsapiens.UCSC.hg19.knownGene')
+genes <- annotateTranscripts(txdb = TxDb.Hsapiens.UCSC.hg19.knownGene)
+annotation <- matchGenes(x = genomeRegions$regions, subject = genes)
 
 #### This is a detailed example for a specific cluster of candidate DERs
 ## The purpose is to illustrate how data filtering (and availability), 

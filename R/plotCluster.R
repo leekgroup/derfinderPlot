@@ -64,12 +64,13 @@
 #' ## Load data
 #' library('derfinder')
 #'
-#' ## Annotate the results
-#' suppressMessages(library('bumphunter'))
-#' annotation <- annotateNearest(genomeRegions$regions, 'hg19')
+#' ## Annotate the results with bumphunter::matchGenes()
+#' library('bumphunter')
+#' library('TxDb.Hsapiens.UCSC.hg19.knownGene')
+#' genes <- annotateTranscripts(txdb = TxDb.Hsapiens.UCSC.hg19.knownGene)
+#' annotation <- matchGenes(x = genomeRegions$regions, subject = genes)
 #'
 #' ## Make the plot
-#' suppressMessages(library('TxDb.Hsapiens.UCSC.hg19.knownGene'))
 #' plotCluster(idx=1, regions=genomeRegions$regions, annotation=annotation, 
 #'     coverageInfo=genomeDataRaw$coverage, groupInfo=genomeInfo$pop, 
 #'     txdb=TxDb.Hsapiens.UCSC.hg19.knownGene)
@@ -149,7 +150,7 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
         hg19IdeogramCyto <- NULL
         load(system.file('data', 'hg19IdeogramCyto.rda',
             package = 'biovizBase', mustWork = TRUE))
-        p.ideogram <- plotIdeogram(hg19IdeogramCyto, mapSeqlevels(chr, 'UCSC'))
+        p.ideogram <- plotIdeogram(hg19IdeogramCyto, extendedMapSeqlevels(chr, 'UCSC', "homo_sapiens"))
     }
     
     ## Regions found (from the view)
