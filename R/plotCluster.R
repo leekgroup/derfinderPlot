@@ -67,7 +67,9 @@
 #' ## Annotate the results with bumphunter::matchGenes()
 #' library('bumphunter')
 #' library('TxDb.Hsapiens.UCSC.hg19.knownGene')
-#' genes <- annotateTranscripts(txdb = TxDb.Hsapiens.UCSC.hg19.knownGene)
+#' library('org.Hs.eg.db')
+#' genes <- annotateTranscripts(txdb = TxDb.Hsapiens.UCSC.hg19.knownGene, 
+#'     annotationPackage = 'org.Hs.eg.db')
 #' annotation <- matchGenes(x = genomeRegions$regions, subject = genes)
 #'
 #' ## Make the plot
