@@ -60,12 +60,13 @@ determined.
 ## Load data
 library('derfinder')
 
-## Annotate the results
-suppressMessages(library('bumphunter'))
-annotation <- annotateNearest(genomeRegions$regions, 'hg19')
+## Annotate the results with bumphunter::matchGenes()
+library('bumphunter')
+library('TxDb.Hsapiens.UCSC.hg19.knownGene')
+genes <- annotateTranscripts(txdb = TxDb.Hsapiens.UCSC.hg19.knownGene)
+annotation <- matchGenes(x = genomeRegions$regions, subject = genes)
 
 ## Make the plot
-suppressMessages(library('TxDb.Hsapiens.UCSC.hg19.knownGene'))
 plotCluster(idx=1, regions=genomeRegions$regions, annotation=annotation,
     coverageInfo=genomeDataRaw$coverage, groupInfo=genomeInfo$pop,
     txdb=TxDb.Hsapiens.UCSC.hg19.knownGene)

@@ -9,9 +9,11 @@ regions <- genomeRegions$regions[1:2]
 annotatedRegions <- annotateRegions(regions = regions, 
     genomicState = genomicState$fullGenome, minoverlap = 1)
 
-## Find nearest annotation
+## Find nearest annoation with bumphunter::matchGenes()
 library('bumphunter')
-nearestAnnotation <- annotateNearest(regions, 'hg19')
+library('TxDb.Hsapiens.UCSC.hg19.knownGene')
+genes <- annotateTranscripts(txdb = TxDb.Hsapiens.UCSC.hg19.knownGene)
+nearestAnnotation <- matchGenes(x = regions, subject = genes)
 
 ## Obtain fullCov object
 fullCov <- list('21'=genomeDataRaw$coverage)
