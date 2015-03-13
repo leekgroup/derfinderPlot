@@ -1,3 +1,10 @@
+CHANGES IN VERSION 1.1.6
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Adapted to work with bumphunter version >= 1.7.6
+
 CHANGES IN VERSION 1.1.3
 ------------------------
 

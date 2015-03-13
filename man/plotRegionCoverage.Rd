@@ -65,9 +65,11 @@ regions <- genomeRegions$regions[1:2]
 annotatedRegions <- annotateRegions(regions = regions,
     genomicState = genomicState$fullGenome, minoverlap = 1)
 
-## Find nearest annotation
+## Find nearest annoation with bumphunter::matchGenes()
 library('bumphunter')
-nearestAnnotation <- annotateNearest(regions, 'hg19')
+library('TxDb.Hsapiens.UCSC.hg19.knownGene')
+genes <- annotateTranscripts(txdb = TxDb.Hsapiens.UCSC.hg19.knownGene)
+nearestAnnotation <- matchGenes(x = regions, subject = genes)
 
 ## Obtain fullCov object
 fullCov <- list('21'=genomeDataRaw$coverage)
@@ -85,19 +87,18 @@ plotRegionCoverage(regions=regions, regionCoverage=regionCov,
     annotatedRegions=annotatedRegions, whichRegions=1:2)
 
 ## Re-make plots with transcript information
-library('TxDb.Hsapiens.UCSC.hg19.knownGene')
-txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
 plotRegionCoverage(regions=regions, regionCoverage=regionCov,
     groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation,
-    annotatedRegions=annotatedRegions, whichRegions=1:2, txdb = txdb)
+    annotatedRegions=annotatedRegions, whichRegions=1:2,
+    txdb = TxDb.Hsapiens.UCSC.hg19.knownGene)
 
 \dontrun{
 ## If you prefer, you can save the plots to a pdf file
 pdf('ders.pdf', h = 6, w = 9)
 plotRegionCoverage(regions=regions, regionCoverage=regionCov,
     groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation,
-    annotatedRegions=annotatedRegions, whichRegions=1:2, txdb = txdb,
-    ask=FALSE)
+    annotatedRegions=annotatedRegions, whichRegions=1:2,
+    txdb = TxDb.Hsapiens.UCSC.hg19.knownGene, ask = FALSE)
 dev.off()
 }
 }
