@@ -57,7 +57,7 @@
 #' annotatedRegions <- annotateRegions(regions = regions, 
 #'     genomicState = genomicState$fullGenome, minoverlap = 1)
 #'
-#' ## Find nearest annoation with bumphunter::matchGenes()
+#' ## Find nearest annotation with bumphunter::matchGenes()
 #' library('bumphunter')
 #' library('TxDb.Hsapiens.UCSC.hg19.knownGene')
 #' genes <- annotateTranscripts(txdb = TxDb.Hsapiens.UCSC.hg19.knownGene)
