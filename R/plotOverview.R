@@ -120,9 +120,10 @@ plotOverview <- function(regions, annotation = NULL, type = 'pval',
     ## Graphical setup
     ann_chr <- ifelse(any(seqnames(regions) == 'chrX'), 'chrX',
         levels(seqnames(regions))[length(levels(seqnames(regions)))])
-    ann_text <- data.frame(x = 2.25e+08, y = 10, lab = 'Area', 
+    ann_pos <- max(2.25e+08, seqlengths(regions) * 0.9)
+    ann_text <- data.frame(x = ann_pos, y = 10, lab = 'Area', 
         seqnames = ann_chr)
-    ann_line <- data.frame(x = 2e+08, xend = 2.15e+08, y = 10, 
+    ann_line <- data.frame(x = ann_pos * 0.888, xend = ann_pos * 0.955, y = 10, 
         seqnames = ann_chr)
     
     ## Make the plot
