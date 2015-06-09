@@ -1,4 +1,4 @@
-derfinderPlot [![Build Status](https://travis-ci.org/lcolladotor/derfinderPlot.png?branch=master)](https://travis-ci.org/lcolladotor/derfinderPlot)
+derfinderPlot [![Build Status](https://travis-ci.org/leekgroup/derfinderPlot.png?branch=master)](https://travis-ci.org/leekgroup/derfinderPlot)
 =============
 
 Addon package with plotting functions for
@@ -6,7 +6,7 @@ Addon package with plotting functions for
 
 # Installation instructions
 
-Get R 3.1.1 or newer from [CRAN](http://cran.r-project.org/).
+Get R 3.2.0 from [CRAN](http://cran.r-project.org/).
 
 ```R
 ## From Bioconductor
@@ -16,7 +16,7 @@ biocLite('derfinderPlot')
 
 # Vignette
 
-The vignette for this package can be viewed [here](http://lcolladotor.github.io/derfinderPlot/) or via [Bioconductor's website](http://www.bioconductor.org/packages/devel/bioc/html/derfinderPlot.html).
+The vignette for this package can be viewed [here](http://leekgroup.github.io/derfinderPlot/) or via [Bioconductor's website](http://www.bioconductor.org/packages/devel/bioc/html/derfinderPlot.html).
 
 # Citation
 
