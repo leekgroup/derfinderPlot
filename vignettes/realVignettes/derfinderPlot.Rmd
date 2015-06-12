@@ -16,7 +16,7 @@ output:
 Introduction to `derfinderPlot`
 ===============================
 
-If you wish, you can view this vignette online [here](http://lcolladotor.github.io/derfinderPlot/).
+If you wish, you can view this vignette online [here](http://leekgroup.github.io/derfinderPlot/).
 
 ```{r vignetteSetup, echo=FALSE, message=FALSE, warning = FALSE}
 ## Track time spent on making the vignette

@@ -37,6 +37,6 @@ VignetteBuilder: knitr
 Description: Plotting functions for derfinder
 License: Artistic-2.0
 LazyData: false
-URL: https://github.com/lcolladotor/derfinderPlot
-BugReports: https://github.com/lcolladotor/derfinderPlot/issues
+URL: https://github.com/leekgroup/derfinderPlot
+BugReports: https://github.com/leekgroup/derfinderPlot/issues
 biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization
