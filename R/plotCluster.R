@@ -42,7 +42,6 @@
 #' \link[bumphunter]{annotateNearest}, \link[ggbio]{plotIdeogram}
 #' @author Leonardo Collado-Torres
 #' @export
-#' @aliases plot_cluster
 #'
 #' @importFrom IRanges width resize
 #' @importMethodsFrom IRanges '[' as.matrix findOverlaps queryHits
@@ -227,6 +226,3 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
     }
     return(result)
 } 
-
-#' @export
-plot_cluster <- plotCluster
