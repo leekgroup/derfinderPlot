@@ -39,7 +39,6 @@
 #' \link[bumphunter]{annotateNearest}, \link[derfinder]{annotateRegions}, 
 #' \link{plotCluster}
 #' @export
-#' @aliases plot_region_coverage
 #'
 #' @importFrom GenomicRanges GRangesList
 #' @importMethodsFrom GenomicRanges mcols names start end '$' '[[' as.data.frame
@@ -293,10 +292,7 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
         
     }
     return(invisible(NULL))
-} 
-
-#' @export
-plot_region_coverage <- plotRegionCoverage
+}
 
 .plotData <- function(eList) {
     seqlevels(eList) <- seqlevelsInUse(eList)
