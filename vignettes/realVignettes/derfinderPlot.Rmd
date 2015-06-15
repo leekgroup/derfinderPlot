@@ -240,6 +240,19 @@ plotCluster(idx = 2, regions = regions, annotation = results$annotation, coverag
 
 These plots show an ideogram which helps quickly identify which region of the genome we are focusing on. Then, the coverage level information for each sample is displayed in log2. Next, the coverage group means are shown in the log2 scale. The plot is completed with the potential and candidate DERs as well as any known transcripts.
 
+## `vennRegions`
+
+`derfinder` has functions for annotating regions given their genomic state. A typical visualization is to then view how many regions overlap known exons, introns, intergenic regions, none of them or several of these groups in a venn diagram. The function `vennRegions()` makes this plot using the output from `derfinder::annotateRegions()` as shown below.
+
+```{r 'vennRegions'}
+## Make venn diagram
+venn <- vennRegions(annoRegs)
+
+## It returns the actual venn counts information
+venn
+```
+
+
 
 # Advanced arguments
 
