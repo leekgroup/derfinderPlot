@@ -9,6 +9,12 @@ vennRegions(annotatedRegions, subsetIndex = NULL, ...)
 \arguments{
 \item{annotatedRegions}{The output from \link[derfinder]{annotateRegions}
 used on \code{regions}.}
+
+\item{subsetIndex}{A vector of to use to subset the regions to use for the
+venn diagram. It can be a logical vector of length equal to the number of
+regions or an integer vector. If \code{NULl}, then it's ignored.}
+
+\item{...}{Arguments passed to \link[limma]{vennDiagram}.}
 }
 \value{
 Makes a venn diagram plot for the annotation given the genomic state
