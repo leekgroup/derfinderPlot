@@ -2,10 +2,16 @@
 % Please edit documentation in R/deprecated.R
 \name{derfinderPlot-deprecated}
 \alias{derfinderPlot-deprecated}
+\alias{plot_cluster}
 \alias{plot_overview}
+\alias{plot_region_coverage}
 \title{Deprecated functions in package \sQuote{derfinderPlot}}
 \usage{
 plot_overview()
+
+plot_cluster()
+
+plot_region_coverage()
 }
 \description{
 These functions are provided for compatibility with older versions
