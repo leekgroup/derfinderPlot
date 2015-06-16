@@ -21,6 +21,7 @@ Imports:
     plyr,
     RColorBrewer,
     reshape2,
+    S4Vectors,
     scales,
     Sushi
 Suggests:
