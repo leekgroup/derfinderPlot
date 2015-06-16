@@ -47,6 +47,8 @@
 #' @importFrom Sushi SushiColors plotHic labelgenome addlegend
 #' @importFrom GenomicRanges tileGenome
 #' @importMethodsFrom GenomicRanges findOverlaps mcols overlapsAny '[[' resize
+#'     start
+#' @importMethodsFrom S4Vectors unlist
 #'
 #' @examples
 #' ## Load data
