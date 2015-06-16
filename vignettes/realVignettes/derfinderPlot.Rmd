@@ -94,6 +94,10 @@ We first load the required packages.
 suppressPackageStartupMessages(library('derfinder'))
 library('derfinderData')
 library('derfinderPlot')
+
+## For tMatrix() colors
+library('grDevices')
+library('RColorBrewer')
 ```
 
 
