@@ -16,8 +16,6 @@
 #'  }
 #'
 #' @name derfinderPlot-deprecated
-#' @aliases plot_overview
-
 #' @export
 plot_overview <- function() { .Deprecated('plotOverview')}
 
