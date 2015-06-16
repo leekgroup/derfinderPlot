@@ -13,7 +13,7 @@
 #' @return Makes a venn diagram plot for the annotation given the genomic state
 #'     and the actual venn counts used to make the plot.
 #'
-#' @author Andrew Jaffe, Leonardo Collado-Torres
+#' @author Leonardo Collado-Torres
 #' @seealso \link[derfinder]{annotateRegions}, \link[limma]{vennCounts},
 #'     \link[limma]{vennDiagram}
 #' @export
