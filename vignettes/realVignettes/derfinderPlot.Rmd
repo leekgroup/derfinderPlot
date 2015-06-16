@@ -252,6 +252,25 @@ venn <- vennRegions(annoRegs)
 venn
 ```
 
+## `tMatrix`
+
+In some cases, you might be interested in visualizing which parts of the genome have similar or very different values to other parts of the genome. The function `tMatrix()` calculates t-Statistics between bins of the genome for a given variable of interest in a `GRanges` object. This type of plot is frequently used when visualizing HiC data. Below is an example of such type of plot.
+
+```{r tMatrix}
+## Identify similar regions
+tMat <- tMatrix(regions, palette = colorRampPalette(brewer.pal(11, 'PuOr')), 
+    scale = 'Mb')
+
+## The object returned is a list with 1 element per chromosome.
+## Each element is a matrix with the size given by the number of bins on
+## that particular chromosome.
+dim(tMat[[1]])
+
+## Part of the t-Matrix
+summary(tMat[[1]][, c(1, 11, 20)])
+```
+
+In the previous plot note how megabase 32 has higher mean area than most other ones except megabase 20, 40 and 42. Also, megabase 32 has one of the highest z-Scores (the diagonal elements which are shown next to the x-axis) meaning that it had lower variance than most of the other megabases. Meaning that this megabase had consistently more signal than others in this chromosome.
 
 
 # Advanced arguments

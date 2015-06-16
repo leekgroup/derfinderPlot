@@ -45,7 +45,7 @@ venn3 <- vennRegions(annotatedRegions, subsetIndex =
     genomeRegions$regions$significant == 'TRUE', main = 'Significant only')
 }
 \author{
-Andrew Jaffe, Leonardo Collado-Torres
+Leonardo Collado-Torres
 }
 \seealso{
 \link[derfinder]{annotateRegions}, \link[limma]{vennCounts},
