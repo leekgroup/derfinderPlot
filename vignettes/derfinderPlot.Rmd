@@ -1,22 +1,21 @@
 ---
-output:
-  html_document:
-    toc: true
-    theme: united
-  knitrBootstrap::bootstrap_document:
-    theme.chooser: TRUE
-    highlight.chooser: TRUE
+title: "Introduction to derfinderPlot"
+author: "L Collado-Torres"
+date: "`r doc_date()`"
+package: "`r pkg_ver('derfinderPlot')`"
+output: 
+  BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{Introduction to derfinderPlot}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}  
 ---
 
-<!--
-%\VignetteEngine{knitr::rmarkdown}
-%\VignetteIndexEntry{Introduction to derfinderPlot}
--->
 
 Introduction to `derfinderPlot`
 ===============================
 
-```{r vignetteSetup, echo=FALSE, message=FALSE, warning=FALSE}
+```{r vignetteSetup, echo=FALSE, message=FALSE, warning = FALSE}
 ## Track time spent on making the vignette
 startTime <- Sys.time()
 
@@ -30,70 +29,301 @@ cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
 # https://github.com/cboettig/knitcitations/issues/63
 
 ## Write bibliography information
-write.bibtex(c(
-    knitcitations = citation('knitcitations'),
+bibs <- c(knitcitations = citation('knitcitations'),
     derfinderPlot = citation('derfinderPlot')[1], 
-    knitrBootstrap = citation('knitrBootstrap'), 
+    BiocStyle = citation('BiocStyle'), 
     knitr = citation('knitr')[3],
-    rmarkdown = citation('rmarkdown')),
+    rmarkdown = citation('rmarkdown'),
+    derfinder = citation('derfinder')[1],
+    ggbio = citation('ggbio'),
+    brainspan = RefManageR::BibEntry(bibtype = 'Unpublished', key = 'brainspan', title = 'Atlas of the Developing Human Brain [Internet]. Funded by ARRA Awards 1RC2MH089921-01, 1RC2MH090047-01, and 1RC2MH089929-01.', author = 'BrainSpan', year = 2011, url = 'http://developinghumanbrain.org'),
+    R = citation(),
+    IRanges = citation('IRanges'),
+    devtools = citation('devtools'),
+    testthat = citation('testthat'),
+    GenomeInfoDb = citation('GenomeInfoDb'),
+    GenomicRanges = citation('GenomicRanges'),
+    ggplot2 = citation('ggplot2'),
+    plyr = citation('plyr'),
+    RColorBrewer = citation('RColorBrewer'),
+    reshape2 = citation('reshape2'),
+    scales = citation('scales'),
+    biovizBase = citation('biovizBase'),
+    bumphunter = citation('bumphunter'),
+    TxDb.Hsapiens.UCSC.hg19.knownGene = citation('TxDb.Hsapiens.UCSC.hg19.knownGene'),
+    bumphunterPaper = RefManageR::BibEntry(bibtype = 'article', key = 'bumphunterPaper', title = 'Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies', author = 'Jaffe, Andrew E and Murakami, Peter and Lee, Hwajin and Leek, Jeffrey T and Fallin, M Daniele and Feinberg, Andrew P and Irizarry, Rafael A', year = 2012, journal = 'International Journal of Epidemiology'),
+    derfinderData = citation('derfinderData')
+)
+write.bibtex(bibs,
     file = 'derfinderPlotRef.bib')
 bib <- read.bibtex('derfinderPlotRef.bib')
 
 ## Assign short names
-names(bib) <- c('knitcitations', 'derfinderPlot', 'knitrBootstrap',
-    'knitr', 'rmarkdown')
+names(bib) <- names(bibs)
+
+## Working on Windows?
+windowsFlag <- .Platform$OS.type == 'windows'
 ```
 
 
 # Overview
 
-This is a stub vignette. The real one can be viewed online [here](http://leekgroup.github.io/derfinderPlot/).
+`derfinderPlot` `r citep(bib[['derfinderPlot']])` is an addon package for `derfinder` `r citep(bib[['derfinder']])` with functions that allow you to visualize the results.
 
-```{r}
+While the functions in `derfinderPlot` assume you generated the data with `derfinder`, they can be used with other `GRanges` objects properly formatted.
+
+The functions in `derfinderPlot` are:
+
+* `plotCluster()` is a tailored `ggbio` `r citep(bib[['ggbio']])` plot that shows all the regions in a cluster (defined by distance). It shows the base-level coverage for each sample as well as the mean for each group. If these regions overlap any known gene, the gene and the transcript annotation is displayed.
+* `plotOverview()` is another tailored `ggbio` `r citep(bib[['ggbio']])` plot showing an overview of the whole genome. This plot can be useful to observe if the regions are clustered in a subset of a chromosome. It can also be used to check whether the regions match predominantly one part of the gene structure (for example, 3' overlaps).
+* `plotRegionCoverage()` is a fast plotting function using `R` base graphics that shows the base level coverage for each sample inside a specific region of the genome. If the region overlaps any known gene or intron, the information is displayed. Optionally, it can display the known transcripts. This function is most likely the easiest to use with `GRanges` objects from other packages.
+
+
+# Example
+
+
+As an example, we will analyze a small subset of the samples from the _BrainSpan Atlas of the Human Brain_ `r citep(bib[['brainspan']])` publicly available data. 
+
+We first load the required packages.
+
+```{r 'start'}
+## Load libraries
+suppressPackageStartupMessages(library('derfinder'))
 library('derfinderData')
+library('derfinderPlot')
+
+## For tMatrix() colors
+library('grDevices')
+library('RColorBrewer')
 ```
+
+
+## Analyze data
+
+For this example, we created a small table with the relevant phenotype data for 12 samples: 6 from fetal samples and 6 from adult samples. We chose at random a brain region, in this case the primary auditory cortex (core) and for the example we will only look at data from chromosome 21. Other variables include the age in years and the gender. The data is shown below.
+
+```{r 'phenoData', results = 'asis'}
+library('knitr')
+## Get pheno table
+pheno <- subset(brainspanPheno, structure_acronym == 'A1C')
+
+## Display the main information
+p <- pheno[, -which(colnames(pheno) %in% c('structure_acronym', 'structure_name', 'file'))]
+rownames(p) <- NULL
+kable(p, format = 'html', row.names = TRUE)
+```
+
+We can load the data from `derfinderData` `r citep(bib[['derfinderData']])` by first identifying the paths to the BigWig files with `derfinder::rawFiles()` and then loading the data with `derfinder::fullCoverage()`.
+
+```{r 'getData', eval = !windowsFlag}
+## Determine the files to use and fix the names
+files <- rawFiles(system.file('extdata', 'A1C', package = 'derfinderData'), samplepatt = 'bw', fileterm = NULL)
+names(files) <- gsub('.bw', '', names(files))
+
+## Load the data from disk
+system.time(fullCov <- fullCoverage(files = files, chrs = 'chr21'))
+```
+
+```{r 'getDataWindows', eval = windowsFlag, echo = FALSE}
+## Load data in Windows case
+foo <- function() { 
+    load(system.file('extdata', 'fullCov', 'fullCovA1C.RData', package = 'derfinderData'))
+    return(fullCovA1C) 
+}
+fullCov <- foo()
+```
+
+
+Alternatively, since the BigWig files are publicly available from _BrainSpan_ (see [here](http://download.alleninstitute.org/brainspan/MRF_BigWig_Gencode_v10/bigwig/)), we can extract the relevant coverage data using `derfinder::fullCoverage()`. Note that as of `rtracklayer` 1.25.16 BigWig files are not supported on Windows: you can find the `fullCov` object inside `derfinderData` to follow the examples.
+
+```{r 'webData', eval = FALSE}
+## Determine the files to use and fix the names
+files <- pheno$file
+names(files) <- gsub('.A1C', '', pheno$lab)
+
+## Load the data from the web
+system.time(fullCov <- fullCoverage(files = files, chrs = 'chr21'))
+```
+
+Once we have the base-level coverage data for all 12 samples, we can construct the models. In this case, we want to find differences between fetal and adult samples while adjusting for gender and a proxy of the library size.
+
+```{r 'models'}
+## Get some idea of the library sizes
+sampleDepths <- sampleDepth(collapseFullCoverage(fullCov), 1)
+
+## Define models
+models <- makeModels(sampleDepths, testvars = pheno$group, adjustvars = pheno[, c('gender')])
+```
+
+Next, we can find candidate differentially expressed regions (DERs) using as input the segments of the genome where at least one sample has coverage greater than 3. In this particular example, we chose a low theoretical F-statistic cutoff and used 20 permutations.
+
+```{r 'analyze'}
+## Filter coverage
+filteredCov <- lapply(fullCov, filterData, cutoff = 3)
+
+## Perform differential expression analysis
+suppressPackageStartupMessages(library('bumphunter'))
+system.time(results <- analyzeChr(chr = 'chr21', filteredCov$chr21, models, groupInfo = pheno$group, writeOutput = FALSE, cutoffFstat = 5e-02, nPermute = 20, seeds = 20140923 + seq_len(20)))
+
+## Quick access to the results
+regions <- results$regions$regions
+
+## Annotation database to use
+suppressPackageStartupMessages(library('TxDb.Hsapiens.UCSC.hg19.knownGene'))
+txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+```
+
+## `plotOverview()`
+
+Now that we have obtained the main results using `derfinder`, we can proceed to visualizing the results using `derfinderPlot`. The easiest to use of all the functions is `plotOverview()` which takes a set of regions and annotation information produced by `bumphunter::annotateNearest()`.
+
+The plot below shows the candidate DERs colored by whether their q-value was less than 0.10 or not.
+
+
+```{r 'plotOverview', bootstrap.show.warning=FALSE}
+## Q-values overview
+plotOverview(regions = regions, annotation = results$annotation, type = 'qval')
+```
+
+The next plot shows the candidate DERs colored by the type of gene feature they are nearest too.
+
+```{r 'plotOverview2', bootstrap.show.warning=FALSE}
+## Annotation overview
+plotOverview(regions = regions, annotation = results$annotation, type = 'annotation')
+```
+
+In this particular example, because we are only using data from one chromosome the above plot is not as informative as in a real case scenario. However, with this plot we can quickly observe that nearly all of the candidate DERs are inside an exon.
+
+
+## `plotRegionCoverage()`
+
+The complete opposite of visualizing the candidate DERs at the genome level is to visualize them one region at a time. `plotRegionCoverage()` allows us to do this quickly for a large number of regions. 
+
+Before using this function, we need to process more detailed information using two `derfinder` functions: `annotateRegions()` and `getRegionCoverage()` as shown below.
+
+```{r 'regionData'}
+## Get required information for the plots
+annoRegs <- annotateRegions(regions, genomicState$fullGenome)
+regionCov <- getRegionCoverage(fullCov, regions)
+```
+
+Once we have the relevant information we can proceed to plotting the first 10 regions. In this case, we will supply `plotRegionCoverage()` with the information it needs to plot transcripts overlapping these 10 regions.
+
+```{r 'plotRegCov'}
+## Plot top 10 regions
+plotRegionCoverage(regions = regions, regionCoverage = regionCov, 
+    groupInfo = pheno$group, nearestAnnotation = results$annotation, 
+    annotatedRegions = annoRegs, whichRegions=1:10, txdb = txdb, scalefac = 1, ask = FALSE)
+```
+
+The base level coverage is shown in a log2 scale with any overlapping exons shown in dark blue and known introns in light blue. 
+
+
+## `plotCluster()`
+
+In this example, we noticed with the `plotRegionCoverage()` plots that most of the candidate DERs are contained in known exons. Sometimes, the signal might be low or we might have used very stringent cutoffs in the `derfinder` analysis. One way we can observe this is by plotting clusters of regions where a cluster is defined as regions within 300 bp (default option) of each other. 
+
+To visualize the clusters, we can use `plotCluster()` which takes similar input to `plotOverview()` with the notable addition of the coverage information as well as the `idx` argument. This argument specifies which region to focus on: it will be plotted with a red bar and will determine the cluster to display.
+
+In the plot below we observe one large candidate DER with other nearby ones that do not have a q-value less than 0.10. In a real analysis, we would probably discard this region as the coverage is fairly low.
+
+```{r 'plotCluster', warning=FALSE}
+## First cluster
+plotCluster(idx = 1, regions = regions, annotation = results$annotation, coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group, titleUse = 'pval')
+```
+
+The second cluster shows a larger number of potential DERs (again without q-values less than 0.10) in a segment of the genome where the coverage data is highly variable. This is a common occurrence with RNA-seq data.
+
+```{r 'plotCluster2', bootstrap.show.warning=FALSE}
+## Second cluster
+plotCluster(idx = 2, regions = regions, annotation = results$annotation, coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group, titleUse = 'pval')
+```
+
+These plots show an ideogram which helps quickly identify which region of the genome we are focusing on. Then, the coverage level information for each sample is displayed in log2. Next, the coverage group means are shown in the log2 scale. The plot is completed with the potential and candidate DERs as well as any known transcripts.
+
+## `vennRegions`
+
+`derfinder` has functions for annotating regions given their genomic state. A typical visualization is to then view how many regions overlap known exons, introns, intergenic regions, none of them or several of these groups in a venn diagram. The function `vennRegions()` makes this plot using the output from `derfinder::annotateRegions()` as shown below.
+
+```{r 'vennRegions'}
+## Make venn diagram
+venn <- vennRegions(annoRegs)
+
+## It returns the actual venn counts information
+venn
+```
+
+
+
+# Advanced arguments
+
+If you are interested in using the advanced arguments, use `derfinder::advancedArg()` as shown below:
+
+```{r 'advancedArg'}
+## URLs to advanced arguemtns
+sapply(c('plotCluster', 'plotOverview'), derfinder::advancedArg, package = 'derfinderPlot', browse = FALSE)
+## Set browse = TRUE if you want to open them in your browser
+```
+
+
 
 
 
 
 # Reproducibility
 
+This package was made possible thanks to:
+
+* R `r citep(bib[['R']])`
+* `r Biocpkg('GenomeInfoDb')` `r citep(bib[['GenomeInfoDb']])`
+* `r Biocpkg('GenomicRanges')` `r citep(bib[['GenomicRanges']])`
+* `r Biocpkg('ggbio')` `r citep(bib[['ggbio']])`
+* `r CRANpkg('ggplot2')` `r citep(bib[['ggplot2']])`
+* `r Biocpkg('IRanges')` `r citep(bib[['IRanges']])`
+* `r CRANpkg('plyr')` `r citep(bib[['plyr']])`
+* `r CRANpkg('RColorBrewer')` `r citep(bib[['RColorBrewer']])`
+* `r CRANpkg('reshape2')` `r citep(bib[['reshape2']])`
+* `r CRANpkg('scales')` `r citep(bib[['scales']])`
+* `r Biocpkg('biovizBase')` `r citep(bib[['biovizBase']])`
+* `r Biocpkg('bumphunter')` `r citep(bib[['bumphunter']])` and `r citep(bib[['bumphunterPaper']])`
+* `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])`
+* `r Biocexptpkg('derfinderData')` `r citep(bib[['derfinderData']])`
+* `r CRANpkg('devtools')` `r citep(bib[['devtools']])`
+* `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`
+* `r CRANpkg('knitr')` `r citep(bib[['knitr']])`
+* `r CRANpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
+* `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])`
+* `r CRANpkg('testthat')` `r citep(bib[['testthat']])`
+* `r Biocpkg('TxDb.Hsapiens.UCSC.hg19.knownGene')` `r citep(bib[['TxDb.Hsapiens.UCSC.hg19.knownGene']])`
+
 Code for creating the vignette
 
-```{r createVignette, eval=FALSE, bootstrap.show.code=FALSE}
+```{r createVignette, eval=FALSE}
 ## Create the vignette
-library('knitrBootstrap') 
-
-knitrBootstrapFlag <- packageVersion('knitrBootstrap') < '1.0.0'
-if(knitrBootstrapFlag) {
-    ## CRAN version
-    library('knitrBootstrap')
-    system.time(knit_bootstrap('derfinderPlot.Rmd', chooser=c('boot', 'code'), show_code = TRUE))
-    unlink('derfinderPlot.md')
-} else {
-    ## GitHub version
-    library('rmarkdown')
-    system.time(render('derfinderPlot.Rmd', 'knitrBootstrap::bootstrap_document'))
-}
-## Note: if you prefer the knitr version use:
-# library('rmarkdown')
-# system.time(render('derfinderPlot.Rmd', 'html_document'))
+library('rmarkdown')
+system.time(render('derfinderPlot.Rmd', 'BiocStyle::html_document'))
 
 ## Extract the R code
 library('knitr')
 knit('derfinderPlot.Rmd', tangle = TRUE)
 ```
 
+```{r createVignette2}
+## Clean up
+unlink('chr21', recursive = TRUE)
+file.remove('derfinderPlotRef.bib')
+```
+
 Date the vignette was generated.
 
-```{r reproducibility1, echo=FALSE, bootstrap.show.code=FALSE}
+```{r reproducibility1, echo=FALSE}
 ## Date the vignette was generated
 Sys.time()
 ```
 
 Wallclock time spent generating the vignette.
 
-```{r reproducibility2, echo=FALSE, bootstrap.show.code=FALSE}
+```{r reproducibility2, echo=FALSE}
 ## Processing time in seconds
 totalTime <- diff(c(startTime, Sys.time()))
 round(totalTime, digits=3)
@@ -101,20 +331,21 @@ round(totalTime, digits=3)
 
 `R` session information.
 
-```{r reproducibility3, echo=FALSE, bootstrap.show.code=FALSE, bootstrap.show.message=FALSE}
+```{r reproducibility3, echo=FALSE}
 ## Session info
 library('devtools')
+options(width = 120)
 session_info()
 ```
 
 # Bibliography
 
-This vignette was generated using `knitrBootstrap` `r citep(bib[['knitrBootstrap']])`
+This vignette was generated using `BiocStyle` `r citep(bib[['BiocStyle']])`
 with `knitr` `r citep(bib[['knitr']])` and `rmarkdown` `r citep(bib[['rmarkdown']])` running behind the scenes.
 
 Citations made with `knitcitations` `r citep(bib[['knitcitations']])`.
 
-```{r vignetteBiblio, results='asis', echo=FALSE}
+```{r vignetteBiblio, results = 'asis', echo = FALSE, warning = FALSE}
 ## Print bibliography
 bibliography()
 ```

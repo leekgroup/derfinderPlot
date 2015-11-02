@@ -4,6 +4,8 @@ Status: Travis CI [![Build Status](https://travis-ci.org/leekgroup/derfinderPlot
 Bioc-release <a href="http://www.bioconductor.org/packages/release/bioc/html/derfinderPlot.html#archives"><img border="0" src="http://www.bioconductor.org/shields/availability/release/derfinderPlot.svg" title="Whether the package is available on all platforms; click for details."></a> <a href="http://bioconductor.org/checkResults/release/bioc-LATEST/derfinderPlot/"><img border="0" src="http://www.bioconductor.org/shields/build/release/bioc/derfinderPlot.svg" title="build results; click for full report"></a>,
 Bioc-devel <a href="http://www.bioconductor.org/packages/devel/bioc/html/derfinderPlot.html#archives"><img border="0" src="http://www.bioconductor.org/shields/availability/devel/derfinderPlot.svg" title="Whether the package is available on all platforms; click for details."></a> <a href="http://bioconductor.org/checkResults/devel/bioc-LATEST/derfinderPlot/"><img border="0" src="http://www.bioconductor.org/shields/build/devel/bioc/derfinderPlot.svg" title="build results; click for full report"></a>.
 
+Bioc-release <a href="https://bioconductor.org/developers/how-to/unitTesting-guidelines/#coverage"><img border="0" src="http://www.bioconductor.org/shields/coverage/release/derfinderPlot.svg" title="Test coverage percentage, or 'unknown'"></a>, Bioc-devel <a href="https://bioconductor.org/developers/how-to/unitTesting-guidelines/#coverage"><img border="0" src="http://www.bioconductor.org/shields/coverage/devel/derfinderPlot.svg" title="Test coverage percentage, or 'unknown'"></a>
+
 derfinderPlot
 =============
 
@@ -12,7 +14,7 @@ Addon package with plotting functions for
 
 # Installation instructions
 
-Get R 3.2.0 from [CRAN](http://cran.r-project.org/).
+Get R 3.2.2 from [CRAN](http://cran.r-project.org/).
 
 ```R
 ## From Bioconductor
@@ -22,7 +24,7 @@ biocLite('derfinderPlot')
 
 # Vignette
 
-The vignette for this package can be viewed [here](http://leekgroup.github.io/derfinderPlot/) or via [Bioconductor's website](http://www.bioconductor.org/packages/derfinderPlot).
+The vignette for this package can be viewed via [Bioconductor's website](http://www.bioconductor.org/packages/derfinderPlot).
 
 # Citation
 
