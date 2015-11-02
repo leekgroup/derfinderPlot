@@ -12,7 +12,7 @@ vignette: >
 ---
 
 
-Introduction to `derfinderPlot`
+Introduction to `r Biocpkg('derfinderPlot')`
 ===============================
 
 ```{r vignetteSetup, echo=FALSE, message=FALSE, warning = FALSE}
@@ -68,14 +68,14 @@ windowsFlag <- .Platform$OS.type == 'windows'
 
 # Overview
 
-`derfinderPlot` `r citep(bib[['derfinderPlot']])` is an addon package for `derfinder` `r citep(bib[['derfinder']])` with functions that allow you to visualize the results.
+`r Biocpkg('derfinderPlot')` `r citep(bib[['derfinderPlot']])` is an addon package for `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])` with functions that allow you to visualize the results.
 
-While the functions in `derfinderPlot` assume you generated the data with `derfinder`, they can be used with other `GRanges` objects properly formatted.
+While the functions in `r Biocpkg('derfinderPlot')` assume you generated the data with `r Biocpkg('derfinder')`, they can be used with other `GRanges` objects properly formatted.
 
-The functions in `derfinderPlot` are:
+The functions in `r Biocpkg('derfinderPlot')` are:
 
-* `plotCluster()` is a tailored `ggbio` `r citep(bib[['ggbio']])` plot that shows all the regions in a cluster (defined by distance). It shows the base-level coverage for each sample as well as the mean for each group. If these regions overlap any known gene, the gene and the transcript annotation is displayed.
-* `plotOverview()` is another tailored `ggbio` `r citep(bib[['ggbio']])` plot showing an overview of the whole genome. This plot can be useful to observe if the regions are clustered in a subset of a chromosome. It can also be used to check whether the regions match predominantly one part of the gene structure (for example, 3' overlaps).
+* `plotCluster()` is a tailored `r Biocpkg('ggbio')` `r citep(bib[['ggbio']])` plot that shows all the regions in a cluster (defined by distance). It shows the base-level coverage for each sample as well as the mean for each group. If these regions overlap any known gene, the gene and the transcript annotation is displayed.
+* `plotOverview()` is another tailored `r Biocpkg('ggbio')` `r citep(bib[['ggbio']])` plot showing an overview of the whole genome. This plot can be useful to observe if the regions are clustered in a subset of a chromosome. It can also be used to check whether the regions match predominantly one part of the gene structure (for example, 3' overlaps).
 * `plotRegionCoverage()` is a fast plotting function using `R` base graphics that shows the base level coverage for each sample inside a specific region of the genome. If the region overlaps any known gene or intron, the information is displayed. Optionally, it can display the known transcripts. This function is most likely the easiest to use with `GRanges` objects from other packages.
 
 
@@ -113,7 +113,7 @@ rownames(p) <- NULL
 kable(p, format = 'html', row.names = TRUE)
 ```
 
-We can load the data from `derfinderData` `r citep(bib[['derfinderData']])` by first identifying the paths to the BigWig files with `derfinder::rawFiles()` and then loading the data with `derfinder::fullCoverage()`.
+We can load the data from `r Biocexptpkg('derfinderData')` `r citep(bib[['derfinderData']])` by first identifying the paths to the BigWig files with `derfinder::rawFiles()` and then loading the data with `derfinder::fullCoverage()`.
 
 ```{r 'getData', eval = !windowsFlag}
 ## Determine the files to use and fix the names
@@ -134,7 +134,7 @@ fullCov <- foo()
 ```
 
 
-Alternatively, since the BigWig files are publicly available from _BrainSpan_ (see [here](http://download.alleninstitute.org/brainspan/MRF_BigWig_Gencode_v10/bigwig/)), we can extract the relevant coverage data using `derfinder::fullCoverage()`. Note that as of `rtracklayer` 1.25.16 BigWig files are not supported on Windows: you can find the `fullCov` object inside `derfinderData` to follow the examples.
+Alternatively, since the BigWig files are publicly available from _BrainSpan_ (see [here](http://download.alleninstitute.org/brainspan/MRF_BigWig_Gencode_v10/bigwig/)), we can extract the relevant coverage data using `derfinder::fullCoverage()`. Note that as of `r Biocpkg('rtracklayer')` 1.25.16 BigWig files are not supported on Windows: you can find the `fullCov` object inside `r Biocexptpkg('derfinderData')` to follow the examples.
 
 ```{r 'webData', eval = FALSE}
 ## Determine the files to use and fix the names
@@ -175,7 +175,7 @@ txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
 
 ## `plotOverview()`
 
-Now that we have obtained the main results using `derfinder`, we can proceed to visualizing the results using `derfinderPlot`. The easiest to use of all the functions is `plotOverview()` which takes a set of regions and annotation information produced by `bumphunter::annotateNearest()`.
+Now that we have obtained the main results using `r Biocpkg('derfinder')`, we can proceed to visualizing the results using `r Biocpkg('derfinderPlot')`. The easiest to use of all the functions is `plotOverview()` which takes a set of regions and annotation information produced by `bumphunter::annotateNearest()`.
 
 The plot below shows the candidate DERs colored by whether their q-value was less than 0.10 or not.
 
@@ -199,7 +199,7 @@ In this particular example, because we are only using data from one chromosome t
 
 The complete opposite of visualizing the candidate DERs at the genome level is to visualize them one region at a time. `plotRegionCoverage()` allows us to do this quickly for a large number of regions. 
 
-Before using this function, we need to process more detailed information using two `derfinder` functions: `annotateRegions()` and `getRegionCoverage()` as shown below.
+Before using this function, we need to process more detailed information using two `r Biocpkg('derfinder')` functions: `annotateRegions()` and `getRegionCoverage()` as shown below.
 
 ```{r 'regionData'}
 ## Get required information for the plots
@@ -221,7 +221,7 @@ The base level coverage is shown in a log2 scale with any overlapping exons show
 
 ## `plotCluster()`
 
-In this example, we noticed with the `plotRegionCoverage()` plots that most of the candidate DERs are contained in known exons. Sometimes, the signal might be low or we might have used very stringent cutoffs in the `derfinder` analysis. One way we can observe this is by plotting clusters of regions where a cluster is defined as regions within 300 bp (default option) of each other. 
+In this example, we noticed with the `plotRegionCoverage()` plots that most of the candidate DERs are contained in known exons. Sometimes, the signal might be low or we might have used very stringent cutoffs in the `r Biocpkg('derfinder')` analysis. One way we can observe this is by plotting clusters of regions where a cluster is defined as regions within 300 bp (default option) of each other. 
 
 To visualize the clusters, we can use `plotCluster()` which takes similar input to `plotOverview()` with the notable addition of the coverage information as well as the `idx` argument. This argument specifies which region to focus on: it will be plotted with a red bar and will determine the cluster to display.
 
@@ -243,7 +243,7 @@ These plots show an ideogram which helps quickly identify which region of the ge
 
 ## `vennRegions`
 
-`derfinder` has functions for annotating regions given their genomic state. A typical visualization is to then view how many regions overlap known exons, introns, intergenic regions, none of them or several of these groups in a venn diagram. The function `vennRegions()` makes this plot using the output from `derfinder::annotateRegions()` as shown below.
+`r Biocpkg('derfinder')` has functions for annotating regions given their genomic state. A typical visualization is to then view how many regions overlap known exons, introns, intergenic regions, none of them or several of these groups in a venn diagram. The function `vennRegions()` makes this plot using the output from `derfinder::annotateRegions()` as shown below.
 
 ```{r 'vennRegions'}
 ## Make venn diagram
@@ -340,10 +340,10 @@ session_info()
 
 # Bibliography
 
-This vignette was generated using `BiocStyle` `r citep(bib[['BiocStyle']])`
-with `knitr` `r citep(bib[['knitr']])` and `rmarkdown` `r citep(bib[['rmarkdown']])` running behind the scenes.
+This vignette was generated using `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
+with `r CRANpkg('knitr')` `r citep(bib[['knitr']])` and `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])` running behind the scenes.
 
-Citations made with `knitcitations` `r citep(bib[['knitcitations']])`.
+Citations made with `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`.
 
 ```{r vignetteBiblio, results = 'asis', echo = FALSE, warning = FALSE}
 ## Print bibliography
