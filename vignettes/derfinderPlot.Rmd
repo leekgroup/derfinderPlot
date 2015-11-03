@@ -49,7 +49,7 @@ bibs <- c(knitcitations = citation('knitcitations'),
     reshape2 = citation('reshape2'),
     scales = citation('scales'),
     biovizBase = citation('biovizBase'),
-    bumphunter = citation('bumphunter'),
+    bumphunter = citation('bumphunter')[1],
     TxDb.Hsapiens.UCSC.hg19.knownGene = citation('TxDb.Hsapiens.UCSC.hg19.knownGene'),
     bumphunterPaper = RefManageR::BibEntry(bibtype = 'article', key = 'bumphunterPaper', title = 'Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies', author = 'Jaffe, Andrew E and Murakami, Peter and Lee, Hwajin and Leek, Jeffrey T and Fallin, M Daniele and Feinberg, Andrew P and Irizarry, Rafael A', year = 2012, journal = 'International Journal of Epidemiology'),
     derfinderData = citation('derfinderData')
@@ -294,7 +294,7 @@ This package was made possible thanks to:
 * `r CRANpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
 * `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])`
 * `r CRANpkg('testthat')` `r citep(bib[['testthat']])`
-* `r Biocpkg('TxDb.Hsapiens.UCSC.hg19.knownGene')` `r citep(bib[['TxDb.Hsapiens.UCSC.hg19.knownGene']])`
+* `r Biocannopkg('TxDb.Hsapiens.UCSC.hg19.knownGene')` `r citep(bib[['TxDb.Hsapiens.UCSC.hg19.knownGene']])`
 
 Code for creating the vignette
 
