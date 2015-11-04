@@ -31,7 +31,8 @@ cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
 ## Write bibliography information
 bibs <- c(knitcitations = citation('knitcitations'),
     derfinderPlot = citation('derfinderPlot')[1], 
-    BiocStyle = citation('BiocStyle'), 
+    #BiocStyle = citation('BiocStyle'),
+    BiocStyle = RefManageR::BibEntry(bibtype = 'unpublished', key = 'BiocStyle', title = 'BiocStyle: Standard styles for vignettes and other Bioconductor documents', author = 'Martin Morgan and Andrzej Oleś and Wolfgang Huber', note = 'R package version 1.8.0', year = '2015'), 
     knitr = citation('knitr')[3],
     rmarkdown = citation('rmarkdown'),
     derfinder = citation('derfinder')[1],
@@ -52,7 +53,8 @@ bibs <- c(knitcitations = citation('knitcitations'),
     #biovizBase = citation('biovizBase'),
     biovizBase = RefManageR::BibEntry(bibtype = 'unpublished', key = 'biovizBase', title = 'biovizBase: Basic graphic utilities for visualization of genomic data.', author = 'Tengfei Yin and Michael Lawrence and Dianne Cook', note = 'R package version 1.19.0', year = '2015'),
     bumphunter = citation('bumphunter')[1],
-    TxDb.Hsapiens.UCSC.hg19.knownGene = citation('TxDb.Hsapiens.UCSC.hg19.knownGene'),
+    #TxDb.Hsapiens.UCSC.hg19.knownGene = citation('TxDb.Hsapiens.UCSC.hg19.knownGene'),
+    TxDb.Hsapiens.UCSC.hg19.knownGene = RefManageR::BibEntry(bibtype = 'unpublished', key = 'TxDb.Hsapiens.UCSC.hg19.knownGene', title = 'TxDb.Hsapiens.UCSC.hg19.knownGene: Annotation package for TxDb object(s)', author = 'Marc Carlson and Bioconductor Package Maintainer', note = 'R package version 3.2.2', year = '2015'),
     bumphunterPaper = RefManageR::BibEntry(bibtype = 'article', key = 'bumphunterPaper', title = 'Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies', author = 'Jaffe, Andrew E and Murakami, Peter and Lee, Hwajin and Leek, Jeffrey T and Fallin, M Daniele and Feinberg, Andrew P and Irizarry, Rafael A', year = 2012, journal = 'International Journal of Epidemiology'),
     derfinderData = citation('derfinderData')
 )
