@@ -202,9 +202,15 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
             levels(groupInfo)), ncol = length(levels(groupInfo)), cex = 1.5,
             pt.cex = 1.5)
         mtext(ylab, side = 2, line = 2.5, cex = 1.3)
-        mtext(paste(nearestAnnotation$name[i], ',', 
-            nearestAnnotation$distance[i], 'bp from tss:',
-            nearestAnnotation$region[i]), outer = TRUE, cex = 1.3)
+        if(!is.na(nearestAnnotation$distance[i])) {
+            mtext(paste(nearestAnnotation$name[i], ',', 
+                nearestAnnotation$distance[i], 'bp from tss:',
+                nearestAnnotation$region[i]), outer = TRUE, cex = 1.3)
+        } else {
+            mtext(paste(nearestAnnotation$name[i], ', nearest tss :',
+                nearestAnnotation$region[i]), outer = TRUE, cex = 1.3)
+        }
+        
         
         ## Plot gene annotation
         xrange <- range(x)
