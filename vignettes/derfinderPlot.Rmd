@@ -80,7 +80,7 @@ The functions in `r Biocpkg('derfinderPlot')` are:
 
 * `plotCluster()` is a tailored `r Biocpkg('ggbio')` `r citep(bib[['ggbio']])` plot that shows all the regions in a cluster (defined by distance). It shows the base-level coverage for each sample as well as the mean for each group. If these regions overlap any known gene, the gene and the transcript annotation is displayed.
 * `plotOverview()` is another tailored `r Biocpkg('ggbio')` `r citep(bib[['ggbio']])` plot showing an overview of the whole genome. This plot can be useful to observe if the regions are clustered in a subset of a chromosome. It can also be used to check whether the regions match predominantly one part of the gene structure (for example, 3' overlaps).
-* `plotRegionCoverage()` is a fast plotting function using `R` base graphics that shows the base level coverage for each sample inside a specific region of the genome. If the region overlaps any known gene or intron, the information is displayed. Optionally, it can display the known transcripts. This function is most likely the easiest to use with `GRanges` objects from other packages.
+* `plotRegionCoverage()` is a fast plotting function using `R` base graphics that shows the base-level coverage for each sample inside a specific region of the genome. If the region overlaps any known gene or intron, the information is displayed. Optionally, it can display the known transcripts. This function is most likely the easiest to use with `GRanges` objects from other packages.
 
 
 # Example
@@ -201,7 +201,7 @@ In this particular example, because we are only using data from one chromosome t
 
 ## `plotRegionCoverage()`
 
-The complete opposite of visualizing the candidate DERs at the genome level is to visualize them one region at a time. `plotRegionCoverage()` allows us to do this quickly for a large number of regions. 
+The complete opposite of visualizing the candidate DERs at the genome-level is to visualize them one region at a time. `plotRegionCoverage()` allows us to do this quickly for a large number of regions. 
 
 Before using this function, we need to process more detailed information using two `r Biocpkg('derfinder')` functions: `annotateRegions()` and `getRegionCoverage()` as shown below.
 
@@ -220,7 +220,7 @@ plotRegionCoverage(regions = regions, regionCoverage = regionCov,
     annotatedRegions = annoRegs, whichRegions=1:10, txdb = txdb, scalefac = 1, ask = FALSE)
 ```
 
-The base level coverage is shown in a log2 scale with any overlapping exons shown in dark blue and known introns in light blue. 
+The base-level coverage is shown in a log2 scale with any overlapping exons shown in dark blue and known introns in light blue. 
 
 
 ## `plotCluster()`
@@ -243,7 +243,7 @@ The second cluster shows a larger number of potential DERs (again without q-valu
 plotCluster(idx = 2, regions = regions, annotation = results$annotation, coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group, titleUse = 'pval')
 ```
 
-These plots show an ideogram which helps quickly identify which region of the genome we are focusing on. Then, the coverage level information for each sample is displayed in log2. Next, the coverage group means are shown in the log2 scale. The plot is completed with the potential and candidate DERs as well as any known transcripts.
+These plots show an ideogram which helps quickly identify which region of the genome we are focusing on. Then, the base-level coverage information for each sample is displayed in log2. Next, the coverage group means are shown in the log2 scale. The plot is completed with the potential and candidate DERs as well as any known transcripts.
 
 ## `vennRegions`
 
