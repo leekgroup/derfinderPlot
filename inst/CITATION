@@ -12,7 +12,7 @@ c(
             as.person("Jeffrey T. Leek")
         ),
         year = 2015,
-        url = "http://www.bioconductor.org/packages/release/bioc/html/derfinderPlot.html",
+        url = "http://www.bioconductor.org/packages/derfinderPlot",
         note = pkgVer('derfinderPlot', '1.5.3')
     ),
     bibentry(bibtype="article",
