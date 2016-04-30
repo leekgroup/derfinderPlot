@@ -139,7 +139,7 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
         if (verbose) 
             message(paste(Sys.time(), 'plotRegionCoverage: extracting Tx info'))
         tx <- exonsBy(txdb)
-        ov <- findOverlaps(regions[whichRegions], tx)
+        ov <- findOverlaps(regions[whichRegions], tx, ignore.strand = TRUE)
         txList <- split(tx[subjectHits(ov)], queryHits(ov))
         if(length(txList) > 0) {
             if (verbose) 
@@ -203,8 +203,8 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
             pt.cex = 1.5)
         mtext(ylab, side = 2, line = 2.5, cex = 1.3)
         if(!is.na(nearestAnnotation$distance[i])) {
-            mtext(paste(nearestAnnotation$name[i], ',', 
-                nearestAnnotation$distance[i], 'bp from tss:',
+            mtext(paste0(nearestAnnotation$name[i], ', ', 
+                nearestAnnotation$distance[i], ' bp from tss: ',
                 nearestAnnotation$region[i]), outer = TRUE, cex = 1.3)
         } else {
             mtext(paste0(nearestAnnotation$name[i], ', nearest tss: ',
