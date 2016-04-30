@@ -156,7 +156,8 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
     }
     
     ## Regions found (from the view)
-    neighbors <- regions[queryHits(findOverlaps(regions, wh))]
+    neighbors <- regions[queryHits(findOverlaps(regions, wh,
+        ignore.strand = TRUE))]
     neighbors$originalRegion <- neighbors == current
     ann_line <- data.frame(x = start(current), xend = end(current), 
         y = 1)

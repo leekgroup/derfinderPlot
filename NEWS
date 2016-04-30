@@ -1,3 +1,21 @@
+CHANGES IN VERSION 1.5.8
+------------------------
+
+BUG FIXES
+
+    o plotRegionCoverage() used to take into account the strand of the regions
+        for finding transcripts that overlapped the regions. This was not a
+        problem with DERs from derfinder since they have strand * by default
+        but it is a problem when using it with stranded regions.
+    o plotCluster() will also now ignore strand for finding neighboring regions.
+
+CHANGES IN VERSION 1.5.4
+------------------------
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o Only use distance if it's not NA in plotRegionCoverage()
+
 CHANGES IN VERSION 1.3.4
 ------------------------
 
