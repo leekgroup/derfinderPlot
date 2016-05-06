@@ -85,18 +85,18 @@ plotOverview <- function(regions, annotation = NULL, type = 'pval',
         0 & significantCut <= 1))
         
     ## Advanced parameters
-#' @param base_size Base point size of the plot. This argument is passed to 
-#' \link[ggplot2]{element_text} (\code{size} argument).
+# @param base_size Base point size of the plot. This argument is passed to 
+# \link[ggplot2]{element_text} (\code{size} argument).
     base_size <- .advanced_argument('base_size', 12, ...)
     
-#' @param areaRel The relative size for the area label when \code{type='pval'} 
-#' or \code{type='qval'}. Can be useful when making high resolution versions of 
-#' these plots in devices like CairoPNG.
+# @param areaRel The relative size for the area label when \code{type='pval'} 
+# or \code{type='qval'}. Can be useful when making high resolution versions of 
+# these plots in devices like CairoPNG.
     areaRel <- .advanced_argument('areaRel', 4, ...)
     
-#' @param legend.position This argument is passed to \link[ggplot2]{theme}. 
-#' From ggplot2: the position of legends. ('left', 'right', 'bottom', 'top', or 
-#' two-element numeric vector).
+# @param legend.position This argument is passed to \link[ggplot2]{theme}. 
+# From ggplot2: the position of legends. ('left', 'right', 'bottom', 'top', or 
+# two-element numeric vector).
     legend.position <- .advanced_argument('legend.position', c(0.85, 0.12), ...)
     
     ## Keeping R CMD check happy

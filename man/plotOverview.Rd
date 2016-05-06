@@ -26,17 +26,6 @@ determine significance. The first element is used to determine significance
 for the p-values and the second element is used for the q-values.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.}
-
-\item{base_size}{Base point size of the plot. This argument is passed to 
-\link[ggplot2]{element_text} (\code{size} argument).}
-
-\item{areaRel}{The relative size for the area label when \code{type='pval'} 
-or \code{type='qval'}. Can be useful when making high resolution versions of 
-these plots in devices like CairoPNG.}
-
-\item{legend.position}{This argument is passed to \link[ggplot2]{theme}. 
-From ggplot2: the position of legends. ('left', 'right', 'bottom', 'top', or 
-two-element numeric vector).}
 }
 \value{
 A ggplot2 plot that is ready to be printed out. Tecnically it is a 
