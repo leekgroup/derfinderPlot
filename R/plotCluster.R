@@ -91,19 +91,19 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
     stopifnot(is.factor(groupInfo))
 
     ## Advanced parameters    
-#' @param maxExtend The maximum number of base-pairs to extend the view (on 
-#' each side) before and after the region cluster of interest. For small region 
-#' clusters, the one side extension is equal to the width of the region cluster.
+# @param maxExtend The maximum number of base-pairs to extend the view (on 
+# each side) before and after the region cluster of interest. For small region 
+# clusters, the one side extension is equal to the width of the region cluster.
     maxExtend <- .advanced_argument('maxExtend', 300L, ...)
 
-#' @param colsubset Column subset in case that it was specified in 
-#' \link[derfinder]{preprocessCoverage}.
+# @param colsubset Column subset in case that it was specified in 
+# \link[derfinder]{preprocessCoverage}.
     colsubset <- .advanced_argument('colsubset', seq_len(length(groupInfo)), ...)
 
-#' @param forceLarge If \code{TRUE} then the data size limitations are ignored. 
-#' The window size (region cluster width + 2 times \code{maxExtend}) has to be 
-#' less than 100 kb. Note that a single plot at the 300kb range can take around 
-#' 2 hours to complete.
+# @param forceLarge If \code{TRUE} then the data size limitations are ignored. 
+# The window size (region cluster width + 2 times \code{maxExtend}) has to be 
+# less than 100 kb. Note that a single plot at the 300kb range can take around 
+# 2 hours to complete.
     forceLarge <- .advanced_argument('forceLarge', FALSE, ...)
 
     ## Use UCSC names for homo_sapiens by default

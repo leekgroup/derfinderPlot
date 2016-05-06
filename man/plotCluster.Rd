@@ -38,18 +38,6 @@ corresponding chromosome. Otherwise an ideogram resuling from
 \link[ggbio]{plotIdeogram}.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.}
-
-\item{maxExtend}{The maximum number of base-pairs to extend the view (on 
-each side) before and after the region cluster of interest. For small region 
-clusters, the one side extension is equal to the width of the region cluster.}
-
-\item{colsubset}{Column subset in case that it was specified in 
-\link[derfinder]{preprocessCoverage}.}
-
-\item{forceLarge}{If \code{TRUE} then the data size limitations are ignored. 
-The window size (region cluster width + 2 times \code{maxExtend}) has to be 
-less than 100 kb. Note that a single plot at the 300kb range can take around 
-2 hours to complete.}
 }
 \value{
 A ggplot2 plot that is ready to be printed out. Tecnically it is a 
