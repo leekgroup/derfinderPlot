@@ -1,7 +1,7 @@
 Package: derfinderPlot
 Type: Package
 Title: Plotting functions for derfinder
-Version: 1.7.2
+Version: 1.7.3
 Date: 2016-05-06
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
@@ -16,13 +16,16 @@ Imports:
     GenomicRanges (>= 1.17.40),
     ggbio (>= 1.13.13),
     ggplot2,
+    graphics,
+    grDevices,
     IRanges (>= 1.99.28),
     limma,
     plyr,
     RColorBrewer,
     reshape2,
     S4Vectors (>= 0.9.38),
-    scales
+    scales,
+    utils
 Suggests:
     biovizBase,
     bumphunter (>= 1.7.6),

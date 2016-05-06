@@ -46,6 +46,9 @@
 #' gaps findOverlaps 
 #' @importFrom GenomeInfoDb seqlengths 'seqlengths<-' 'seqlevels<-' 
 #' seqlevelsInUse
+#' @importFrom graphics abline axis layout legend matplot mtext par plot
+#' plot.new polygon text
+#' @importFrom grDevices devAskNewPage palette
 #'
 #' @examples
 #' ## Load data
