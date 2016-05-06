@@ -36,6 +36,7 @@
 #' @importFrom ggplot2 aes labs scale_colour_manual scale_fill_manual geom_text 
 #' rel geom_segment xlab theme element_text element_blank
 #' @importFrom derfinder extendedMapSeqlevels
+#' @importFrom utils data
 #' 
 #' @examples
 #' ## Construct toy data
