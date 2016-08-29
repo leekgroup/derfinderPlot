@@ -179,7 +179,7 @@ txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
 
 ## `plotOverview()`
 
-Now that we have obtained the main results using `r Biocpkg('derfinder')`, we can proceed to visualizing the results using `r Biocpkg('derfinderPlot')`. The easiest to use of all the functions is `plotOverview()` which takes a set of regions and annotation information produced by `bumphunter::annotateNearest()`.
+Now that we have obtained the main results using `r Biocpkg('derfinder')`, we can proceed to visualizing the results using `r Biocpkg('derfinderPlot')`. The easiest to use of all the functions is `plotOverview()` which takes a set of regions and annotation information produced by `bumphunter::matchGenes()`.
 
 The plot below shows the candidate DERs colored by whether their q-value was less than 0.10 or not.
 

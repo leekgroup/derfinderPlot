@@ -11,7 +11,7 @@
 #' This region is graphically highlighted by a red bar.
 #' @param regions The \code{$regions} output from 
 #' \link[derfinder]{calculatePvalues}.
-#' @param annotation The output from running \link[bumphunter]{annotateNearest} 
+#' @param annotation The output from running \link[bumphunter]{matchGenes} 
 #' on the output from \link[derfinder]{calculatePvalues}.
 #' @param coverageInfo A DataFrame resulting from 
 #' \link[derfinder]{loadCoverage} using \code{cutoff=NULL}.
@@ -39,7 +39,7 @@
 #' determined.
 #'
 #' @seealso \link[derfinder]{loadCoverage}, \link[derfinder]{calculatePvalues}, 
-#' \link[bumphunter]{annotateNearest}, \link[ggbio]{plotIdeogram}
+#' \link[bumphunter]{matchGenes}, \link[ggbio]{plotIdeogram}
 #' @author Leonardo Collado-Torres
 #' @export
 #'

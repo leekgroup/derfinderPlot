@@ -14,7 +14,7 @@ This region is graphically highlighted by a red bar.}
 \item{regions}{The \code{$regions} output from 
 \link[derfinder]{calculatePvalues}.}
 
-\item{annotation}{The output from running \link[bumphunter]{annotateNearest} 
+\item{annotation}{The output from running \link[bumphunter]{matchGenes} 
 on the output from \link[derfinder]{calculatePvalues}.}
 
 \item{coverageInfo}{A DataFrame resulting from 
@@ -86,6 +86,6 @@ Leonardo Collado-Torres
 }
 \seealso{
 \link[derfinder]{loadCoverage}, \link[derfinder]{calculatePvalues}, 
-\link[bumphunter]{annotateNearest}, \link[ggbio]{plotIdeogram}
+\link[bumphunter]{matchGenes}, \link[ggbio]{plotIdeogram}
 }
 

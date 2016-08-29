@@ -11,7 +11,7 @@ plotOverview(regions, annotation = NULL, type = "pval",
 \item{regions}{The \code{$regions} output from
 \link[derfinder]{calculatePvalues}.}
 
-\item{annotation}{The output from running \link[bumphunter]{annotateNearest} 
+\item{annotation}{The output from running \link[bumphunter]{matchGenes} 
 on the output from \link[derfinder]{calculatePvalues}. It is only required 
 if \code{type='annotation'}.}
 
@@ -36,7 +36,7 @@ Plots an overview of the genomic locations of the identified regions (see
 \link[derfinder]{calculatePvalues}) in a karyotype view. The coloring can be 
 done either by significant regions according to their p-values, significant 
 by adjusted p-values, or by annotated region if using 
-\link[bumphunter]{annotateNearest}.
+\link[bumphunter]{matchGenes}.
 }
 \examples{
 ## Construct toy data
@@ -84,6 +84,6 @@ Leonardo Collado-Torres
 }
 \seealso{
 \link[derfinder]{calculatePvalues}, 
-\link[bumphunter]{annotateNearest}
+\link[bumphunter]{matchGenes}
 }
 

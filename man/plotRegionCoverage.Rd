@@ -19,7 +19,7 @@ used on \code{regions}.}
 \item{groupInfo}{A factor specifying the group membership of each sample. It 
 will be used to color the samples by group.}
 
-\item{nearestAnnotation}{The output from \link[bumphunter]{annotateNearest} 
+\item{nearestAnnotation}{The output from \link[bumphunter]{matchGenes} 
 used on \code{regions}.}
 
 \item{annotatedRegions}{The output from \link[derfinder]{annotateRegions} 
@@ -109,7 +109,7 @@ Andrew Jaffe, Leonardo Collado-Torres
 \seealso{
 \link[derfinder]{calculatePvalues}, 
 \link[derfinder]{getRegionCoverage}, 
-\link[bumphunter]{annotateNearest}, \link[derfinder]{annotateRegions}, 
+\link[bumphunter]{matchGenes}, \link[derfinder]{annotateRegions}, 
 \link{plotCluster}
 }
 
