@@ -14,7 +14,7 @@
 #' used on \code{regions}.
 #' @param groupInfo A factor specifying the group membership of each sample. It 
 #' will be used to color the samples by group.
-#' @param nearestAnnotation The output from \link[bumphunter]{annotateNearest} 
+#' @param nearestAnnotation The output from \link[bumphunter]{matchGenes} 
 #' used on \code{regions}.
 #' @param annotatedRegions The output from \link[derfinder]{annotateRegions} 
 #' used on \code{regions}.
@@ -36,7 +36,7 @@
 #' @author Andrew Jaffe, Leonardo Collado-Torres
 #' @seealso \link[derfinder]{calculatePvalues}, 
 #' \link[derfinder]{getRegionCoverage}, 
-#' \link[bumphunter]{annotateNearest}, \link[derfinder]{annotateRegions}, 
+#' \link[bumphunter]{matchGenes}, \link[derfinder]{annotateRegions}, 
 #' \link{plotCluster}
 #' @export
 #'

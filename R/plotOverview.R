@@ -4,12 +4,12 @@
 #' \link[derfinder]{calculatePvalues}) in a karyotype view. The coloring can be 
 #' done either by significant regions according to their p-values, significant 
 #' by adjusted p-values, or by annotated region if using 
-#' \link[bumphunter]{annotateNearest}.
+#' \link[bumphunter]{matchGenes}.
 #'
 #' 
 #' @param regions The \code{$regions} output from
 #' \link[derfinder]{calculatePvalues}.
-#' @param annotation The output from running \link[bumphunter]{annotateNearest} 
+#' @param annotation The output from running \link[bumphunter]{matchGenes} 
 #' on the output from \link[derfinder]{calculatePvalues}. It is only required 
 #' if \code{type='annotation'}.
 #' @param type Must be either \code{pval}, \code{qval}, \code{fwer} or 
@@ -26,7 +26,7 @@
 #' ggbio object.
 #'
 #' @seealso \link[derfinder]{calculatePvalues}, 
-#' \link[bumphunter]{annotateNearest}
+#' \link[bumphunter]{matchGenes}
 #' @author Leonardo Collado-Torres
 #' @export
 #'
