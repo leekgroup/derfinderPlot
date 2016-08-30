@@ -20,6 +20,7 @@ Imports:
     grDevices,
     IRanges (>= 1.99.28),
     limma,
+    methods,
     plyr,
     RColorBrewer,
     reshape2,
