@@ -14,7 +14,7 @@ Addon package with plotting functions for
 
 # Installation instructions
 
-Get R 3.2.2 from [CRAN](http://cran.r-project.org/).
+Get R 3.3.x from [CRAN](http://cran.r-project.org/).
 
 ```R
 ## From Bioconductor
