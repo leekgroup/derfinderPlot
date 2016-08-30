@@ -1,6 +1,6 @@
-pkgVer <- function(pkg, default) { 
-    x <- packageDescription(pkg, fields = 'Version')
-    ver <- ifelse(is.na(x), default, x)
+pkgVer <- function(pkg) {
+    if (!exists("meta") || is.null(meta)) meta <- packageDescription(pkg)
+    ver <- meta$Version
     paste0('https://github.com/leekgroup/', pkg, ' - R package version ', ver)
 }
 c(
@@ -13,7 +13,7 @@ c(
         ),
         year = 2015,
         url = "http://www.bioconductor.org/packages/derfinderPlot",
-        note = pkgVer('derfinderPlot', '1.7.5')
+        note = pkgVer('derfinderPlot')
     ),
     bibentry(bibtype="article",
         title = "Flexible expressed region analysis for RNA-seq with derfinder",
