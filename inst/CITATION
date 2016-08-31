@@ -11,7 +11,7 @@ c(
             as.person("Andrew E. Jaffe"),
             as.person("Jeffrey T. Leek")
         ),
-        year = 2015,
+        year = 2016,
         url = "http://www.bioconductor.org/packages/derfinderPlot",
         note = pkgVer('derfinderPlot')
     ),
