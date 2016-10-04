@@ -257,23 +257,6 @@ venn <- vennRegions(annoRegs)
 venn
 ```
 
-
-
-# Advanced arguments
-
-If you are interested in using the advanced arguments, use `derfinder::advancedArg()` as shown below:
-
-```{r 'advancedArg'}
-## URLs to advanced arguemtns
-sapply(c('plotCluster', 'plotOverview'), derfinder::advancedArg, package = 'derfinderPlot', browse = FALSE)
-## Set browse = TRUE if you want to open them in your browser
-```
-
-
-
-
-
-
 # Reproducibility
 
 This package was made possible thanks to:
