@@ -44,11 +44,11 @@ venn2 <- vennRegions(annotatedRegions, main = 'Venn diagram', counts.col =
 venn3 <- vennRegions(annotatedRegions, subsetIndex = 
     genomeRegions$regions$significant == 'TRUE', main = 'Significant only') 
 }
-\author{
-Leonardo Collado-Torres
-}
 \seealso{
 \link[derfinder]{annotateRegions}, \link[limma]{vennCounts},
     \link[limma]{vennDiagram}
+}
+\author{
+Leonardo Collado-Torres
 }
 

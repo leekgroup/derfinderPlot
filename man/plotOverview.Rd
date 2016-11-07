@@ -92,11 +92,11 @@ plotOverview(regs, base_size=30, areaRel=10, legend.position=c(0.95, 0.12))
 plotOverview
 }
 }
-\author{
-Leonardo Collado-Torres
-}
 \seealso{
 \link[derfinder]{calculatePvalues}, 
 \link[bumphunter]{matchGenes}
+}
+\author{
+Leonardo Collado-Torres
 }
 

@@ -95,11 +95,11 @@ plotCluster
 
 }
 }
-\author{
-Leonardo Collado-Torres
-}
 \seealso{
 \link[derfinder]{loadCoverage}, \link[derfinder]{calculatePvalues}, 
 \link[bumphunter]{matchGenes}, \link[ggbio]{plotIdeogram}
+}
+\author{
+Leonardo Collado-Torres
 }
 

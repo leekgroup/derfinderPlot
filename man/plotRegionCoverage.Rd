@@ -103,13 +103,13 @@ dev.off()
 }
 
 }
-\author{
-Andrew Jaffe, Leonardo Collado-Torres
-}
 \seealso{
 \link[derfinder]{calculatePvalues}, 
 \link[derfinder]{getRegionCoverage}, 
 \link[bumphunter]{matchGenes}, \link[derfinder]{annotateRegions}, 
 \link{plotCluster}
+}
+\author{
+Andrew Jaffe, Leonardo Collado-Torres
 }
 
