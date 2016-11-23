@@ -34,7 +34,7 @@ Suggests:
     devtools (>= 1.6),
     knitcitations (>= 1.0.1),
     knitr (>= 1.6),
-    BiocStyle,
+    BiocStyle (>= 2.3.12),
     org.Hs.eg.db,
     rmarkdown (>= 0.3.3),
     testthat,
