@@ -31,31 +31,34 @@ cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
 ## Write bibliography information
 bibs <- c(knitcitations = citation('knitcitations'),
     derfinderPlot = citation('derfinderPlot')[1], 
-    #BiocStyle = citation('BiocStyle'),
-    BiocStyle = RefManageR::BibEntry(bibtype = 'unpublished', key = 'BiocStyle', title = 'BiocStyle: Standard styles for vignettes and other Bioconductor documents', author = 'Martin Morgan and Andrzej Oleś and Wolfgang Huber', note = 'R package version 1.8.0', year = '2015'), 
+    BiocStyle = citation('BiocStyle'),
     knitr = citation('knitr')[3],
     rmarkdown = citation('rmarkdown'),
     derfinder = citation('derfinder')[1],
     ggbio = citation('ggbio'),
-    brainspan = RefManageR::BibEntry(bibtype = 'Unpublished', key = 'brainspan', title = 'Atlas of the Developing Human Brain [Internet]. Funded by ARRA Awards 1RC2MH089921-01, 1RC2MH090047-01, and 1RC2MH089929-01.', author = 'BrainSpan', year = 2011, url = 'http://www.brainspan.org/'),
+    brainspan = RefManageR::BibEntry(bibtype = 'Unpublished',
+        key = 'brainspan',
+        title = 'Atlas of the Developing Human Brain [Internet]. Funded by ARRA Awards 1RC2MH089921-01, 1RC2MH090047-01, and 1RC2MH089929-01.',
+        author = 'BrainSpan', year = 2011, url = 'http://www.brainspan.org/'),
     R = citation(),
     IRanges = citation('IRanges'),
     devtools = citation('devtools'),
     testthat = citation('testthat'),
-    #GenomeInfoDb = citation('GenomeInfoDb'),
-    GenomeInfoDb = RefManageR::BibEntry(bibtype = 'unpublished', key = 'GenomeInfoDb', title = "GenomeInfoDb: Utilities for manipulating chromosome and other 'seqname' identifiers", author = 'Sonali Arora and Martin Morgan and Marc Carlson and H. Pages', note = 'R package version 1.7.3', year = '2015'),
+    GenomeInfoDb = citation('GenomeInfoDb'),
     GenomicRanges = citation('GenomicRanges'),
     ggplot2 = citation('ggplot2'),
     plyr = citation('plyr'),
     RColorBrewer = citation('RColorBrewer'),
     reshape2 = citation('reshape2'),
     scales = citation('scales'),
-    #biovizBase = citation('biovizBase'),
-    biovizBase = RefManageR::BibEntry(bibtype = 'unpublished', key = 'biovizBase', title = 'biovizBase: Basic graphic utilities for visualization of genomic data.', author = 'Tengfei Yin and Michael Lawrence and Dianne Cook', note = 'R package version 1.19.0', year = '2015'),
+    biovizBase = citation('biovizBase'),
     bumphunter = citation('bumphunter')[1],
-    #TxDb.Hsapiens.UCSC.hg19.knownGene = citation('TxDb.Hsapiens.UCSC.hg19.knownGene'),
-    TxDb.Hsapiens.UCSC.hg19.knownGene = RefManageR::BibEntry(bibtype = 'unpublished', key = 'TxDb.Hsapiens.UCSC.hg19.knownGene', title = 'TxDb.Hsapiens.UCSC.hg19.knownGene: Annotation package for TxDb object(s)', author = 'Marc Carlson and Bioconductor Package Maintainer', note = 'R package version 3.2.2', year = '2015'),
-    bumphunterPaper = RefManageR::BibEntry(bibtype = 'article', key = 'bumphunterPaper', title = 'Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies', author = 'Jaffe, Andrew E and Murakami, Peter and Lee, Hwajin and Leek, Jeffrey T and Fallin, M Daniele and Feinberg, Andrew P and Irizarry, Rafael A', year = 2012, journal = 'International Journal of Epidemiology'),
+    TxDb.Hsapiens.UCSC.hg19.knownGene = citation('TxDb.Hsapiens.UCSC.hg19.knownGene'),
+    bumphunterPaper = RefManageR::BibEntry(bibtype = 'article',
+        key = 'bumphunterPaper',
+        title = 'Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies',
+        author = 'Jaffe, Andrew E and Murakami, Peter and Lee, Hwajin and Leek, Jeffrey T and Fallin, M Daniele and Feinberg, Andrew P and Irizarry, Rafael A',
+        year = 2012, journal = 'International Journal of Epidemiology'),
     derfinderData = citation('derfinderData')
 )
 write.bibtex(bibs,
@@ -95,10 +98,6 @@ We first load the required packages.
 suppressPackageStartupMessages(library('derfinder'))
 library('derfinderData')
 library('derfinderPlot')
-
-## For tMatrix() colors
-library('grDevices')
-library('RColorBrewer')
 ```
 
 
@@ -112,7 +111,8 @@ library('knitr')
 pheno <- subset(brainspanPheno, structure_acronym == 'A1C')
 
 ## Display the main information
-p <- pheno[, -which(colnames(pheno) %in% c('structure_acronym', 'structure_name', 'file'))]
+p <- pheno[, -which(colnames(pheno) %in% c('structure_acronym',
+    'structure_name', 'file'))]
 rownames(p) <- NULL
 kable(p, format = 'html', row.names = TRUE)
 ```
@@ -121,7 +121,8 @@ We can load the data from `r Biocexptpkg('derfinderData')` `r citep(bib[['derfin
 
 ```{r 'getData', eval = !windowsFlag}
 ## Determine the files to use and fix the names
-files <- rawFiles(system.file('extdata', 'A1C', package = 'derfinderData'), samplepatt = 'bw', fileterm = NULL)
+files <- rawFiles(system.file('extdata', 'A1C', package = 'derfinderData'),
+    samplepatt = 'bw', fileterm = NULL)
 names(files) <- gsub('.bw', '', names(files))
 
 ## Load the data from disk
@@ -131,7 +132,8 @@ system.time(fullCov <- fullCoverage(files = files, chrs = 'chr21'))
 ```{r 'getDataWindows', eval = windowsFlag, echo = FALSE}
 ## Load data in Windows case
 foo <- function() { 
-    load(system.file('extdata', 'fullCov', 'fullCovA1C.RData', package = 'derfinderData'))
+    load(system.file('extdata', 'fullCov', 'fullCovA1C.RData',
+        package = 'derfinderData'))
     return(fullCovA1C) 
 }
 fullCov <- foo()
@@ -156,7 +158,8 @@ Once we have the base-level coverage data for all 12 samples, we can construct t
 sampleDepths <- sampleDepth(collapseFullCoverage(fullCov), 1)
 
 ## Define models
-models <- makeModels(sampleDepths, testvars = pheno$group, adjustvars = pheno[, c('gender')])
+models <- makeModels(sampleDepths, testvars = pheno$group,
+    adjustvars = pheno[, c('gender')])
 ```
 
 Next, we can find candidate differentially expressed regions (DERs) using as input the segments of the genome where at least one sample has coverage greater than 3. In this particular example, we chose a low theoretical F-statistic cutoff and used 20 permutations.
@@ -167,7 +170,9 @@ filteredCov <- lapply(fullCov, filterData, cutoff = 3)
 
 ## Perform differential expression analysis
 suppressPackageStartupMessages(library('bumphunter'))
-system.time(results <- analyzeChr(chr = 'chr21', filteredCov$chr21, models, groupInfo = pheno$group, writeOutput = FALSE, cutoffFstat = 5e-02, nPermute = 20, seeds = 20140923 + seq_len(20)))
+system.time(results <- analyzeChr(chr = 'chr21', filteredCov$chr21,
+    models, groupInfo = pheno$group, writeOutput = FALSE,
+    cutoffFstat = 5e-02, nPermute = 20, seeds = 20140923 + seq_len(20)))
 
 ## Quick access to the results
 regions <- results$regions$regions
@@ -193,7 +198,8 @@ The next plot shows the candidate DERs colored by the type of gene feature they 
 
 ```{r 'plotOverview2', bootstrap.show.warning=FALSE}
 ## Annotation overview
-plotOverview(regions = regions, annotation = results$annotation, type = 'annotation')
+plotOverview(regions = regions, annotation = results$annotation,
+    type = 'annotation')
 ```
 
 In this particular example, because we are only using data from one chromosome the above plot is not as informative as in a real case scenario. However, with this plot we can quickly observe that nearly all of the candidate DERs are inside an exon.
@@ -217,7 +223,8 @@ Once we have the relevant information we can proceed to plotting the first 10 re
 ## Plot top 10 regions
 plotRegionCoverage(regions = regions, regionCoverage = regionCov, 
     groupInfo = pheno$group, nearestAnnotation = results$annotation, 
-    annotatedRegions = annoRegs, whichRegions=1:10, txdb = txdb, scalefac = 1, ask = FALSE)
+    annotatedRegions = annoRegs, whichRegions=1:10, txdb = txdb, scalefac = 1,
+    ask = FALSE)
 ```
 
 The base-level coverage is shown in a log2 scale with any overlapping exons shown in dark blue and known introns in light blue. 
@@ -233,14 +240,18 @@ In the plot below we observe one large candidate DER with other nearby ones that
 
 ```{r 'plotCluster', warning=FALSE}
 ## First cluster
-plotCluster(idx = 1, regions = regions, annotation = results$annotation, coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group, titleUse = 'pval')
+plotCluster(idx = 1, regions = regions, annotation = results$annotation,
+    coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group,
+    titleUse = 'pval')
 ```
 
 The second cluster shows a larger number of potential DERs (again without q-values less than 0.10) in a segment of the genome where the coverage data is highly variable. This is a common occurrence with RNA-seq data.
 
 ```{r 'plotCluster2', bootstrap.show.warning=FALSE}
 ## Second cluster
-plotCluster(idx = 2, regions = regions, annotation = results$annotation, coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group, titleUse = 'pval')
+plotCluster(idx = 2, regions = regions, annotation = results$annotation,
+    coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group,
+    titleUse = 'pval')
 ```
 
 These plots show an ideogram which helps quickly identify which region of the genome we are focusing on. Then, the base-level coverage information for each sample is displayed in log2. Next, the coverage group means are shown in the log2 scale. The plot is completed with the potential and candidate DERs as well as any known transcripts.
