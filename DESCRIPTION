@@ -45,6 +45,6 @@ Description: This package provides plotting functions for results from the
 License: Artistic-2.0
 LazyData: false
 URL: https://github.com/leekgroup/derfinderPlot
-BugReports: https://github.com/leekgroup/derfinderPlot/issues
+BugReports: https://support.bioconductor.org/t/derfinderPlot
 biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization
 RoxygenNote: 5.0.1
