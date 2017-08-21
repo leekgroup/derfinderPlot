@@ -7,7 +7,7 @@ author:
     - &ccb Center for Computational Biology, Johns Hopkins University
     email: leo.collado@libd.org
 output: 
-  BiocStyle::html_document2:
+  BiocStyle::html_document:
     self_contained: yes
     toc: true
     toc_float: true
@@ -227,17 +227,17 @@ txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
 
 Now that we have obtained the main results using `r Biocpkg('derfinder')`, we can proceed to visualizing the results using `r Biocpkg('derfinderPlot')`. The easiest to use of all the functions is `plotOverview()` which takes a set of regions and annotation information produced by `bumphunter::matchGenes()`.
 
-The plot below shows the candidate DERs colored by whether their q-value was less than 0.10 or not.
+Figure \@ref(fig:plotOverview) shows the candidate DERs colored by whether their q-value was less than 0.10 or not.
 
 
-```{r 'plotOverview', bootstrap.show.warning=FALSE}
+```{r 'plotOverview', bootstrap.show.warning=FALSE, fig.cap = "Location of the DERs in the genome. This plot is was designed for many chromosomes but only one is shown here for simplicity."}
 ## Q-values overview
 plotOverview(regions = regions, annotation = results$annotation, type = 'qval')
 ```
 
-The next plot shows the candidate DERs colored by the type of gene feature they are nearest too.
+Figure \@ref(fig:plotOverview2) shows the candidate DERs colored by the type of gene feature they are nearest too.
 
-```{r 'plotOverview2', bootstrap.show.warning=FALSE}
+```{r 'plotOverview2', bootstrap.show.warning=FALSE, fig.cap = "Location of the DERs in the genome and colored by annotation class. This plot is was designed for many chromosomes but only one is shown here for simplicity."}
 ## Annotation overview
 plotOverview(regions = regions, annotation = results$annotation,
     type = 'annotation')
@@ -258,14 +258,14 @@ annoRegs <- annotateRegions(regions, genomicState$fullGenome)
 regionCov <- getRegionCoverage(fullCov, regions)
 ```
 
-Once we have the relevant information we can proceed to plotting the first 10 regions. In this case, we will supply `plotRegionCoverage()` with the information it needs to plot transcripts overlapping these 10 regions.
+Once we have the relevant information we can proceed to plotting the first 10 regions. In this case, we will supply `plotRegionCoverage()` with the information it needs to plot transcripts overlapping these 10 regions (Figures \@ref(fig:plotRegCov1), \@ref(fig:plotRegCov2), \@ref(fig:plotRegCov3), \@ref(fig:plotRegCov4), \@ref(fig:plotRegCov5), \@ref(fig:plotRegCov6), \@ref(fig:plotRegCov7), \@ref(fig:plotRegCov8), \@ref(fig:plotRegCov9), \@ref(fig:plotRegCov10)).
 
-```{r 'plotRegCov'}
+```{r 'plotRegCov', fig.cap = paste0("Base-pair resolution plot of differentially expressed region ", 1:10, ".")}
 ## Plot top 10 regions
 plotRegionCoverage(regions = regions, regionCoverage = regionCov, 
     groupInfo = pheno$group, nearestAnnotation = results$annotation, 
     annotatedRegions = annoRegs, whichRegions=1:10, txdb = txdb, scalefac = 1,
-    ask = FALSE)
+    ask = FALSE, verbose = FALSE)
 ```
 
 The base-level coverage is shown in a log2 scale with any overlapping exons shown in dark blue and known introns in light blue. 
@@ -277,18 +277,18 @@ In this example, we noticed with the `plotRegionCoverage()` plots that most of t
 
 To visualize the clusters, we can use `plotCluster()` which takes similar input to `plotOverview()` with the notable addition of the coverage information as well as the `idx` argument. This argument specifies which region to focus on: it will be plotted with a red bar and will determine the cluster to display.
 
-In the plot below we observe one large candidate DER with other nearby ones that do not have a q-value less than 0.10. In a real analysis, we would probably discard this region as the coverage is fairly low.
+In Figure \@ref(fig:plotCluster) we observe one large candidate DER with other nearby ones that do not have a q-value less than 0.10. In a real analysis, we would probably discard this region as the coverage is fairly low.
 
-```{r 'plotCluster', warning=FALSE}
+```{r 'plotCluster', warning=FALSE, fig.cap = "Cluster plot for cluster 1 using ggbio."}
 ## First cluster
 plotCluster(idx = 1, regions = regions, annotation = results$annotation,
     coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group,
     titleUse = 'pval')
 ```
 
-The second cluster shows a larger number of potential DERs (again without q-values less than 0.10) in a segment of the genome where the coverage data is highly variable. This is a common occurrence with RNA-seq data.
+The second cluster (Figure \@ref(fig:plotCluster2)) shows a larger number of potential DERs (again without q-values less than 0.10) in a segment of the genome where the coverage data is highly variable. This is a common occurrence with RNA-seq data.
 
-```{r 'plotCluster2', bootstrap.show.warning=FALSE}
+```{r 'plotCluster2', bootstrap.show.warning=FALSE, fig.cap = "Cluster plot for cluster 2 using ggbio."}
 ## Second cluster
 plotCluster(idx = 2, regions = regions, annotation = results$annotation,
     coverageInfo = fullCov$chr21, txdb = txdb, groupInfo = pheno$group,
@@ -299,9 +299,9 @@ These plots show an ideogram which helps quickly identify which region of the ge
 
 ## `vennRegions`
 
-`r Biocpkg('derfinder')` has functions for annotating regions given their genomic state. A typical visualization is to then view how many regions overlap known exons, introns, intergenic regions, none of them or several of these groups in a venn diagram. The function `vennRegions()` makes this plot using the output from `derfinder::annotateRegions()` as shown below.
+`r Biocpkg('derfinder')` has functions for annotating regions given their genomic state. A typical visualization is to then view how many regions overlap known exons, introns, intergenic regions, none of them or several of these groups in a venn diagram. The function `vennRegions()` makes this plot using the output from `derfinder::annotateRegions()` as shown in Figure \@ref(fig:vennRegions).
 
-```{r 'vennRegions'}
+```{r 'vennRegions', fig.cap = "Venn diagram of regions by annotation class."}
 ## Make venn diagram
 venn <- vennRegions(annoRegs)
 
@@ -384,7 +384,7 @@ with `r CRANpkg('knitr')` `r citep(bib[['knitr']])` and `r CRANpkg('rmarkdown')`
 
 Citations made with `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`.
 
-```{r vignetteBiblio, results = 'asis', echo = FALSE, warning = FALSE}
+```{r vignetteBiblio, results = 'asis', echo = FALSE, warning = FALSE, message = FALSE}
 ## Print bibliography
 bibliography()
 ```
