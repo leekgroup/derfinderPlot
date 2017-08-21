@@ -11,4 +11,3 @@ Plotting functions for derfinder results
 Leonardo Collado-Torres <lcollado@jhu.edu>
 }
 \keyword{package}
-

@@ -51,4 +51,3 @@ venn3 <- vennRegions(annotatedRegions, subsetIndex =
 \author{
 Leonardo Collado-Torres
 }
-

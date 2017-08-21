@@ -3,7 +3,11 @@ language: r
 r: bioc-devel
 warnings_are_errors: false
 sudo: false
+<<<<<<< HEAD
 
+=======
+cache: packages
+>>>>>>> upstream/master
 
 r_packages:
   - covr

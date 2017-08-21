@@ -102,4 +102,3 @@ plotCluster
 \author{
 Leonardo Collado-Torres
 }
-

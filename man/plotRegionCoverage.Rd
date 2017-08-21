@@ -112,4 +112,3 @@ dev.off()
 \author{
 Andrew Jaffe, Leonardo Collado-Torres
 }
-
