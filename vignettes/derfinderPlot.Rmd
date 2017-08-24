@@ -72,7 +72,7 @@ cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
 # https://github.com/cboettig/knitcitations/issues/63
 
 ## Write bibliography information
-bibs <- c(knitcitations = citation('knitcitations'),
+bib <- c(knitcitations = citation('knitcitations'),
     derfinderPlot = citation('derfinderPlot')[1], 
     BiocStyle = citation('BiocStyle'),
     knitr = citation('knitr')[3],
@@ -104,12 +104,7 @@ bibs <- c(knitcitations = citation('knitcitations'),
         year = 2012, journal = 'International Journal of Epidemiology'),
     derfinderData = citation('derfinderData')
 )
-write.bibtex(bibs,
-    file = 'derfinderPlotRef.bib')
-bib <- read.bibtex('derfinderPlotRef.bib')
-
-## Assign short names
-names(bib) <- names(bibs)
+write.bibtex(bib, file = 'derfinderPlotRef.bib')
 
 ## Working on Windows?
 windowsFlag <- .Platform$OS.type == 'windows'
