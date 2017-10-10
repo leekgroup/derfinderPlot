@@ -13,7 +13,8 @@ c(
         ),
         year = 2016,
         url = "http://www.bioconductor.org/packages/derfinderPlot",
-        note = pkgVer('derfinderPlot')
+        note = pkgVer('derfinderPlot'),
+        doi = '10.18129/B9.bioc.derfinderPlot'
     ),
     bibentry(bibtype="article",
         title = "Flexible expressed region analysis for RNA-seq with derfinder",
