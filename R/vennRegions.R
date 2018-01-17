@@ -8,14 +8,14 @@
 #' @param subsetIndex A vector of to use to subset the regions to use for the
 #' venn diagram. It can be a logical vector of length equal to the number of
 #' regions or an integer vector. If \code{NULl}, then it's ignored.
-#' @param ... Arguments passed to \link[limma]{vennDiagram}.
+#' @param ... Arguments passed to \link[limma:venn]{vennDiagram}.
 #'
 #' @return Makes a venn diagram plot for the annotation given the genomic state
 #'     and the actual venn counts used to make the plot.
 #'
 #' @author Leonardo Collado-Torres
-#' @seealso \link[derfinder]{annotateRegions}, \link[limma]{vennCounts},
-#'     \link[limma]{vennDiagram}
+#' @seealso \link[derfinder]{annotateRegions}, \link[limma:venn]{vennCounts},
+#'     \link[limma:venn]{vennDiagram}
 #' @export
 #'
 #' @importFrom limma vennCounts vennDiagram

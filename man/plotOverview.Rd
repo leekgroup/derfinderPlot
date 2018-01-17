@@ -29,7 +29,7 @@ for the p-values and the second element is used for the q-values.}
 Advanced arguments:
 \describe{
 \item{base_size }{ Base point size of the plot. This argument is passed to 
-\link[ggplot2]{element_text} (\code{size} argument).}
+\link[ggplot2:margin]{element_text} (\code{size} argument).}
 \item{areaRel }{ The relative size for the area label when 
 \code{type='pval'} 
 or \code{type='qval'}. Can be useful when making high resolution versions of 
