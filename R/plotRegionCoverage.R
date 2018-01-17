@@ -3,7 +3,7 @@
 #' This function takes the regions found in \link[derfinder]{calculatePvalues} 
 #' and assigns them genomic states contructed with 
 #' \link[derfinder]{makeGenomicState}. The main workhorse functions are 
-#' \link[IRanges]{countOverlaps} and \link[IRanges]{findOverlaps}. For an 
+#' \link[IRanges:findOverlaps-methods]{countOverlaps} and \link[IRanges:findOverlaps-methods]{findOverlaps}. For an 
 #' alternative plot check \link{plotCluster} which is much slower and we 
 #' recommend it's use only after quickly checking the results with this 
 #' function.
@@ -18,11 +18,11 @@
 #' used on \code{regions}.
 #' @param annotatedRegions The output from \link[derfinder]{annotateRegions} 
 #' used on \code{regions}.
-#' @param txdb A \link[GenomicFeatures]{TxDb} object. If specified, transcript 
+#' @param txdb A \link[GenomicFeatures:TxDb-class]{TxDb} object. If specified, transcript 
 #' annotation will be extracted from this object and used to plot the 
 #' transcripts.
 #' @param whichRegions An integer vector with the index of the regions to plot.
-#' @param colors If \code{NULL} then \link[RColorBrewer]{brewer.pal} with the 
+#' @param colors If \code{NULL} then \link[RColorBrewer:RColorBrewer]{brewer.pal} with the 
 #' \code{'Dark2'} color scheme is used.
 #' @param scalefac The parameter used in \link[derfinder]{preprocessCoverage}.
 #' @param ask If \code{TRUE} then the user is prompted before each plot is made.

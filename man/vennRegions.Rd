@@ -14,7 +14,7 @@ used on \code{regions}.}
 venn diagram. It can be a logical vector of length equal to the number of
 regions or an integer vector. If \code{NULl}, then it's ignored.}
 
-\item{...}{Arguments passed to \link[limma]{vennDiagram}.}
+\item{...}{Arguments passed to \link[limma:venn]{vennDiagram}.}
 }
 \value{
 Makes a venn diagram plot for the annotation given the genomic state
@@ -45,8 +45,8 @@ venn3 <- vennRegions(annotatedRegions, subsetIndex =
     genomeRegions$regions$significant == 'TRUE', main = 'Significant only') 
 }
 \seealso{
-\link[derfinder]{annotateRegions}, \link[limma]{vennCounts},
-    \link[limma]{vennDiagram}
+\link[derfinder]{annotateRegions}, \link[limma:venn]{vennCounts},
+    \link[limma:venn]{vennDiagram}
 }
 \author{
 Leonardo Collado-Torres
