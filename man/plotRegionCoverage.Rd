@@ -31,7 +31,7 @@ transcripts.}
 
 \item{whichRegions}{An integer vector with the index of the regions to plot.}
 
-\item{colors}{If \code{NULL} then \link[RColorBrewer:RColorBrewer]{brewer.pal} with the 
+\item{colors}{If \code{NULL} then \link[RColorBrewer:ColorBrewer]{brewer.pal} with the 
 \code{'Dark2'} color scheme is used.}
 
 \item{scalefac}{The parameter used in \link[derfinder]{preprocessCoverage}.}

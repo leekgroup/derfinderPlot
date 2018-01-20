@@ -35,7 +35,7 @@ information is used.}
 
 \item{p.ideogram}{If \code{NULL}, the ideogram for hg19 is built for the 
 corresponding chromosome. Otherwise an ideogram resuling from 
-\link[ggbio:Ideogram]{plotIdeogram}.}
+\link[ggbio:plotSingleChrom]{plotIdeogram}.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.
 Advanced arguments:
@@ -97,7 +97,7 @@ plotCluster
 }
 \seealso{
 \link[derfinder]{loadCoverage}, \link[derfinder]{calculatePvalues}, 
-\link[bumphunter]{matchGenes}, \link[ggbio:Ideogram]{plotIdeogram}
+\link[bumphunter]{matchGenes}, \link[ggbio:plotSingleChrom]{plotIdeogram}
 }
 \author{
 Leonardo Collado-Torres
