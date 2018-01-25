@@ -61,7 +61,7 @@ identical(width(ders), width(sort(ranges(genomeRegions$regions))))
 plotRanges <- function(x, xlim = x, main = deparse(substitute(x)), col = 
     'black', sep = 0.5, ...) {
     height <- 1
-    if (is(xlim, 'Ranges')) 
+   # if (is(xlim, 'Ranges')) 
     xlim <- c(min(start(xlim)), max(end(xlim)))
     bins <- disjointBins(IRanges(start(x), end(x) + 1))
     plot.new()
