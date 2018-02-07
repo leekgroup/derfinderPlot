@@ -1,3 +1,16 @@
+CHANGES IN VERSION 1.13.4
+-------------------------
+
+BUG FIXES
+
+    o Fixed an issue with a call to GenomicRanges::gaps() that affected
+        how the introns were plotting in plotRegionCoverage()
+        when the underlying data has a specifying start and end of the
+        chromosome (that is, a seqinfo() with seqlengths specified).
+        Thanks to Emily Burke for reporting this issue
+        https://github.com/emilyburke.
+
+
 CHANGES IN VERSION 1.11.2
 -------------------------
 

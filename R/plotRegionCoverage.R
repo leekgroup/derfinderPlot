@@ -307,7 +307,9 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo,
 .plotData <- function(eList) {
     seqlevels(eList) <- seqlevelsInUse(eList)
     polygon.exon <- .polygonData(eList, 0.25)
-    polygon.intron <- .polygonData(GRangesList(lapply(eList, gaps)), 0.15, TRUE)
+    ## Issue with gaps when chr length is part of the seqinfo()
+    introns <- GRangesList(lapply(eList, gaps, end = NA, start = NA))
+    polygon.intron <- .polygonData(introns, 0.15, TRUE)
     res <- list(exon = polygon.exon, intron = polygon.intron)
 }
 
