@@ -36,7 +36,7 @@ Suggests:
     knitr (>= 1.6),
     BiocStyle (>= 2.5.19),
     org.Hs.eg.db,
-    refManageR,
+    RefManageR,
     rmarkdown (>= 0.3.3),
     testthat,
     TxDb.Hsapiens.UCSC.hg19.knownGene
