@@ -1,8 +1,8 @@
 Package: derfinderPlot
 Type: Package
 Title: Plotting functions for derfinder
-Version: 1.13.4
-Date: 2018-02-07
+Version: 1.13.5
+Date: 2018-04-13
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
@@ -28,7 +28,7 @@ Imports:
     scales,
     utils
 Suggests:
-    biovizBase,
+    biovizBase (>= 1.27.2),
     bumphunter (>= 1.7.6),
     derfinderData (>= 0.99.0),
     devtools (>= 1.6),
@@ -36,6 +36,7 @@ Suggests:
     knitr (>= 1.6),
     BiocStyle (>= 2.5.19),
     org.Hs.eg.db,
+    refManageR,
     rmarkdown (>= 0.3.3),
     testthat,
     TxDb.Hsapiens.UCSC.hg19.knownGene
