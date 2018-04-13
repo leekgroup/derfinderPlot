@@ -23,6 +23,7 @@ Imports:
     methods,
     plyr,
     RColorBrewer,
+    RefManageR,
     reshape2,
     S4Vectors (>= 0.9.38),
     scales,
@@ -36,7 +37,6 @@ Suggests:
     knitr (>= 1.6),
     BiocStyle (>= 2.5.19),
     org.Hs.eg.db,
-    RefManageR,
     rmarkdown (>= 0.3.3),
     testthat,
     TxDb.Hsapiens.UCSC.hg19.knownGene
