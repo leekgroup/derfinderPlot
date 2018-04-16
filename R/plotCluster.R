@@ -164,7 +164,7 @@ plotCluster <- function(idx, regions, annotation, coverageInfo,
         chr <- as.character(seqnames(wh))
         ## Now load the ideogram info
         hg19IdeogramCyto <- NULL
-        data("hg19IdeogramCyto", package = "biovizBase")
+        data("hg19IdeogramCyto", package = "biovizBase", envir = environment())
         p.ideogram <- plotIdeogram(hg19IdeogramCyto, extendedMapSeqlevels(chr, 'UCSC', "homo_sapiens"))
     }
     
