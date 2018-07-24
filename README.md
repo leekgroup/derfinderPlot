@@ -14,12 +14,12 @@ Addon package with plotting functions for
 
 # Installation instructions
 
-Get R 3.3.x from [CRAN](http://cran.r-project.org/).
+Get R 3.5.x from [CRAN](http://cran.r-project.org/).
 
 ```R
 ## From Bioconductor
-source('http://bioconductor.org/biocLite.R')
-biocLite('derfinderPlot')
+install.packages("BiocManager")
+BiocManager::install('derfinderPlot')
 ```
 
 # Vignette
