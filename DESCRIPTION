@@ -1,8 +1,8 @@
 Package: derfinderPlot
 Type: Package
 Title: Plotting functions for derfinder
-Version: 1.15.1
-Date: 2018-07-24
+Version: 1.15.2
+Date: 2018-09-24
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
@@ -32,7 +32,7 @@ Suggests:
     biovizBase (>= 1.27.2),
     bumphunter (>= 1.7.6),
     derfinderData (>= 0.99.0),
-    devtools (>= 1.6),
+    sessioninfo,
     knitcitations (>= 1.0.1),
     knitr (>= 1.6),
     BiocStyle (>= 2.5.19),
