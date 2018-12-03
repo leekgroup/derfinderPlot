@@ -1,8 +1,8 @@
 Package: derfinderPlot
 Type: Package
 Title: Plotting functions for derfinder
-Version: 1.17.0
-Date: 2018-09-24
+Version: 1.17.1
+Date: 2018-12-03
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcollado@jhu.edu"), person(c("Andrew", "E."), "Jaffe", role = "aut",
     email = "andrew.jaffe@libd.org"), person(c("Jeffrey", "T."), "Leek",
@@ -47,5 +47,5 @@ License: Artistic-2.0
 LazyData: false
 URL: https://github.com/leekgroup/derfinderPlot
 BugReports: https://support.bioconductor.org/t/derfinderPlot
-biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization
+biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization, ImmunoOncology
 RoxygenNote: 6.0.1
