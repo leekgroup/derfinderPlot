@@ -8,6 +8,6 @@
 Plotting functions for derfinder results
 }
 \author{
-Leonardo Collado-Torres <lcollado@jhu.edu>
+Leonardo Collado-Torres <lcolladotor@gmail.com>
 }
 \keyword{package}
