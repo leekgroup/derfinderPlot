@@ -8,6 +8,6 @@
 Plotting functions for derfinder results
 }
 \author{
-Leonardo Collado-Torres <lcolladotor@gmail.com>
+Leonardo Collado-Torres \href{mailto:lcolladotor@gmail.com}{lcolladotor@gmail.com}
 }
 \keyword{package}

@@ -1,19 +1,19 @@
 #' Plot a karyotype overview of the genome with the identified regions
 #'
 #' Plots an overview of the genomic locations of the identified regions (see 
-#' \link[derfinder]{calculatePvalues}) in a karyotype view. The coloring can be 
+#' [calculatePvalues][derfinder::calculatePvalues]) in a karyotype view. The coloring can be 
 #' done either by significant regions according to their p-values, significant 
 #' by adjusted p-values, or by annotated region if using 
-#' \link[bumphunter]{matchGenes}.
+#' [matchGenes][bumphunter::matchGenes].
 #'
 #' 
-#' @param regions The \code{$regions} output from
-#' \link[derfinder]{calculatePvalues}.
-#' @param annotation The output from running \link[bumphunter]{matchGenes} 
-#' on the output from \link[derfinder]{calculatePvalues}. It is only required 
-#' if \code{type='annotation'}.
-#' @param type Must be either \code{pval}, \code{qval}, \code{fwer} or 
-#' \code{annotation}. It 
+#' @param regions The `$regions` output from
+#' [calculatePvalues][derfinder::calculatePvalues].
+#' @param annotation The output from running [matchGenes][bumphunter::matchGenes] 
+#' on the output from [calculatePvalues][derfinder::calculatePvalues]. It is only required 
+#' if `type='annotation'`.
+#' @param type Must be either `pval`, `qval`, `fwer` or 
+#' `annotation`. It 
 #' determines whether the plot coloring should be done according to significant 
 #' p-values (<0.05), significant q-values (<0.10), significant FWER adjusted 
 #' p-values (<0.05) or annotation regions.
@@ -24,22 +24,22 @@
 #' Advanced arguments:
 #' \describe{
 #' \item{base_size }{ Base point size of the plot. This argument is passed to 
-#' \link[ggplot2:element]{element_text} (\code{size} argument).}
+#' [element_text][ggplot2::element] (`size` argument).}
 #' \item{areaRel }{ The relative size for the area label when 
-#' \code{type='pval'} 
-#' or \code{type='qval'}. Can be useful when making high resolution versions of 
+#' `type='pval'` 
+#' or `type='qval'`. Can be useful when making high resolution versions of 
 #' these plots in devices like CairoPNG.}
-#' \item{legend.position }{ This argument is passed to \link[ggplot2]{theme}. 
+#' \item{legend.position }{ This argument is passed to [theme][ggplot2::theme]. 
 #' From ggplot2: the position of legends. ('left', 'right', 'bottom', 'top', or 
 #' two-element numeric vector).}
 #' }
-#' Passed to \link[derfinder]{extendedMapSeqlevels}.
+#' Passed to [extendedMapSeqlevels][derfinder::extendedMapSeqlevels].
 #'
 #' @return A ggplot2 plot that is ready to be printed out. Tecnically it is a 
 #' ggbio object.
 #'
-#' @seealso \link[derfinder]{calculatePvalues}, 
-#' \link[bumphunter]{matchGenes}
+#' @seealso [calculatePvalues][derfinder::calculatePvalues], 
+#' [matchGenes][bumphunter::matchGenes]
 #' @author Leonardo Collado-Torres
 #' @export
 #'

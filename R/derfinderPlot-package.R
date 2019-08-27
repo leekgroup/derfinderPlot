@@ -5,7 +5,7 @@
 #' @name derfinderPlot-package
 #' @aliases derfinderPlot-package
 #' @docType package
-#' @author Leonardo Collado-Torres <lcollado@@jhu.edu>
+#' @author Leonardo Collado-Torres <lcolladotor@@gmail.com>
 #'
 #' @keywords package
 NULL 

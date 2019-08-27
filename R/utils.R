@@ -2,7 +2,8 @@
 #'
 #' @param name Name of the advanced argument to look for in ...
 #' @param value The default value of the advanged argument
-#' @keywords internal 
+#' @keywords internal
+#' @noRd
 .advanced_argument <- function(name, value, ...) {
     args <- list(...)
     if(!name %in% names(args)) {

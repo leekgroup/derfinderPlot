@@ -11,63 +11,63 @@ plotCluster(idx, regions, annotation, coverageInfo, groupInfo,
 \item{idx}{A integer specifying the index number of the region of interest.
 This region is graphically highlighted by a red bar.}
 
-\item{regions}{The \code{$regions} output from 
-\link[derfinder]{calculatePvalues}.}
+\item{regions}{The \code{$regions} output from
+\link[derfinder:calculatePvalues]{calculatePvalues}.}
 
-\item{annotation}{The output from running \link[bumphunter]{matchGenes} 
-on the output from \link[derfinder]{calculatePvalues}.}
+\item{annotation}{The output from running \link[bumphunter:matchGenes]{matchGenes}
+on the output from \link[derfinder:calculatePvalues]{calculatePvalues}.}
 
-\item{coverageInfo}{A DataFrame resulting from 
-\link[derfinder]{loadCoverage} using \code{cutoff=NULL}.}
+\item{coverageInfo}{A DataFrame resulting from
+\link[derfinder:loadCoverage]{loadCoverage} using \code{cutoff=NULL}.}
 
-\item{groupInfo}{A factor specifying the group membership of each sample. It 
+\item{groupInfo}{A factor specifying the group membership of each sample. It
 will be used to color the samples by group.}
 
-\item{titleUse}{Whether to show the p-value (\code{pval}), the q-value 
-(\code{qval}) or the FWER adjusted p-value (\code{fwer}) in the title. If 
-\code{titleUse=none} then no p-value or 
-q-value information is used; useful if no permutations were performed and 
+\item{titleUse}{Whether to show the p-value (\code{pval}), the q-value
+(\code{qval}) or the FWER adjusted p-value (\code{fwer}) in the title. If
+\code{titleUse=none} then no p-value or
+q-value information is used; useful if no permutations were performed and
 thus p-value and q-value information is absent.}
 
 \item{txdb}{A transcript data base such as
-\code{TxDb.Hsapiens.UCSC.hg19.knownGene}. If \code{NULL} then no annotation 
+\code{TxDb.Hsapiens.UCSC.hg19.knownGene}. If \code{NULL} then no annotation
 information is used.}
 
-\item{p.ideogram}{If \code{NULL}, the ideogram for hg19 is built for the 
-corresponding chromosome. Otherwise an ideogram resuling from 
+\item{p.ideogram}{If \code{NULL}, the ideogram for hg19 is built for the
+corresponding chromosome. Otherwise an ideogram resuling from
 \link[ggbio:plotSingleChrom]{plotIdeogram}.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.
 Advanced arguments:
 \describe{
-\item{maxExtend }{ The maximum number of base-pairs to extend the view (on 
-each side) before and after the region cluster of interest. For small region 
-clusters, the one side extension is equal to the width of the region 
+\item{maxExtend }{ The maximum number of base-pairs to extend the view (on
+each side) before and after the region cluster of interest. For small region
+clusters, the one side extension is equal to the width of the region
 cluster.}
-\item{colsubset }{ Column subset in case that it was specified in 
-\link[derfinder]{preprocessCoverage}.}
-\item{forceLarge }{ If \code{TRUE} then the data size limitations are 
-ignored. 
-The window size (region cluster width + 2 times \code{maxExtend}) has to be 
-less than 100 kb. Note that a single plot at the 300kb range can take around 
+\item{colsubset }{ Column subset in case that it was specified in
+\link[derfinder:preprocessCoverage]{preprocessCoverage}.}
+\item{forceLarge }{ If \code{TRUE} then the data size limitations are
+ignored.
+The window size (region cluster width + 2 times \code{maxExtend}) has to be
+less than 100 kb. Note that a single plot at the 300kb range can take around
 2 hours to complete.}
 }}
 }
 \value{
-A ggplot2 plot that is ready to be printed out. Tecnically it is a 
-ggbio object. The region with the red bar is the one whose information is 
+A ggplot2 plot that is ready to be printed out. Tecnically it is a
+ggbio object. The region with the red bar is the one whose information is
 shown in the title.
 }
 \description{
-For a given region found in \link[derfinder]{calculatePvalues}, plot the 
-coverage for the cluster this region belongs to as well as some padding. The 
-mean by group is shown to facilitate comparisons between groups. If 
-annotation exists, you can plot the trancripts and exons (if any) 
+For a given region found in \link[derfinder:calculatePvalues]{calculatePvalues}, plot the
+coverage for the cluster this region belongs to as well as some padding. The
+mean by group is shown to facilitate comparisons between groups. If
+annotation exists, you can plot the trancripts and exons (if any)
 overlapping in the vicinity of the region of interest.
 }
 \details{
-See the parameter \code{significantCut} in 
-\link[derfinder]{calculatePvalues} for how the significance cutoffs are 
+See the parameter \code{significantCut} in
+\link[derfinder:calculatePvalues]{calculatePvalues} for how the significance cutoffs are
 determined.
 }
 \examples{
@@ -96,8 +96,8 @@ plotCluster
 }
 }
 \seealso{
-\link[derfinder]{loadCoverage}, \link[derfinder]{calculatePvalues}, 
-\link[bumphunter]{matchGenes}, \link[ggbio:plotSingleChrom]{plotIdeogram}
+\link[derfinder:loadCoverage]{loadCoverage}, \link[derfinder:calculatePvalues]{calculatePvalues},
+\link[bumphunter:matchGenes]{matchGenes}, \link[ggbio:plotSingleChrom]{plotIdeogram}
 }
 \author{
 Leonardo Collado-Torres

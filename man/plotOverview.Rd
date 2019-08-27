@@ -9,47 +9,47 @@ plotOverview(regions, annotation = NULL, type = "pval",
 }
 \arguments{
 \item{regions}{The \code{$regions} output from
-\link[derfinder]{calculatePvalues}.}
+\link[derfinder:calculatePvalues]{calculatePvalues}.}
 
-\item{annotation}{The output from running \link[bumphunter]{matchGenes} 
-on the output from \link[derfinder]{calculatePvalues}. It is only required 
+\item{annotation}{The output from running \link[bumphunter:matchGenes]{matchGenes}
+on the output from \link[derfinder:calculatePvalues]{calculatePvalues}. It is only required
 if \code{type='annotation'}.}
 
-\item{type}{Must be either \code{pval}, \code{qval}, \code{fwer} or 
-\code{annotation}. It 
-determines whether the plot coloring should be done according to significant 
-p-values (<0.05), significant q-values (<0.10), significant FWER adjusted 
+\item{type}{Must be either \code{pval}, \code{qval}, \code{fwer} or
+\code{annotation}. It
+determines whether the plot coloring should be done according to significant
+p-values (<0.05), significant q-values (<0.10), significant FWER adjusted
 p-values (<0.05) or annotation regions.}
 
-\item{significantCut}{A vector of length two specifiying the cutoffs used to 
-determine significance. The first element is used to determine significance 
+\item{significantCut}{A vector of length two specifiying the cutoffs used to
+determine significance. The first element is used to determine significance
 for the p-values and the second element is used for the q-values.}
 
 \item{...}{Arguments passed to other methods and/or advanced arguments.
 Advanced arguments:
 \describe{
-\item{base_size }{ Base point size of the plot. This argument is passed to 
+\item{base_size }{ Base point size of the plot. This argument is passed to
 \link[ggplot2:element]{element_text} (\code{size} argument).}
-\item{areaRel }{ The relative size for the area label when 
-\code{type='pval'} 
-or \code{type='qval'}. Can be useful when making high resolution versions of 
+\item{areaRel }{ The relative size for the area label when
+\code{type='pval'}
+or \code{type='qval'}. Can be useful when making high resolution versions of
 these plots in devices like CairoPNG.}
-\item{legend.position }{ This argument is passed to \link[ggplot2]{theme}. 
-From ggplot2: the position of legends. ('left', 'right', 'bottom', 'top', or 
+\item{legend.position }{ This argument is passed to \link[ggplot2:theme]{theme}.
+From ggplot2: the position of legends. ('left', 'right', 'bottom', 'top', or
 two-element numeric vector).}
 }
-Passed to \link[derfinder]{extendedMapSeqlevels}.}
+Passed to \link[derfinder:extendedMapSeqlevels]{extendedMapSeqlevels}.}
 }
 \value{
-A ggplot2 plot that is ready to be printed out. Tecnically it is a 
+A ggplot2 plot that is ready to be printed out. Tecnically it is a
 ggbio object.
 }
 \description{
-Plots an overview of the genomic locations of the identified regions (see 
-\link[derfinder]{calculatePvalues}) in a karyotype view. The coloring can be 
-done either by significant regions according to their p-values, significant 
-by adjusted p-values, or by annotated region if using 
-\link[bumphunter]{matchGenes}.
+Plots an overview of the genomic locations of the identified regions (see
+\link[derfinder:calculatePvalues]{calculatePvalues}) in a karyotype view. The coloring can be
+done either by significant regions according to their p-values, significant
+by adjusted p-values, or by annotated region if using
+\link[bumphunter:matchGenes]{matchGenes}.
 }
 \examples{
 ## Construct toy data
@@ -93,8 +93,8 @@ plotOverview
 }
 }
 \seealso{
-\link[derfinder]{calculatePvalues}, 
-\link[bumphunter]{matchGenes}
+\link[derfinder:calculatePvalues]{calculatePvalues},
+\link[bumphunter:matchGenes]{matchGenes}
 }
 \author{
 Leonardo Collado-Torres

@@ -7,7 +7,7 @@
 vennRegions(annotatedRegions, subsetIndex = NULL, ...)
 }
 \arguments{
-\item{annotatedRegions}{The output from \link[derfinder]{annotateRegions} 
+\item{annotatedRegions}{The output from \link[derfinder:annotateRegions]{annotateRegions}
 used on \code{regions}.}
 
 \item{subsetIndex}{A vector of to use to subset the regions to use for the
@@ -18,7 +18,7 @@ regions or an integer vector. If \code{NULl}, then it's ignored.}
 }
 \value{
 Makes a venn diagram plot for the annotation given the genomic state
-    and the actual venn counts used to make the plot.
+and the actual venn counts used to make the plot.
 }
 \description{
 Makes a venn diagram for the regions given the genomic state showing how many
@@ -45,8 +45,8 @@ venn3 <- vennRegions(annotatedRegions, subsetIndex =
     genomeRegions$regions$significant == 'TRUE', main = 'Significant only') 
 }
 \seealso{
-\link[derfinder]{annotateRegions}, \link[limma:venn]{vennCounts},
-    \link[limma:venn]{vennDiagram}
+\link[derfinder:annotateRegions]{annotateRegions}, \link[limma:venn]{vennCounts},
+\link[limma:venn]{vennDiagram}
 }
 \author{
 Leonardo Collado-Torres

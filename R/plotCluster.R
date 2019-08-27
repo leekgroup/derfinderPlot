@@ -1,6 +1,6 @@
 #' Plot the coverage information surrounding a region cluster
 #'
-#' For a given region found in \link[derfinder]{calculatePvalues}, plot the 
+#' For a given region found in [calculatePvalues][derfinder::calculatePvalues], plot the 
 #' coverage for the cluster this region belongs to as well as some padding. The 
 #' mean by group is shown to facilitate comparisons between groups. If 
 #' annotation exists, you can plot the trancripts and exons (if any) 
@@ -9,25 +9,25 @@
 #' 
 #' @param idx A integer specifying the index number of the region of interest.
 #' This region is graphically highlighted by a red bar.
-#' @param regions The \code{$regions} output from 
-#' \link[derfinder]{calculatePvalues}.
-#' @param annotation The output from running \link[bumphunter]{matchGenes} 
-#' on the output from \link[derfinder]{calculatePvalues}.
+#' @param regions The `$regions` output from 
+#' [calculatePvalues][derfinder::calculatePvalues].
+#' @param annotation The output from running [matchGenes][bumphunter::matchGenes] 
+#' on the output from [calculatePvalues][derfinder::calculatePvalues].
 #' @param coverageInfo A DataFrame resulting from 
-#' \link[derfinder]{loadCoverage} using \code{cutoff=NULL}.
+#' [loadCoverage][derfinder::loadCoverage] using `cutoff=NULL`.
 #' @param groupInfo A factor specifying the group membership of each sample. It 
 #' will be used to color the samples by group.
-#' @param titleUse Whether to show the p-value (\code{pval}), the q-value 
-#' (\code{qval}) or the FWER adjusted p-value (\code{fwer}) in the title. If 
-#' \code{titleUse=none} then no p-value or 
+#' @param titleUse Whether to show the p-value (`pval`), the q-value 
+#' (`qval`) or the FWER adjusted p-value (`fwer`) in the title. If 
+#' `titleUse=none` then no p-value or 
 #' q-value information is used; useful if no permutations were performed and 
 #' thus p-value and q-value information is absent.
 #' @param txdb A transcript data base such as
-#' \code{TxDb.Hsapiens.UCSC.hg19.knownGene}. If \code{NULL} then no annotation 
+#' `TxDb.Hsapiens.UCSC.hg19.knownGene`. If `NULL` then no annotation 
 #' information is used.
-#' @param p.ideogram If \code{NULL}, the ideogram for hg19 is built for the 
+#' @param p.ideogram If `NULL`, the ideogram for hg19 is built for the 
 #' corresponding chromosome. Otherwise an ideogram resuling from 
-#' \link[ggbio:plotSingleChrom]{plotIdeogram}.
+#' [plotIdeogram][ggbio::plotSingleChrom].
 #' @param ... Arguments passed to other methods and/or advanced arguments.
 #' Advanced arguments:
 #' \describe{
@@ -36,10 +36,10 @@
 #' clusters, the one side extension is equal to the width of the region 
 #' cluster.}
 #' \item{colsubset }{ Column subset in case that it was specified in 
-#' \link[derfinder]{preprocessCoverage}.}
-#' \item{forceLarge }{ If \code{TRUE} then the data size limitations are 
+#' [preprocessCoverage][derfinder::preprocessCoverage].}
+#' \item{forceLarge }{ If `TRUE` then the data size limitations are 
 #' ignored. 
-#' The window size (region cluster width + 2 times \code{maxExtend}) has to be 
+#' The window size (region cluster width + 2 times `maxExtend`) has to be 
 #' less than 100 kb. Note that a single plot at the 300kb range can take around 
 #' 2 hours to complete.}
 #' }
@@ -48,12 +48,12 @@
 #' ggbio object. The region with the red bar is the one whose information is 
 #' shown in the title.
 #'
-#' @details See the parameter \code{significantCut} in 
-#' \link[derfinder]{calculatePvalues} for how the significance cutoffs are 
+#' @details See the parameter `significantCut` in 
+#' [calculatePvalues][derfinder::calculatePvalues] for how the significance cutoffs are 
 #' determined.
 #'
-#' @seealso \link[derfinder]{loadCoverage}, \link[derfinder]{calculatePvalues}, 
-#' \link[bumphunter]{matchGenes}, \link[ggbio:plotSingleChrom]{plotIdeogram}
+#' @seealso [loadCoverage][derfinder::loadCoverage], [calculatePvalues][derfinder::calculatePvalues], 
+#' [matchGenes][bumphunter::matchGenes], [plotIdeogram][ggbio::plotSingleChrom]
 #' @author Leonardo Collado-Torres
 #' @export
 #'

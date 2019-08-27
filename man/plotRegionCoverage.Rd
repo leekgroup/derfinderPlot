@@ -6,54 +6,54 @@
 \usage{
 plotRegionCoverage(regions, regionCoverage, groupInfo, nearestAnnotation,
   annotatedRegions, txdb = NULL, whichRegions = seq_len(min(100,
-  length(regions))), colors = NULL, scalefac = 32, ask = interactive(),
-  ylab = "Coverage", verbose = TRUE)
+  length(regions))), colors = NULL, scalefac = 32,
+  ask = interactive(), ylab = "Coverage", verbose = TRUE)
 }
 \arguments{
-\item{regions}{The \code{$regions} output from 
-\link[derfinder]{calculatePvalues}.}
+\item{regions}{The \code{$regions} output from
+\link[derfinder:calculatePvalues]{calculatePvalues}.}
 
-\item{regionCoverage}{The output from \link[derfinder]{getRegionCoverage} 
+\item{regionCoverage}{The output from \link[derfinder:getRegionCoverage]{getRegionCoverage}
 used on \code{regions}.}
 
-\item{groupInfo}{A factor specifying the group membership of each sample. It 
+\item{groupInfo}{A factor specifying the group membership of each sample. It
 will be used to color the samples by group.}
 
-\item{nearestAnnotation}{The output from \link[bumphunter]{matchGenes} 
+\item{nearestAnnotation}{The output from \link[bumphunter:matchGenes]{matchGenes}
 used on \code{regions}.}
 
-\item{annotatedRegions}{The output from \link[derfinder]{annotateRegions} 
+\item{annotatedRegions}{The output from \link[derfinder:annotateRegions]{annotateRegions}
 used on \code{regions}.}
 
-\item{txdb}{A \link[GenomicFeatures:TxDb-class]{TxDb} object. If specified, transcript 
-annotation will be extracted from this object and used to plot the 
+\item{txdb}{A \link[GenomicFeatures:TxDb-class]{TxDb} object. If specified, transcript
+annotation will be extracted from this object and used to plot the
 transcripts.}
 
 \item{whichRegions}{An integer vector with the index of the regions to plot.}
 
-\item{colors}{If \code{NULL} then \link[RColorBrewer:ColorBrewer]{brewer.pal} with the 
+\item{colors}{If \code{NULL} then \link[RColorBrewer:ColorBrewer]{brewer.pal} with the
 \code{'Dark2'} color scheme is used.}
 
-\item{scalefac}{The parameter used in \link[derfinder]{preprocessCoverage}.}
+\item{scalefac}{The parameter used in \link[derfinder:preprocessCoverage]{preprocessCoverage}.}
 
 \item{ask}{If \code{TRUE} then the user is prompted before each plot is made.}
 
 \item{ylab}{The name of the of the Y axis.}
 
-\item{verbose}{If \code{TRUE} basic status updates will be printed along the 
+\item{verbose}{If \code{TRUE} basic status updates will be printed along the
 way.}
 }
 \value{
-A plot for every region showing the coverage of each sample at each 
+A plot for every region showing the coverage of each sample at each
 base of the region as well as the summarized annotation information.
 }
 \description{
-This function takes the regions found in \link[derfinder]{calculatePvalues} 
-and assigns them genomic states contructed with 
-\link[derfinder]{makeGenomicState}. The main workhorse functions are 
-\link[IRanges:findOverlaps-methods]{countOverlaps} and \link[IRanges:findOverlaps-methods]{findOverlaps}. For an 
-alternative plot check \link{plotCluster} which is much slower and we 
-recommend it's use only after quickly checking the results with this 
+This function takes the regions found in \link[derfinder:calculatePvalues]{calculatePvalues}
+and assigns them genomic states contructed with
+\link[derfinder:makeGenomicState]{makeGenomicState}. The main workhorse functions are
+\link[IRanges:findOverlaps-methods]{countOverlaps} and \link[IRanges:findOverlaps-methods]{findOverlaps}. For an
+alternative plot check \link{plotCluster} which is much slower and we
+recommend it's use only after quickly checking the results with this
 function.
 }
 \examples{
@@ -104,9 +104,9 @@ dev.off()
 
 }
 \seealso{
-\link[derfinder]{calculatePvalues}, 
-\link[derfinder]{getRegionCoverage}, 
-\link[bumphunter]{matchGenes}, \link[derfinder]{annotateRegions}, 
+\link[derfinder:calculatePvalues]{calculatePvalues},
+\link[derfinder:getRegionCoverage]{getRegionCoverage},
+\link[bumphunter:matchGenes]{matchGenes}, \link[derfinder:annotateRegions]{annotateRegions},
 \link{plotCluster}
 }
 \author{

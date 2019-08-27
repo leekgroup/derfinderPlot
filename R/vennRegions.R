@@ -3,19 +3,19 @@
 #' Makes a venn diagram for the regions given the genomic state showing how many
 #' regions overlap introns, exons, intergenic regions, none or multiple groups.
 #' 
-#' @param annotatedRegions The output from \link[derfinder]{annotateRegions} 
-#' used on \code{regions}.
+#' @param annotatedRegions The output from [annotateRegions][derfinder::annotateRegions] 
+#' used on `regions`.
 #' @param subsetIndex A vector of to use to subset the regions to use for the
 #' venn diagram. It can be a logical vector of length equal to the number of
-#' regions or an integer vector. If \code{NULl}, then it's ignored.
-#' @param ... Arguments passed to \link[limma:venn]{vennDiagram}.
+#' regions or an integer vector. If `NULl`, then it's ignored.
+#' @param ... Arguments passed to [vennDiagram][limma::venn].
 #'
 #' @return Makes a venn diagram plot for the annotation given the genomic state
 #'     and the actual venn counts used to make the plot.
 #'
 #' @author Leonardo Collado-Torres
-#' @seealso \link[derfinder]{annotateRegions}, \link[limma:venn]{vennCounts},
-#'     \link[limma:venn]{vennDiagram}
+#' @seealso [annotateRegions][derfinder::annotateRegions], [vennCounts][limma::venn],
+#'     [vennDiagram][limma::venn]
 #' @export
 #'
 #' @importFrom limma vennCounts vennDiagram

@@ -1,43 +1,43 @@
 #' Makes plots for every region while summarizing the annotation
 #'
-#' This function takes the regions found in \link[derfinder]{calculatePvalues} 
+#' This function takes the regions found in [calculatePvalues][derfinder::calculatePvalues] 
 #' and assigns them genomic states contructed with 
-#' \link[derfinder]{makeGenomicState}. The main workhorse functions are 
-#' \link[IRanges:findOverlaps-methods]{countOverlaps} and \link[IRanges:findOverlaps-methods]{findOverlaps}. For an 
-#' alternative plot check \link{plotCluster} which is much slower and we 
+#' [makeGenomicState][derfinder::makeGenomicState]. The main workhorse functions are 
+#' [countOverlaps][IRanges::findOverlaps-methods] and [findOverlaps][IRanges::findOverlaps-methods]. For an 
+#' alternative plot check [plotCluster] which is much slower and we 
 #' recommend it's use only after quickly checking the results with this 
 #' function.
 #' 
-#' @param regions The \code{$regions} output from 
-#' \link[derfinder]{calculatePvalues}.
-#' @param regionCoverage The output from \link[derfinder]{getRegionCoverage} 
-#' used on \code{regions}.
+#' @param regions The `$regions` output from 
+#' [calculatePvalues][derfinder::calculatePvalues].
+#' @param regionCoverage The output from [getRegionCoverage][derfinder::getRegionCoverage] 
+#' used on `regions`.
 #' @param groupInfo A factor specifying the group membership of each sample. It 
 #' will be used to color the samples by group.
-#' @param nearestAnnotation The output from \link[bumphunter]{matchGenes} 
-#' used on \code{regions}.
-#' @param annotatedRegions The output from \link[derfinder]{annotateRegions} 
-#' used on \code{regions}.
-#' @param txdb A \link[GenomicFeatures:TxDb-class]{TxDb} object. If specified, transcript 
+#' @param nearestAnnotation The output from [matchGenes][bumphunter::matchGenes] 
+#' used on `regions`.
+#' @param annotatedRegions The output from [annotateRegions][derfinder::annotateRegions] 
+#' used on `regions`.
+#' @param txdb A [TxDb][GenomicFeatures::TxDb-class] object. If specified, transcript 
 #' annotation will be extracted from this object and used to plot the 
 #' transcripts.
 #' @param whichRegions An integer vector with the index of the regions to plot.
-#' @param colors If \code{NULL} then \link[RColorBrewer:ColorBrewer]{brewer.pal} with the 
-#' \code{'Dark2'} color scheme is used.
-#' @param scalefac The parameter used in \link[derfinder]{preprocessCoverage}.
-#' @param ask If \code{TRUE} then the user is prompted before each plot is made.
+#' @param colors If `NULL` then [brewer.pal][RColorBrewer::ColorBrewer] with the 
+#' `'Dark2'` color scheme is used.
+#' @param scalefac The parameter used in [preprocessCoverage][derfinder::preprocessCoverage].
+#' @param ask If `TRUE` then the user is prompted before each plot is made.
 #' @param ylab The name of the of the Y axis.
-#' @param verbose If \code{TRUE} basic status updates will be printed along the 
+#' @param verbose If `TRUE` basic status updates will be printed along the 
 #' way.
 #'
 #' @return A plot for every region showing the coverage of each sample at each 
 #' base of the region as well as the summarized annotation information.
 #'
 #' @author Andrew Jaffe, Leonardo Collado-Torres
-#' @seealso \link[derfinder]{calculatePvalues}, 
-#' \link[derfinder]{getRegionCoverage}, 
-#' \link[bumphunter]{matchGenes}, \link[derfinder]{annotateRegions}, 
-#' \link{plotCluster}
+#' @seealso [calculatePvalues][derfinder::calculatePvalues], 
+#' [getRegionCoverage][derfinder::getRegionCoverage], 
+#' [matchGenes][bumphunter::matchGenes], [annotateRegions][derfinder::annotateRegions], 
+#' [plotCluster]
 #' @export
 #'
 #' @import S4Vectors
