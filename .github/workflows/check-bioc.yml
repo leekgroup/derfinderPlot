@@ -17,23 +17,22 @@ jobs:
       imagename: ${{ steps.findinfo.outputs.imagename }}
       biocversion: ${{ steps.findinfo.outputs.biocversion }}
     steps:
-    - id: findinfo
-      run: |
-        ## Find what branch we are working on
-        if echo "$GITHUB_REF" | grep -q "master"; then
-            biocversion="devel"
-        elif echo "$GITHUB_REF" | grep -q "RELEASE_"; then
-            biocversion="$(basename -- $GITHUB_REF | tr '[:upper:]' '[:lower:]')"
-        fi
+      - id: findinfo
+        run: |
+          ## Find what branch we are working on
+          if echo "$GITHUB_REF" | grep -q "master"; then
+              biocversion="devel"
+          elif echo "$GITHUB_REF" | grep -q "RELEASE_"; then
+              biocversion="$(basename -- $GITHUB_REF | tr '[:upper:]' '[:lower:]')"
+          fi
+          ## Define the image name and print the info
+          imagename="bioconductor/bioconductor_docker:${biocversion}"
+          echo $imagename
+          echo $biocversion
 
-        ## Define the image name and print the info
-        imagename="bioconductor/bioconductor_docker:${biocversion}"
-        echo $imagename
-        echo $biocversion
-
-        ## Save the info for the next job
-        echo "::set-output name=imagename::${imagename}"
-        echo "::set-output name=biocversion::${biocversion}"
+          ## Save the info for the next job
+          echo "::set-output name=imagename::${imagename}"
+          echo "::set-output name=biocversion::${biocversion}"
   R-CMD-check-bioc:
     runs-on: ubuntu-latest
     needs: define-docker-info
