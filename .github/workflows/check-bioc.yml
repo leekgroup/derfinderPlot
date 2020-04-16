@@ -102,7 +102,7 @@ jobs:
         shell: Rscript {0}
 
       - name: BiocCheck
-        shell: R CMD BiocCheck check/*.tar.gz
+        run: R CMD BiocCheck check/*.tar.gz
 
       - name: Install covr and pkgdown
         if: github.ref == 'refs/heads/master'
