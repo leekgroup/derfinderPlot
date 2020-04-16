@@ -4,13 +4,23 @@
 \alias{plotRegionCoverage}
 \title{Makes plots for every region while summarizing the annotation}
 \usage{
-plotRegionCoverage(regions, regionCoverage, groupInfo, nearestAnnotation,
-  annotatedRegions, txdb = NULL, whichRegions = seq_len(min(100,
-  length(regions))), colors = NULL, scalefac = 32,
-  ask = interactive(), ylab = "Coverage", verbose = TRUE)
+plotRegionCoverage(
+  regions,
+  regionCoverage,
+  groupInfo,
+  nearestAnnotation,
+  annotatedRegions,
+  txdb = NULL,
+  whichRegions = seq_len(min(100, length(regions))),
+  colors = NULL,
+  scalefac = 32,
+  ask = interactive(),
+  ylab = "Coverage",
+  verbose = TRUE
+)
 }
 \arguments{
-\item{regions}{The \code{$regions} output from
+\item{regions}{The \verb{$regions} output from
 \link[derfinder:calculatePvalues]{calculatePvalues}.}
 
 \item{regionCoverage}{The output from \link[derfinder:getRegionCoverage]{getRegionCoverage}
@@ -76,8 +86,9 @@ fullCov <- list('21'=genomeDataRaw$coverage)
 
 ## Assign chr lengths using hg19 information
 library('GenomicRanges')
-data(hg19Ideogram, package = 'biovizBase', envir = environment())
-seqlengths(regions) <- seqlengths(hg19Ideogram)[names(seqlengths(regions))]
+seqlengths(regions) <- seqlengths(getChromInfoFromUCSC('hg19',
+    as.Seqinfo = TRUE))[
+        mapSeqlevels(names(seqlengths(regions)), 'UCSC')]
 
 ## Get the region coverage
 regionCov <- getRegionCoverage(fullCov=fullCov, regions=regions)

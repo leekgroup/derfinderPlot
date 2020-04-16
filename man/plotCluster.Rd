@@ -4,14 +4,23 @@
 \alias{plotCluster}
 \title{Plot the coverage information surrounding a region cluster}
 \usage{
-plotCluster(idx, regions, annotation, coverageInfo, groupInfo,
-  titleUse = "qval", txdb = NULL, p.ideogram = NULL, ...)
+plotCluster(
+  idx,
+  regions,
+  annotation,
+  coverageInfo,
+  groupInfo,
+  titleUse = "qval",
+  txdb = NULL,
+  p.ideogram = NULL,
+  ...
+)
 }
 \arguments{
 \item{idx}{A integer specifying the index number of the region of interest.
 This region is graphically highlighted by a red bar.}
 
-\item{regions}{The \code{$regions} output from
+\item{regions}{The \verb{$regions} output from
 \link[derfinder:calculatePvalues]{calculatePvalues}.}
 
 \item{annotation}{The output from running \link[bumphunter:matchGenes]{matchGenes}

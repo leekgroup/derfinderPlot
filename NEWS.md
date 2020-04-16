@@ -1,3 +1,11 @@
+# derfinderPlot 1.21.1
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Use GenomeInfoDb::getChromInfoFromUCSC() when possible instead of data
+from biovizBase::hg19Ideogram for getting the hg19 chromosome lengths.
+
+
 # derfinderPlot 1.19.3
 
 * Added a `NEWS.md` file to track changes to the package.

@@ -4,11 +4,16 @@
 \alias{plotOverview}
 \title{Plot a karyotype overview of the genome with the identified regions}
 \usage{
-plotOverview(regions, annotation = NULL, type = "pval",
-  significantCut = c(0.05, 0.1), ...)
+plotOverview(
+  regions,
+  annotation = NULL,
+  type = "pval",
+  significantCut = c(0.05, 0.1),
+  ...
+)
 }
 \arguments{
-\item{regions}{The \code{$regions} output from
+\item{regions}{The \verb{$regions} output from
 \link[derfinder:calculatePvalues]{calculatePvalues}.}
 
 \item{annotation}{The output from running \link[bumphunter:matchGenes]{matchGenes}

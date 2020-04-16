@@ -20,8 +20,9 @@ fullCov <- list('21'=genomeDataRaw$coverage)
 
 ## Assign chr lengths using hg19 information
 library('GenomicRanges')
-data(hg19Ideogram, package = 'biovizBase', envir = environment())
-seqlengths(regions) <- seqlengths(hg19Ideogram)[names(seqlengths(regions))]
+seqlengths(regions) <- seqlengths(getChromInfoFromUCSC('hg19',
+    as.Seqinfo = TRUE))[
+        mapSeqlevels(names(seqlengths(regions)), 'UCSC')]
 
 ## Get the region coverage
 regionCov <- getRegionCoverage(fullCov=fullCov, regions=regions)

@@ -45,6 +45,7 @@
 #'
 #' @importFrom GenomicRanges seqinfo
 #' @importFrom GenomeInfoDb seqlengths 'seqlengths<-' seqlevels renameSeqlevels
+#' getChromInfoFromUCSC mapSeqlevels
 #' @importMethodsFrom ggbio autoplot layout_karyogram
 #' @importFrom ggplot2 aes labs scale_colour_manual scale_fill_manual geom_text 
 #' rel geom_segment xlab theme element_text element_blank
@@ -114,7 +115,7 @@ plotOverview <- function(regions, annotation = NULL, type = 'pval',
     legend.position <- .advanced_argument('legend.position', c(0.85, 0.12), ...)
     
     ## Keeping R CMD check happy
-    hg19Ideogram <- significant <- midpoint <- area <- x <- y <- xend <-
+    significant <- midpoint <- area <- x <- y <- xend <-
         significantQval <- region <- significantFWER <- NULL
         
     ## Use UCSC names for homo_sapiens by default
@@ -125,9 +126,9 @@ plotOverview <- function(regions, annotation = NULL, type = 'pval',
     if (any(is.na(seqlengths(regions)))) {
         message(paste(Sys.time(), 
             'plotOverview: assigning chromosome lengths from hg19!!!'))
-        data(hg19Ideogram, package = 'biovizBase', envir = environment())
-        seqlengths(regions) <- seqlengths(hg19Ideogram)[
-            names(seqlengths(regions))]
+        seqlengths(regions) <- seqlengths(getChromInfoFromUCSC('hg19',
+            as.Seqinfo = TRUE))[
+                mapSeqlevels(names(seqlengths(regions)), 'UCSC')]
     }
     
     ## Graphical setup
