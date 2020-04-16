@@ -1,7 +1,7 @@
 Package: derfinderPlot
 Type: Package
 Title: Plotting functions for derfinder
-Version: 1.21.1
+Version: 1.21.2
 Date: 2020-04-15
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcolladotor@gmail.com", comment = c(ORCID = "0000-0003-2140-308X")),
@@ -41,7 +41,8 @@ Suggests:
     RefManageR,
     rmarkdown (>= 0.3.3),
     testthat,
-    TxDb.Hsapiens.UCSC.hg19.knownGene
+    TxDb.Hsapiens.UCSC.hg19.knownGene,
+    covr
 VignetteBuilder: knitr
 Description: This package provides plotting functions for results from the
     derfinder package.

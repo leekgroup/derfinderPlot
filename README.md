@@ -1,38 +1,108 @@
-<a href="http://www.bioconductor.org/packages/release/bioc/html/derfinderPlot.html#since"><img border="0" src="http://www.bioconductor.org/shields/years-in-bioc/derfinderPlot.svg" title="How long since the package was first in a released Bioconductor version (or is it in devel only)."></a> <a href="https://bioconductor.org/packages/stats/bioc/derfinderPlot/"><img border="0" src="http://www.bioconductor.org/shields/downloads/derfinderPlot.svg" title="Percentile (top 5/20/50% or 'available') of downloads over last 6 full months. Comparison is done across all package categories (software, annotation, experiment)."></a> <a href="https://support.bioconductor.org/t/derfinderPlot/"><img border="0" src="http://www.bioconductor.org/shields/posts/derfinderPlot.svg" title="Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts."></a> <a href="http://www.bioconductor.org/packages/release/bioc/html/derfinderPlot.html#svn_source"><img border="0" src="http://www.bioconductor.org/shields/commits/bioc/derfinderPlot.svg" title="average Subversion commits (to the devel branch) per month for the last 6 months"></a>
 
-Status: Travis CI [![Build Status](https://travis-ci.org/leekgroup/derfinderPlot.svg?branch=master)](https://travis-ci.org/leekgroup/derfinderPlot),
-Bioc-release <a href="http://www.bioconductor.org/packages/release/bioc/html/derfinderPlot.html#archives"><img border="0" src="http://www.bioconductor.org/shields/availability/release/derfinderPlot.svg" title="Whether the package is available on all platforms; click for details."></a> <a href="http://bioconductor.org/checkResults/release/bioc-LATEST/derfinderPlot/"><img border="0" src="http://www.bioconductor.org/shields/build/release/bioc/derfinderPlot.svg" title="build results; click for full report"></a>,
-Bioc-devel <a href="http://www.bioconductor.org/packages/devel/bioc/html/derfinderPlot.html#archives"><img border="0" src="http://www.bioconductor.org/shields/availability/devel/derfinderPlot.svg" title="Whether the package is available on all platforms; click for details."></a> <a href="http://bioconductor.org/checkResults/devel/bioc-LATEST/derfinderPlot/"><img border="0" src="http://www.bioconductor.org/shields/build/devel/bioc/derfinderPlot.svg" title="build results; click for full report"></a>.
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-Bioc-release <a href="https://bioconductor.org/developers/how-to/unitTesting-guidelines/#coverage"><img border="0" src="http://www.bioconductor.org/shields/coverage/release/derfinderPlot.svg" title="Test coverage percentage, or 'unknown'"></a>, Bioc-devel <a href="https://codecov.io/github/Bioconductor-mirror/derfinderPlot?branch=master"><img border="0" src="http://www.bioconductor.org/shields/coverage/devel/derfinderPlot.svg" title="Test coverage percentage, or 'unknown'"></a>, Codecov [![codecov.io](https://codecov.io/github/leekgroup/derfinderPlot/coverage.svg?branch=master)](https://codecov.io/github/leekgroup/derfinderPlot?branch=master)
+# derfinderPlot
 
-derfinderPlot
-=============
+<!-- badges: start -->
+
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![BioC
+status](http://www.bioconductor.org/shields/build/release/bioc/derfinderPlot.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/derfinderPlot)
+[![Codecov test
+coverage](https://codecov.io/gh/leekgroup/derfinderPlot/branch/master/graph/badge.svg)](https://codecov.io/gh/leekgroup/derfinderPlot?branch=master)
+[![R build
+status](https://github.com/leekgroup/derfinderPlot/workflows/R-CMD-check/badge.svg)](https://github.com/leekgroup/derfinderPlot/actions)
+[![R build
+status](https://github.com/leekgroup/derfinderPlot/workflows/test-coverage/badge.svg)](https://github.com/leekgroup/derfinderPlot/actions)
+[![R build
+status](https://github.com/leekgroup/derfinderPlot/workflows/pkgdown/badge.svg)](https://github.com/leekgroup/derfinderPlot/actions)
+<!-- badges: end -->
 
 Addon package with plotting functions for
 [derfinder](http://www.bioconductor.org/packages/derfinder) results.
 
-# Installation instructions
+## Documentation
 
-Get R 3.5.x from [CRAN](http://cran.r-project.org/).
+For more information about `derfinderPlot` check the vignettes [through
+Bioconductor](http://bioconductor.org/packages/derfinderPlot) or at the
+[documentation website](http://leekgroup.github.io/derfinderPlot).
 
-```R
-## From Bioconductor
+## Installation instructions
+
+Get the latest stable `R` release from
+[CRAN](http://cran.r-project.org/). Then install `derfinderPlot` using
+from [Bioconductor](http://bioconductor.org/) the following code:
+
+``` r
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 BiocManager::install("derfinderPlot")
 ```
 
-# Vignette
+## Citation
 
-The vignette for this package can be viewed via [Bioconductor's website](http://www.bioconductor.org/packages/derfinderPlot).
+Below is the citation output from using `citation('derfinderPlot')` in
+R. Please run this yourself to check for any updates on how to cite
+**derfinderPlot**.
 
-# Citation
+``` r
+print(citation('derfinderPlot'), bibtex = TRUE)
+#> 
+#> Collado-Torres L, Jaffe AE, Leek JT (2017). _derfinderPlot: Plotting
+#> functions for derfinder_. doi: 10.18129/B9.bioc.derfinderPlot (URL:
+#> https://doi.org/10.18129/B9.bioc.derfinderPlot),
+#> https://github.com/leekgroup/derfinderPlot - R package version 1.21.0,
+#> <URL: http://www.bioconductor.org/packages/derfinderPlot>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {derfinderPlot: Plotting functions for derfinder},
+#>     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
+#>     year = {2017},
+#>     url = {http://www.bioconductor.org/packages/derfinderPlot},
+#>     note = {https://github.com/leekgroup/derfinderPlot - R package version 1.21.0},
+#>     doi = {10.18129/B9.bioc.derfinderPlot},
+#>   }
+#> 
+#> Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,
+#> Irizarry RA, Leek JT, Jaffe AE (2017). "Flexible expressed region
+#> analysis for RNA-seq with derfinder." _Nucl. Acids Res._. doi:
+#> 10.1093/nar/gkw852 (URL: https://doi.org/10.1093/nar/gkw852), <URL:
+#> http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Article{,
+#>     title = {Flexible expressed region analysis for RNA-seq with derfinder},
+#>     author = {Leonardo Collado-Torres and Abhinav Nellore and Alyssa C. Frazee and Christopher Wilks and Michael I. Love and Ben Langmead and Rafael A. Irizarry and Jeffrey T. Leek and Andrew E. Jaffe},
+#>     year = {2017},
+#>     journal = {Nucl. Acids Res.},
+#>     doi = {10.1093/nar/gkw852},
+#>     url = {http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852},
+#>   }
+```
 
-Use [derfinder's citation](https://github.com/lcolladotor/derfinder#citation) information.
+Please note that the `derfinderPlot` was only made possible thanks to
+many other R and bioinformatics software authors, which are cited either
+in the vignettes and/or the paper(s) describing this package.
 
+## Code of Conduct
 
-# Testing
+Please note that the derfinderPlot project is released with a
+[Contributor Code of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
 
-Testing on Bioc-devel is feasible thanks to [R Travis](http://docs.travis-ci.com/user/languages/r/) as well as Bioconductor's nightly build.
+## Development tools
+
+  - Testing on Bioc-devel is possible thanks to [GitHub actions through
+    *\[usethis\](https://CRAN.R-project.org/package=usethis)*](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/).
+  - Code coverage assessment is possible thanks to
+    [codecov](https://codecov.io/gh).
+  - The [documentation
+    website](http://leekgroup.github.io/derfinderPlot) is automatically
+    updated thanks to
+    *[pkgdown](https://CRAN.R-project.org/package=pkgdown)*.

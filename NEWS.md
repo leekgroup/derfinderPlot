@@ -1,3 +1,13 @@
+# derfinderPlot 1.21.2
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Switched from Travis to GitHub actions through usethis.
+* Build the documentation website automatically with pkgdown.
+* Added a dev/01_setup.R script.
+* Now using a README.Rmd file.
+
+
 # derfinderPlot 1.21.1
 
 SIGNIFICANT USER-VISIBLE CHANGES

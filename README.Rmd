@@ -1,0 +1,64 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# derfinderPlot
+
+<!-- badges: start -->
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![BioC status](http://www.bioconductor.org/shields/build/release/bioc/derfinderPlot.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/derfinderPlot)
+[![Codecov test coverage](https://codecov.io/gh/leekgroup/derfinderPlot/branch/master/graph/badge.svg)](https://codecov.io/gh/leekgroup/derfinderPlot?branch=master)
+[![R build status](https://github.com/leekgroup/derfinderPlot/workflows/R-CMD-check/badge.svg)](https://github.com/leekgroup/derfinderPlot/actions)
+[![R build status](https://github.com/leekgroup/derfinderPlot/workflows/test-coverage/badge.svg)](https://github.com/leekgroup/derfinderPlot/actions)
+[![R build status](https://github.com/leekgroup/derfinderPlot/workflows/pkgdown/badge.svg)](https://github.com/leekgroup/derfinderPlot/actions)
+<!-- badges: end -->
+
+Addon package with plotting functions for
+[derfinder](http://www.bioconductor.org/packages/derfinder) results.
+
+## Documentation
+
+For more information about `derfinderPlot` check the vignettes [through Bioconductor](http://bioconductor.org/packages/derfinderPlot) or at the [documentation website](http://leekgroup.github.io/derfinderPlot).
+
+## Installation instructions
+
+Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then install `derfinderPlot` using from [Bioconductor](http://bioconductor.org/) the following code:
+
+```{r 'install', eval = FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("derfinderPlot")
+```
+
+## Citation
+
+Below is the citation output from using `citation('derfinderPlot')` in R. Please 
+run this yourself to check for any updates on how to cite __derfinderPlot__.
+
+```{r 'citation', eval = requireNamespace('derfinderPlot')}
+print(citation('derfinderPlot'), bibtex = TRUE)
+```
+
+Please note that the `derfinderPlot` was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.
+
+## Code of Conduct
+  
+Please note that the derfinderPlot project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+
+## Development tools
+
+* Testing on Bioc-devel is possible thanks to [GitHub actions through `r BiocStyle::CRANpkg('usethis')`](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/).
+* Code coverage assessment is possible thanks to [codecov](https://codecov.io/gh).
+* The [documentation website](http://leekgroup.github.io/derfinderPlot) is automatically updated thanks to `r BiocStyle::CRANpkg('pkgdown')`.
