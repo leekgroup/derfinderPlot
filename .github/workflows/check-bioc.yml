@@ -66,13 +66,13 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup R from r-lib
-        if: matrix.config.image == "none"
+        if: matrix.config.r != "biocdocker"
         uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}
 
       - name: Setup setup-pandoc
-        if: matrix.config.image == "none"
+        if: matrix.config.r != "biocdocker"
         uses: r-lib/actions/setup-pandoc@master
 
       - id: r_lib_var
