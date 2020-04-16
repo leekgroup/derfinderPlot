@@ -10,25 +10,42 @@ on:
 name: R-CMD-check-bioc
 
 jobs:
+  define-docker-info:
+    runs-on: ubuntu-latest
+    outputs:
+      imagename: ${{ steps.findinfo.outputs.imagename }}
+      biocversion: ${{ steps.findinfo.outputs.biocversion }}
+    steps:
+    - id: findinfo
+      run: |
+        ## Find what branch we are working on
+        if echo "$GITHUB_REF" | grep -q "master"; then
+            biocversion="devel"
+        elif echo "$GITHUB_REF" | grep -q "RELEASE_"; then
+            biocversion="$(basename -- $GITHUB_REF | tr '[:upper:]' '[:lower:]')"
+        fi
+
+        ## Define the image name and print the info
+        imagename="bioconductor/bioconductor_docker:${biocversion}"
+        echo $imagename
+        echo $biocversion
+
+        ## Save the info for the next job
+        echo "::set-output name=imagename::${imagename}"
+        echo "::set-output name=biocversion::${biocversion}"
   R-CMD-check-bioc:
     runs-on: ${{ matrix.config.os }}
+    needs: define-docker-info
 
     name: ${{ matrix.config.os }} (bioc-${{ matrix.config.bioc }})
 
     strategy:
       fail-fast: false
-      - name: Run on Bioconductor devel
-        if: github.ref == 'refs/heads/master'
-        matrix:
-          config:
-            - {os: ubuntu-latest, image: 'bioconductor/bioconductor_docker:devel', bioc: 'devel'}
-      - name: Run on Bioconductor release
-        if: contains(github.ref, 'RELEASE_')
-        matrix:
-          config:
-            ## I don't know how to get the last part out of github.ref to set the image dynamically
-            - {os: ubuntu-latest, image: 'bioconductor/bioconductor_docker:release_3_10', bioc: 'release'}
-            # - {os: ubuntu-16.04, r: 'release', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
+      matrix:
+       config:
+        - {os: ubuntu-latest, image: ${{ needs.define-docker-info.outputs.imagename }}, bioc: ${{ needs.define-docker-info.outputs.biocversion }} }
+        # - {os: ubuntu-latest, image: 'bioconductor/bioconductor_docker:release_3_10', bioc: 'release'}
+        # - {os: ubuntu-16.04, r: 'release', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
