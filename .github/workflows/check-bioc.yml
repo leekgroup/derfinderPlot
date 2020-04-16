@@ -17,11 +17,13 @@ jobs:
 
     strategy:
       fail-fast: false
-      if: github.ref == 'refs/heads/master'
+      - name: Run on Bioconductor devel
+        if: github.ref == 'refs/heads/master'
         matrix:
           config:
             - {os: ubuntu-latest, image: 'bioconductor/bioconductor_docker:devel', bioc: 'devel'}
-      if: contains(github.ref, 'RELEASE_')
+      - name: Run on Bioconductor release
+        if: contains(github.ref, 'RELEASE_')
         matrix:
           config:
             ## I don't know how to get the last part out of github.ref to set the image dynamically
