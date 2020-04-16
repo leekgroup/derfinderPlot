@@ -43,7 +43,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-latest, image: ${{ needs.define-docker-info.outputs.imagename }}, bioc: ${{ needs.define-docker-info.outputs.biocversion }} }
+          - {os: ubuntu-latest, image: '${{ needs.define-docker-info.outputs.imagename }}', bioc: '${{ needs.define-docker-info.outputs.biocversion }}' }
           # - {os: ubuntu-latest, image: 'bioconductor/bioconductor_docker:release_3_10', bioc: 'release'}
           # - {os: ubuntu-16.04, r: 'release', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
 
