@@ -61,7 +61,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages("Rcpp", repos="https://rcppcore.github.io/drat")
+          if (!requireNamespace("Rcpp", quietly = TRUE)) install.packages("Rcpp", repos="https://rcppcore.github.io/drat")
+          if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+          if (!requireNamespace("GenomicFeatures", quietly = TRUE)) BiocManager::install("GenomicFeatures")
+          if (!requireNamespace("ggbio", quietly = TRUE)) BiocManager::install("ggbio")
+          if (!requireNamespace("derfinder", quietly = TRUE)) BiocManager::install("derfinder")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
