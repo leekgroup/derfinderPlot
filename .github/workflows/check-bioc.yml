@@ -37,18 +37,18 @@ jobs:
     runs-on: ${{ matrix.config.os }}
     needs: define-docker-info
 
-    name: ${{ matrix.config.os }} (r-${{ matrix.config.r}} bioc-${{ matrix.config.bioc }})
+    name: ${{ matrix.config.os }} (r-${{ matrix.config.r}} bioc-${{ needs.define-docker-info.outputs.biocversion }})
 
     strategy:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-latest, r: 'biocdocker', image: '${{ needs.define-docker-info.outputs.imagename }}', bioc: '${{ needs.define-docker-info.outputs.biocversion }}' }
+          - {os: ubuntu-latest, r: 'biocdocker' }
           # ## Un-comment in case you also want to run other versions, though see container below
-          # - {os: windows-latest, r: 'release', bioc: 'release', image: 'none'}
-          # - {os: macOS-latest, r: 'release', bioc: 'release', image: 'none'}
-          # - {os: macOS-latest, r: 'devel', bioc: 'devel', image: 'none'}
-          # - {os: ubuntu-16.04, r: 'release', bioc: 'release', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest", image: 'none'}
+          # - {os: windows-latest, r: 'release'}
+          # - {os: macOS-latest, r: 'release'}
+          # - {os: macOS-latest, r: 'devel'}
+          # - {os: ubuntu-16.04, r: 'release', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -92,8 +92,8 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ${{ steps.r_lib_var.outputs.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ matrix.config.r}}-bioc-${{ matrix.config.bioc }}-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ runner.os }}-r-${{ matrix.config.r}}-bioc-${{ matrix.config.bioc }}-
+          key: ${{ runner.os }}-r-${{ matrix.config.r}}-bioc-${{ needs.define-docker-info.outputs.biocversion }}-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ runner.os }}-r-${{ matrix.config.r}}-bioc-${{ needs.define-docker-info.outputs.biocversion }}-
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
@@ -159,5 +159,5 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@master
         with:
-          name: ${{ runner.os }}-r-${{ matrix.config.r}}-bioc-${{ matrix.config.bioc }}-results
+          name: ${{ runner.os }}-r-${{ matrix.config.r}}-bioc-${{ needs.define-docker-info.outputs.biocversion }}-results
           path: check
