@@ -19,9 +19,7 @@ knitr::opts_chunk$set(
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![BioC status](http://www.bioconductor.org/shields/build/release/bioc/derfinderPlot.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/derfinderPlot)
 [![Codecov test coverage](https://codecov.io/gh/leekgroup/derfinderPlot/branch/master/graph/badge.svg)](https://codecov.io/gh/leekgroup/derfinderPlot?branch=master)
-[![R build status](https://github.com/leekgroup/derfinderPlot/workflows/R-CMD-check/badge.svg)](https://github.com/leekgroup/derfinderPlot/actions)
-[![R build status](https://github.com/leekgroup/derfinderPlot/workflows/test-coverage/badge.svg)](https://github.com/leekgroup/derfinderPlot/actions)
-[![R build status](https://github.com/leekgroup/derfinderPlot/workflows/pkgdown/badge.svg)](https://github.com/leekgroup/derfinderPlot/actions)
+[![R build status](https://github.com/leekgroup/derfinderPlot/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/leekgroup/derfinderPlot/actions)
 <!-- badges: end -->
 
 Addon package with plotting functions for

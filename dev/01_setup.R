@@ -39,8 +39,6 @@ usethis::use_bioc_badge()
 usethis::use_coverage()
 
 ## GitHub badges
-usethis::use_github_actions_badge()
-usethis::use_github_actions_badge('test-coverage')
-usethis::use_github_actions_badge('pkgdown')
+usethis::use_github_actions_badge('R-CMD-check-bioc')
 
 

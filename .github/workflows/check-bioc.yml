@@ -6,33 +6,48 @@ on:
     branches:
       - master
 
-name: R-CMD-check
+name: R-CMD-check-bioc
 
 jobs:
-  R-CMD-check:
+  R-CMD-check-bioc:
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    name: ${{ matrix.config.os }} (bioc-${{ matrix.config.bioc }})
 
     strategy:
       fail-fast: false
       matrix:
         config:
-          # - {os: windows-latest, r: 'release'}
-          # - {os: macOS-latest, r: 'release'}
-          - {os: macOS-latest, r: 'devel'}
+          - {os: ubuntu-latest, image: bioconductor/bioconductor_docker:devel, bioc: 'devel'}
+          # - {os: ubuntu-latest, image: bioconductor/bioconductor_docker:release_3_10, bioc: 'release_3_10'}
           # - {os: ubuntu-16.04, r: 'release', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
-      RSPM: ${{ matrix.config.rspm }}
+      # RSPM: ${{ matrix.config.rspm }}
+      # ## This is what the dir is in linux
+      # R_LIBS_USER: /home/runner/work/_temp/Library
+      # ## This is the output on docker:
+      # > .libPaths()
+      # [1] "/usr/local/lib/R/site-library" "/usr/local/lib/R/library"
+      R_LIBS_USER: /usr/local/lib/R/site-library
+      CI: true
+      TZ: UTZ
+      NOT_CRAN: true
+
+    container:
+      image: ${{ matrix.config.image }}
 
     steps:
       - uses: actions/checkout@v2
 
-      - uses: r-lib/actions/setup-r@master
-        with:
-          r-version: ${{ matrix.config.r }}
+      # - name: Set R_LIBS_USER
+      #   run: |
+      #     cat(paste0('R_LIBS_USER=', .libPaths()[1], '\n'), file = 'R_LIBS_USER_file')
+      #   shell: |
+      #     Rscript -e {0}
+      #     source R_LIBS_USER_file
+      #     export R_LIBS_USER
 
       - uses: r-lib/actions/setup-pandoc@master
 
@@ -43,12 +58,12 @@ jobs:
         shell: Rscript {0}
 
       - name: Cache R packages
-        if: runner.os != 'Windows'
+        if: runner.os == 'Linux'
         uses: actions/cache@v1
         with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
+          path: /usr/local/lib/R/site-library
+          key: ${{ runner.os }}-bioc-${{ matrix.config.bioc }}-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ runner.os }}-bioc-${{ matrix.config.bioc }}-
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
@@ -61,11 +76,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          if (!requireNamespace("Rcpp", quietly = TRUE)) install.packages("Rcpp", repos="https://rcppcore.github.io/drat")
-          if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
-          if (!requireNamespace("GenomicFeatures", quietly = TRUE)) BiocManager::install("GenomicFeatures")
-          if (!requireNamespace("ggbio", quietly = TRUE)) BiocManager::install("ggbio")
-          if (!requireNamespace("derfinder", quietly = TRUE)) BiocManager::install("derfinder")
+          if (!requireNamespace("Rcpp", quietly = TRUE))
+              install.packages("Rcpp", repos="https://rcppcore.github.io/drat")
+          if (!requireNamespace("BiocManager", quietly = TRUE))
+              install.packages("BiocManager")
+          if (!requireNamespace("GenomicFeatures", quietly = TRUE))
+              BiocManager::install("GenomicFeatures")
+          if (!requireNamespace("ggbio", quietly = TRUE))
+              BiocManager::install("ggbio")
+          if (!requireNamespace("derfinder", quietly = TRUE))
+              BiocManager::install("derfinder")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
@@ -73,35 +93,43 @@ jobs:
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
-        run: rcmdcheck::rcmdcheck(args = c("--no-build-vignettes", "--no-manual", "--timings"), build_args = c("--no-manual", "--no-resave-data"), error_on = "warning", check_dir = "check")
+        run: |
+          rcmdcheck::rcmdcheck(
+              args = c("--no-build-vignettes", "--no-manual", "--timings"),
+              build_args = c("--no-manual", "--no-resave-data"),
+              error_on = "warning",
+              check_dir = "check"
+          )
         shell: Rscript {0}
 
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@master
         with:
-          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
+          name: ${{ runner.os }}-bioc-${{ matrix.config.bioc }}-results
           path: check
 
       - name: Install covr and pkgdown
-        if: matrix.config.r == 'devel'
+        if: matrix.config.bioc == 'devel'
         run: |
-          remotes::install_cran("covr")
-          remotes::install_dev("pkgdown")
+          if (!requireNamespace("covr", quietly = TRUE))
+              remotes::install_cran("covr")
+          if (!requireNamespace("pkgdown", quietly = TRUE))
+              remotes::install_dev("pkgdown")
         shell: Rscript {0}
 
       - name: Install package
-        if: matrix.config.r == 'devel'
+        if: matrix.config.bioc == 'devel'
         run: R CMD INSTALL .
 
       - name: Deploy package
-        if: matrix.config.r == 'devel'
+        if: matrix.config.bioc == 'devel'
         run: |
           pkgdown::deploy_to_branch(new_process = FALSE)
         shell: Rscript {0}
 
       - name: Test coverage
-        if: matrix.config.r == 'devel'
+        if: matrix.config.bioc == 'devel'
         run: |
           covr::codecov()
         shell: Rscript {0}
