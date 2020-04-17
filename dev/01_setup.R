@@ -9,7 +9,7 @@ system("echo dev >> .Rbuildignore")
 ## Remove travis
 unlink(".travis.yml")
 
-## Update package function
+## Update package doc
 unlink(dir('R', '-package.R$', full.names = TRUE))
 usethis::use_package_doc()
 
@@ -61,7 +61,7 @@ usethis::use_coverage()
 usethis::use_github_actions_badge("R-CMD-check-bioc")
 
 ## Update style for this document
-styler::style_file("dev/01_setup.R", transformers = tidyverse_style(indent_by = 4))
+styler::style_file("dev/01_setup.R", transformers = styler::tidyverse_style(indent_by = 4))
 
 ## Update prior to committing
 file.create("dev/02_update.R")

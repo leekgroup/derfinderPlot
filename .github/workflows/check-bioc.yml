@@ -133,8 +133,8 @@ jobs:
               remotes::install_cran("rcmdcheck")
           if (!requireNamespace("BiocManager", quietly = TRUE))
               install.packages("BiocManager")
-          if (!requireNamespace("BiocCheck", quietly = TRUE))
-              BiocManager::install('BiocCheck')
+          libs <- .libPaths()
+          BiocManager::install('BiocCheck', lib = ifelse(length(libs) > 1, libs[2], libs[1]))
         shell: Rscript {0}
 
       - name: Check
@@ -151,10 +151,6 @@ jobs:
 
       - name: BiocCheck
         run: |
-          ls -lh /usr/local/lib/R/host-site-library/
-          ls -lh /usr/local/lib/R/site-library
-          Rscript -e "if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')"
-          Rscript -e "if (!requireNamespace('BiocCheck', quietly = TRUE)) BiocManager::install('BiocCheck')"
           R CMD BiocCheck --no-check-R-ver --no-check-bioc-help check/*.tar.gz
         ## For more options check http://bioconductor.org/packages/release/bioc/vignettes/BiocCheck/inst/doc/BiocCheck.html
 

@@ -1,5 +1,5 @@
 ## Style as close as possible to BioC's style using styler
-bioc_style <- tidyverse_style(indent_by = 4)
+bioc_style <- styler::tidyverse_style(indent_by = 4)
 bioc_style$indention$update_indention_ref_fun_dec <- function(pd_nested) {
     if (pd_nested$token[1] == "FUNCTION") {
         seq <- rlang::seq2(3, nrow(pd_nested) - 2)
@@ -20,4 +20,4 @@ sapply(dir("vignettes", "Rmd$", full.names = TRUE), styler::style_file, transfor
 devtools::document()
 
 ## Update style for this document
-styler::style_file("dev/02_update.R", transformers = tidyverse_style(indent_by = 4))
+styler::style_file("dev/02_update.R", transformers = styler::tidyverse_style(indent_by = 4))
