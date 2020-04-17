@@ -6,7 +6,7 @@
 #' @noRd
 .advanced_argument <- function(name, value, ...) {
     args <- list(...)
-    if(!name %in% names(args)) {
+    if (!name %in% names(args)) {
         return(value)
     } else {
         return(args[[name]])

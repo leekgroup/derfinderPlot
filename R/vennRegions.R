@@ -2,8 +2,8 @@
 #'
 #' Makes a venn diagram for the regions given the genomic state showing how many
 #' regions overlap introns, exons, intergenic regions, none or multiple groups.
-#' 
-#' @param annotatedRegions The output from [annotateRegions][derfinder::annotateRegions] 
+#'
+#' @param annotatedRegions The output from [annotateRegions][derfinder::annotateRegions]
 #' used on `regions`.
 #' @param subsetIndex A vector of to use to subset the regions to use for the
 #' venn diagram. It can be a logical vector of length equal to the number of
@@ -22,40 +22,45 @@
 #'
 #' @examples
 #' ## Load data
-#' library('derfinder')
+#' library("derfinder")
 #'
 #' ## Annotate regions
-#' annotatedRegions <- annotateRegions(regions = genomeRegions$regions, 
-#'     genomicState = genomicState$fullGenome, minoverlap = 1)
+#' annotatedRegions <- annotateRegions(
+#'     regions = genomeRegions$regions,
+#'     genomicState = genomicState$fullGenome, minoverlap = 1
+#' )
 #'
 #' ## Make venn diagram
 #' venn <- vennRegions(annotatedRegions)
 #'
 #' ## Add title and choose text color
-#' venn2 <- vennRegions(annotatedRegions, main = 'Venn diagram', counts.col = 
-#'     'blue')
+#' venn2 <- vennRegions(annotatedRegions,
+#'     main = "Venn diagram", counts.col =
+#'         "blue"
+#' )
 #'
 #' ## Subset to only significant regions, so you don't have to annotate them
 #' ## again
-#' venn3 <- vennRegions(annotatedRegions, subsetIndex = 
-#'     genomeRegions$regions$significant == 'TRUE', main = 'Significant only') 
-
+#' venn3 <- vennRegions(annotatedRegions,
+#'     subsetIndex =
+#'         genomeRegions$regions$significant == "TRUE", main = "Significant only"
+#' )
 vennRegions <- function(annotatedRegions, subsetIndex = NULL, ...) {
-    
+
     ## Check input
-    stopifnot('countTable' %in% names(annotatedRegions))
-    
+    stopifnot("countTable" %in% names(annotatedRegions))
+
     ## Subset if necessary
-    if(!is.null(subsetIndex)) {
+    if (!is.null(subsetIndex)) {
         annotatedRegions$countTable <- annotatedRegions$countTable[subsetIndex, ]
     }
-    
+
     ## Get venn counts
     vennInfo <- vennCounts(annotatedRegions$countTable > 0)
-    
+
     ## Make plot
-	vennDiagram(vennInfo, ...)
-    
+    vennDiagram(vennInfo, ...)
+
     ## Return data
     return(vennInfo)
 }

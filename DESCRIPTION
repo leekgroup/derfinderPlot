@@ -1,8 +1,8 @@
 Package: derfinderPlot
 Type: Package
 Title: Plotting functions for derfinder
-Version: 1.21.2
-Date: 2020-04-15
+Version: 1.21.3
+Date: 2020-04-16
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcolladotor@gmail.com", comment = c(ORCID = "0000-0003-2140-308X")),
     person(c("Andrew", "E."), "Jaffe", role = "aut",

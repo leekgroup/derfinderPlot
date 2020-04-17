@@ -68,48 +68,58 @@ function.
 }
 \examples{
 ## Load data
-library('derfinder')
+library("derfinder")
 
 ## Annotate regions, first two regions only
 regions <- genomeRegions$regions[1:2]
-annotatedRegions <- annotateRegions(regions = regions, 
-    genomicState = genomicState$fullGenome, minoverlap = 1)
+annotatedRegions <- annotateRegions(
+    regions = regions,
+    genomicState = genomicState$fullGenome, minoverlap = 1
+)
 
 ## Find nearest annotation with bumphunter::matchGenes()
-library('bumphunter')
-library('TxDb.Hsapiens.UCSC.hg19.knownGene')
+library("bumphunter")
+library("TxDb.Hsapiens.UCSC.hg19.knownGene")
 genes <- annotateTranscripts(txdb = TxDb.Hsapiens.UCSC.hg19.knownGene)
 nearestAnnotation <- matchGenes(x = regions, subject = genes)
 
 ## Obtain fullCov object
-fullCov <- list('21'=genomeDataRaw$coverage)
+fullCov <- list("21" = genomeDataRaw$coverage)
 
 ## Assign chr lengths using hg19 information
-library('GenomicRanges')
-seqlengths(regions) <- seqlengths(getChromInfoFromUCSC('hg19',
-    as.Seqinfo = TRUE))[
-        mapSeqlevels(names(seqlengths(regions)), 'UCSC')]
+library("GenomicRanges")
+seqlengths(regions) <- seqlengths(getChromInfoFromUCSC("hg19",
+    as.Seqinfo = TRUE
+))[
+    mapSeqlevels(names(seqlengths(regions)), "UCSC")
+]
 
 ## Get the region coverage
-regionCov <- getRegionCoverage(fullCov=fullCov, regions=regions)
+regionCov <- getRegionCoverage(fullCov = fullCov, regions = regions)
+#
 ## Make plots for the regions
-plotRegionCoverage(regions=regions, regionCoverage=regionCov, 
-    groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation, 
-    annotatedRegions=annotatedRegions, whichRegions=1:2)
+plotRegionCoverage(
+    regions = regions, regionCoverage = regionCov,
+    groupInfo = genomeInfo$pop, nearestAnnotation = nearestAnnotation,
+    annotatedRegions = annotatedRegions, whichRegions = 1:2
+)
 
 ## Re-make plots with transcript information
-plotRegionCoverage(regions=regions, regionCoverage=regionCov, 
-    groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation, 
-    annotatedRegions=annotatedRegions, whichRegions=1:2,
-    txdb = TxDb.Hsapiens.UCSC.hg19.knownGene)
- 
+plotRegionCoverage(
+    regions = regions, regionCoverage = regionCov,
+    groupInfo = genomeInfo$pop, nearestAnnotation = nearestAnnotation,
+    annotatedRegions = annotatedRegions, whichRegions = 1:2,
+    txdb = TxDb.Hsapiens.UCSC.hg19.knownGene
+)
 \dontrun{
 ## If you prefer, you can save the plots to a pdf file
-pdf('ders.pdf', h = 6, w = 9)
-plotRegionCoverage(regions=regions, regionCoverage=regionCov, 
-    groupInfo=genomeInfo$pop, nearestAnnotation=nearestAnnotation, 
-    annotatedRegions=annotatedRegions, whichRegions=1:2, 
-    txdb = TxDb.Hsapiens.UCSC.hg19.knownGene, ask = FALSE)
+pdf("ders.pdf", h = 6, w = 9)
+plotRegionCoverage(
+    regions = regions, regionCoverage = regionCov,
+    groupInfo = genomeInfo$pop, nearestAnnotation = nearestAnnotation,
+    annotatedRegions = annotatedRegions, whichRegions = 1:2,
+    txdb = TxDb.Hsapiens.UCSC.hg19.knownGene, ask = FALSE
+)
 dev.off()
 }
 

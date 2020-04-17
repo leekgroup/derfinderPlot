@@ -2,12 +2,29 @@
 % Please edit documentation in R/derfinderPlot-package.R
 \docType{package}
 \name{derfinderPlot-package}
+\alias{derfinderPlot}
 \alias{derfinderPlot-package}
-\title{Plotting functions for derfinder}
+\title{derfinderPlot: Plotting functions for derfinder}
 \description{
-Plotting functions for derfinder results
+This package provides plotting functions for results from the
+    derfinder package.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/leekgroup/derfinderPlot}
+  \item Report bugs at \url{https://support.bioconductor.org/t/derfinderPlot}
+}
+
 }
 \author{
-Leonardo Collado-Torres \href{mailto:lcolladotor@gmail.com}{lcolladotor@gmail.com}
+\strong{Maintainer}: Leonardo Collado-Torres \email{lcolladotor@gmail.com} (\href{https://orcid.org/0000-0003-2140-308X}{ORCID})
+
+Authors:
+\itemize{
+  \item Andrew E. Jaffe \email{andrew.jaffe@libd.org} (\href{https://orcid.org/0000-0001-6886-1454}{ORCID})
+  \item Jeffrey T. Leek \email{jtleek@gmail.com} (\href{https://orcid.org/0000-0002-2873-2671}{ORCID}) [thesis advisor]
 }
-\keyword{package}
+
+}
+\keyword{internal}

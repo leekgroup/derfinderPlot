@@ -1,3 +1,12 @@
+# derfinderPlot 1.21.3
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Code in all examples has been re-styled thanks to styler::style_pkg(), see
+dev/02_update.R for details.
+* 
+
+
 # derfinderPlot 1.21.2
 
 SIGNIFICANT USER-VISIBLE CHANGES

@@ -1,21 +1,31 @@
 ## Create the dev directory
-dir.create('dev')
-file.create('dev/01_setup.R')
-rstudioapi::navigateToFile('dev/01_setup.R')
+dir.create("dev")
+file.create("dev/01_setup.R")
+rstudioapi::navigateToFile("dev/01_setup.R")
 
 ## Ignore the dev directory
-system('echo dev >> .Rbuildignore')
+system("echo dev >> .Rbuildignore")
 
 ## Remove travis
-unlink('.travis.yml')
+unlink(".travis.yml")
+
+## Update package function
+unlink(dir('R', '-package.R$', full.names = TRUE))
+usethis::use_package_doc()
 
 ## GitHub tests
-usethis::use_github_action('check-standard')
-usethis::use_github_action("test-coverage")
+## Original one
+# usethis::use_github_action('check-standard')
+## Modified one:
+usethis::use_github_action("check-bioc",
+    url = "https://raw.githubusercontent.com/leekgroup/derfinderPlot/master/.github/workflows/check-bioc.yml"
+)
+## See also:
+# * https://github.com/csoneson/dreval/blob/master/.github/workflows/R-CMD-check.yaml
+# * https://github.com/seandavi/BiocActions/blob/master/.github/workflows/main.yml
 
 ## pkgdown setup
 usethis::use_pkgdown()
-usethis::use_github_action('pkgdown')
 
 ## Support files
 usethis::use_readme_rmd() ## Edit with original README.md contents
@@ -23,22 +33,36 @@ usethis::use_readme_rmd() ## Edit with original README.md contents
 usethis::use_tidy_coc()
 usethis::use_tidy_contributing()
 
-
+## Customize the support message to mention the Bioconductor Support Website
 usethis::use_tidy_support()
-## Update
-support <- readLines('.github/SUPPORT.md')
-support <- gsub('\\[community.rstudio.com\\]\\(https://community.rstudio.com/\\), and/or StackOverflow', 'the [Bioconductor Support Website](https://support.bioconductor.org/) using the appropriate package tag', support)
-writeLines(support, '.github/SUPPORT.md')
+support <- readLines(".github/SUPPORT.md")
+support <-
+    gsub(
+        "\\[community.rstudio.com\\]\\(https://community.rstudio.com/\\), and/or StackOverflow",
+        "the [Bioconductor Support Website](https://support.bioconductor.org/) using the appropriate package tag",
+        support
+    )
+writeLines(support, ".github/SUPPORT.md")
 
 ## Use my own ISSUE template, modified from https://github.com/lcolladotor/osca_LIIGH_UNAM_2020
-file.copy(from = '~/Dropbox/code/derfinderPlot/.github/ISSUE_TEMPLATE', to = '.github/ISSUE_TEMPLATE')
-usethis::use_lifecycle_badge('Stable')
+contents <- xfun::read_utf8("https://raw.githubusercontent.com/leekgroup/derfinderPlot/master/.github/ISSUE_TEMPLATE/issue_template.md")
+save_as <- file.path(".github", "ISSUE_TEMPLATE", "issue_template.md")
+usethis:::create_directory(dirname(save_as))
+usethis::write_over(proj_path(save_as), contents)
+
+## Add some badges
+usethis::use_lifecycle_badge("Stable")
 usethis::use_bioc_badge()
 
 ## Tests
 usethis::use_coverage()
 
 ## GitHub badges
-usethis::use_github_actions_badge('R-CMD-check-bioc')
+usethis::use_github_actions_badge("R-CMD-check-bioc")
 
+## Update style for this document
+styler::style_file("dev/01_setup.R", transformers = tidyverse_style(indent_by = 4))
 
+## Update prior to committing
+file.create("dev/02_update.R")
+rstudioapi::navigateToFile("dev/02_update.R")

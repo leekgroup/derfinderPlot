@@ -57,6 +57,10 @@ Please note that the derfinderPlot project is released with a [Contributor Code 
 
 ## Development tools
 
-* Testing on Bioc-devel is possible thanks to [GitHub actions through `r BiocStyle::CRANpkg('usethis')`](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/).
-* Code coverage assessment is possible thanks to [codecov](https://codecov.io/gh).
+* Continuous code testing is possible thanks to [GitHub actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)  through `r BiocStyle::CRANpkg('usethis')`, `r BiocStyle::CRANpkg('remotes')`, `r BiocStyle::Githubpkg('r-hub/sysreqs')` and `r BiocStyle::CRANpkg('rcmdcheck')` customized to use [Bioconductor's docker containers](https://www.bioconductor.org/help/docker/) and `r BiocStyle::Biocpkg('BiocCheck')`.
+* Code coverage assessment is possible thanks to [codecov](https://codecov.io/gh) and `r BiocStyle::CRANpkg('covr')`.
 * The [documentation website](http://leekgroup.github.io/derfinderPlot) is automatically updated thanks to `r BiocStyle::CRANpkg('pkgdown')`.
+* The code is styled automatically thanks to `r BiocStyle::CRANpkg('styler')`.
+* The documentation is formatted thanks to `r BiocStyle::CRANpkg('devtools')` and `r BiocStyle::CRANpkg('roxygen2')`.
+
+For more details, check the `dev` directory.

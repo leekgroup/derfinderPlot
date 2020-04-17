@@ -1,11 +1,8 @@
-#' Plotting functions for derfinder
-#'
-#' Plotting functions for derfinder results
-#'
-#' @name derfinderPlot-package
-#' @aliases derfinderPlot-package
-#' @docType package
-#' @author Leonardo Collado-Torres <lcolladotor@@gmail.com>
-#'
-#' @keywords package
-NULL 
+#' @keywords internal
+"_PACKAGE"
+
+# The following block is used by usethis to automatically manage
+# roxygen namespace tags. Modify with care!
+## usethis namespace: start
+## usethis namespace: end
+NULL

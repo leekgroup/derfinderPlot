@@ -26,23 +26,29 @@ regions overlap introns, exons, intergenic regions, none or multiple groups.
 }
 \examples{
 ## Load data
-library('derfinder')
+library("derfinder")
 
 ## Annotate regions
-annotatedRegions <- annotateRegions(regions = genomeRegions$regions, 
-    genomicState = genomicState$fullGenome, minoverlap = 1)
+annotatedRegions <- annotateRegions(
+    regions = genomeRegions$regions,
+    genomicState = genomicState$fullGenome, minoverlap = 1
+)
 
 ## Make venn diagram
 venn <- vennRegions(annotatedRegions)
 
 ## Add title and choose text color
-venn2 <- vennRegions(annotatedRegions, main = 'Venn diagram', counts.col = 
-    'blue')
+venn2 <- vennRegions(annotatedRegions,
+    main = "Venn diagram", counts.col =
+        "blue"
+)
 
 ## Subset to only significant regions, so you don't have to annotate them
 ## again
-venn3 <- vennRegions(annotatedRegions, subsetIndex = 
-    genomeRegions$regions$significant == 'TRUE', main = 'Significant only') 
+venn3 <- vennRegions(annotatedRegions,
+    subsetIndex =
+        genomeRegions$regions$significant == "TRUE", main = "Significant only"
+)
 }
 \seealso{
 \link[derfinder:annotateRegions]{annotateRegions}, \link[limma:venn]{vennCounts},

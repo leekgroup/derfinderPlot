@@ -81,28 +81,31 @@ determined.
 }
 \examples{
 ## Load data
-library('derfinder')
+library("derfinder")
 
 ## Annotate the results with bumphunter::matchGenes()
-library('bumphunter')
-library('TxDb.Hsapiens.UCSC.hg19.knownGene')
-library('org.Hs.eg.db')
-genes <- annotateTranscripts(txdb = TxDb.Hsapiens.UCSC.hg19.knownGene, 
-    annotationPackage = 'org.Hs.eg.db')
+library("bumphunter")
+library("TxDb.Hsapiens.UCSC.hg19.knownGene")
+library("org.Hs.eg.db")
+genes <- annotateTranscripts(
+    txdb = TxDb.Hsapiens.UCSC.hg19.knownGene,
+    annotationPackage = "org.Hs.eg.db"
+)
 annotation <- matchGenes(x = genomeRegions$regions, subject = genes)
 
 ## Make the plot
-plotCluster(idx=1, regions=genomeRegions$regions, annotation=annotation, 
-    coverageInfo=genomeDataRaw$coverage, groupInfo=genomeInfo$pop, 
-    txdb=TxDb.Hsapiens.UCSC.hg19.knownGene)
+plotCluster(
+    idx = 1, regions = genomeRegions$regions, annotation = annotation,
+    coverageInfo = genomeDataRaw$coverage, groupInfo = genomeInfo$pop,
+    txdb = TxDb.Hsapiens.UCSC.hg19.knownGene
+)
 ## Resize the plot window and the labels will look good.
-
 \dontrun{
 ## For a custom plot, check the ggbio and ggplot2 packages.
 ## Also feel free to look at the code for this function:
 plotCluster
-
 }
+
 }
 \seealso{
 \link[derfinder:loadCoverage]{loadCoverage}, \link[derfinder:calculatePvalues]{calculatePvalues},
