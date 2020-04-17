@@ -150,7 +150,12 @@ jobs:
         shell: Rscript {0}
 
       - name: BiocCheck
-        run: R CMD BiocCheck --no-check-R-ver --no-check-bioc-help check/*.tar.gz
+        run: |
+          ls -lh /usr/local/lib/R/host-site-library/
+          ls -lh /usr/local/lib/R/site-library
+          Rscript -e "if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')"
+          Rscript -e "if (!requireNamespace('BiocCheck', quietly = TRUE)) BiocManager::install('BiocCheck')"
+          R CMD BiocCheck --no-check-R-ver --no-check-bioc-help check/*.tar.gz
         ## For more options check http://bioconductor.org/packages/release/bioc/vignettes/BiocCheck/inst/doc/BiocCheck.html
 
       - name: Install covr and pkgdown
