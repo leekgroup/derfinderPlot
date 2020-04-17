@@ -49,7 +49,7 @@ print(citation('derfinderPlot'), bibtex = TRUE)
 #> Collado-Torres L, Jaffe AE, Leek JT (2017). _derfinderPlot: Plotting
 #> functions for derfinder_. doi: 10.18129/B9.bioc.derfinderPlot (URL:
 #> https://doi.org/10.18129/B9.bioc.derfinderPlot),
-#> https://github.com/leekgroup/derfinderPlot - R package version 1.21.0,
+#> https://github.com/leekgroup/derfinderPlot - R package version 1.21.4,
 #> <URL: http://www.bioconductor.org/packages/derfinderPlot>.
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -59,7 +59,7 @@ print(citation('derfinderPlot'), bibtex = TRUE)
 #>     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
 #>     year = {2017},
 #>     url = {http://www.bioconductor.org/packages/derfinderPlot},
-#>     note = {https://github.com/leekgroup/derfinderPlot - R package version 1.21.0},
+#>     note = {https://github.com/leekgroup/derfinderPlot - R package version 1.21.4},
 #>     doi = {10.18129/B9.bioc.derfinderPlot},
 #>   }
 #> 

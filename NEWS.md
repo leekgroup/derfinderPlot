@@ -1,10 +1,17 @@
+# derfinderPlot 1.21.4
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Documentation website is now available at
+http://leekgroup.github.io/derfinderPlot/. It gets updated with every commit on
+the master branch (bioc-devel) using GitHub Actions and pkgdown.
+
 # derfinderPlot 1.21.3
 
 SIGNIFICANT USER-VISIBLE CHANGES
 
 * Code in all examples has been re-styled thanks to styler::style_pkg(), see
 dev/02_update.R for details.
-* 
 
 
 # derfinderPlot 1.21.2
