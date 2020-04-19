@@ -246,6 +246,13 @@ jobs:
       - name: Setup pandoc from r-lib
         uses: r-lib/actions/setup-pandoc@master
 
+
+      - name: Windows system dependencies
+        if: runner.os == 'Windows'
+        run: |
+            install.packages('RCurl', type = 'binary')
+        shell: Rscript {0}
+
       - name: Query dependencies
         run: |
           install.packages('remotes')
