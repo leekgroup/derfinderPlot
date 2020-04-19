@@ -181,9 +181,9 @@ jobs:
           rversion=$(Rscript -e "info <- BiocManager:::.version_map_get_online('https://bioconductor.org/config.yaml'); res <- subset(info, BiocStatus == '${biocversion}')[, 'R']; cat(as.character(res))")
 
           ## I might need this for now until R 4.0 is out (try without it first)
-          if echo "$rversion" | grep -q "4.0"; then
-              rversion="devel"
-          fi
+          # if echo "$rversion" | grep -q "4.0"; then
+          #     rversion="devel"
+          # fi
 
           ## Print the results
           echo $biocversion
