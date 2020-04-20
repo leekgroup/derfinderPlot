@@ -249,6 +249,12 @@ jobs:
         if: runner.os == 'Windows'
         run: |
             install.packages('RCurl', type = 'binary')
+
+            ## Rhtslib is used by many Bioconductor packages
+            ## https://stat.ethz.ch/pipermail/bioc-devel/2020-January/016059.html
+            ## https://github.com/Bioconductor/Rhtslib/blob/master/src/htslib-1.7/INSTALL
+            remotes::install_cran('BiocManager')
+            BiocManager::install('Rhtslib', configure.vars='--disable-lzma')
         shell: Rscript {0}
 
       - name: Query dependencies
