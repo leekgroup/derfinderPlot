@@ -177,7 +177,7 @@ names(files) <- gsub(".bw", "", names(files))
 system.time(fullCov <- fullCoverage(files = files, chrs = "chr21"))
 ```
 
-```{r 'getDataWindows', eval = .Platform$OS.type != 'windows', echo = FALSE}
+```{r 'getDataWindows', eval = .Platform$OS.type == 'windows', echo = FALSE}
 ## Load data in Windows case
 foo <- function() {
     load(system.file("extdata", "fullCov", "fullCovA1C.RData",
