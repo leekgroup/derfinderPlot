@@ -350,7 +350,7 @@ This package was made possible thanks to:
 * `r CRANpkg('sessioninfo')` `r citep(bib[['sessioninfo']])`
 * `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`
 * `r CRANpkg('knitr')` `r citep(bib[['knitr']])`
-* `r CRANpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
+* `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
 * `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])`
 * `r CRANpkg('testthat')` `r citep(bib[['testthat']])`
 * `r Biocannopkg('TxDb.Hsapiens.UCSC.hg19.knownGene')` `r citep(bib[['TxDb.Hsapiens.UCSC.hg19.knownGene']])`
