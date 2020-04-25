@@ -329,6 +329,9 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           # if (!requireNamespace('RCurl', quietly = TRUE)) install.packages('RCurl', type = 'binary')
+
+          ## Required to install TxDb.Hsapiens.UCSC.hg19.knownGene, reported to bioc-devel
+          remotes::install_cran('tibble')
         shell: Rscript {0}
 
       - name: Install BiocManager
@@ -366,7 +369,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          ## Need GenomeInfoDbData first
+          ## Need GenomeInfoDbData first -- reported to bioc-devel
           BiocManager::install('GenomeInfoDbData')
 
           remotes::install_deps(dependencies = TRUE)
