@@ -231,11 +231,6 @@ jobs:
           biocversionnum=$(Rscript -e "info <- BiocManager:::.version_map_get_online('https://bioconductor.org/config.yaml'); res <- subset(info, BiocStatus == '${biocversion}')[, 'Bioc']; cat(as.character(res))")
           rversion=$(Rscript -e "info <- BiocManager:::.version_map_get_online('https://bioconductor.org/config.yaml'); res <- subset(info, BiocStatus == '${biocversion}')[, 'R']; cat(as.character(res))")
 
-          ## I might need this for now until R 4.0 is out (try without it first)
-          # if echo "$rversion" | grep -q "4.0"; then
-          #     rversion="devel"
-          # fi
-
           ## Print the results
           echo $biocversion
           echo $biocversionnum
@@ -323,13 +318,13 @@ jobs:
 
           brew install imagemagick@6
           ## Won't be needed once the current xml2 dev is available on CRAN
+          ## See https://github.com/r-lib/xml2/issues/302 and
+          ## https://github.com/r-lib/xml2/issues/296
           Rscript -e "remotes::install_github('r-lib/xml2')"
 
       - name: Install Windows system dependencies
         if: runner.os == 'Windows'
         run: |
-          # if (!requireNamespace('RCurl', quietly = TRUE)) install.packages('RCurl', type = 'binary')
-
           ## Required to install TxDb.Hsapiens.UCSC.hg19.knownGene, reported to bioc-devel
           remotes::install_cran('tibble')
         shell: Rscript {0}
@@ -342,29 +337,6 @@ jobs:
       - name: Set BiocVersion
         run: |
           BiocManager::install(version = Sys.getenv('BIOCVERSIONNUM'))
-        shell: Rscript {0}
-
-      - name: Install dependencies - Windows R-devel hack
-        if: runner.os == 'Windows' && needs.R-CMD-check-bioc.outputs.rversion == 'devel'
-        run: |
-          ## Hack my way through Windows for R-devel (4.1) ...
-          ## I only need this now to avoid the compilation issues on Windows
-          ## such as with Rhtslib and other packages.
-          ## At the end of April, once R 4.0 is actually released, then this
-          ## won't be an issue =)
-          ## Note that officially Bioconductor as of today 2020-04-20 does
-          ## not support R-devel! Hence the lack of binaries on R 4.1
-          # contrib <- BiocManager::repositories()
-          # is_cran <- names(contrib) == 'CRAN'
-          # is_ann <- names(contrib) %in% c('BioCann', 'BioCexp', 'BioCworkflows')
-          # contrib[!is_cran & !is_ann] <- paste0(contrib[!is_cran], '/bin/windows/contrib/4.0/')
-          # contrib[is_ann] <- paste0(contrib[is_ann], '/src/contrib/')
-          # contrib[is_cran] <- paste0(contrib[is_cran], '/bin/windows/contrib/4.1/')
-          # contrib
-          #
-          # remotes::install_deps(dependencies = TRUE, contriburl = contrib)
-          # remotes::install_cran("rcmdcheck", contriburl = contrib)
-          # if (!requireNamespace("BiocCheck", quietly = TRUE)) BiocManager::install("BiocCheck", contriburl = contrib)
         shell: Rscript {0}
 
       - name: Install dependencies
