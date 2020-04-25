@@ -344,9 +344,6 @@ jobs:
       - name: Install dependencies - Windows R-devel hack
         if: runner.os == 'Windows' && needs.R-CMD-check-bioc.outputs.rversion == 'devel'
         run: |
-          ## Need GenomeInfoDbData first
-          BiocManager::install('GenomeInfoDbData')
-
           ## Hack my way through Windows for R-devel (4.1) ...
           ## I only need this now to avoid the compilation issues on Windows
           ## such as with Rhtslib and other packages.
@@ -369,8 +366,12 @@ jobs:
 
       - name: Install dependencies
         run: |
+          ## Need GenomeInfoDbData first
+          BiocManager::install('GenomeInfoDbData')
+
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
+
           if (!requireNamespace("BiocCheck", quietly = TRUE)) BiocManager::install("BiocCheck")
         shell: Rscript {0}
 
