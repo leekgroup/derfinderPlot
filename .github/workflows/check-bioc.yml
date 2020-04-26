@@ -348,7 +348,7 @@ jobs:
           BiocManager::install(version = Sys.getenv('BIOCVERSIONNUM'))
         shell: Rscript {0}
 
-       - name: Install dependencies
+      - name: Install dependencies
         run: |
           ## Locate the package dependencies
           deps <- remotes::dev_package_deps(dependencies = TRUE)
