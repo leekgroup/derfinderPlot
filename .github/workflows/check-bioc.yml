@@ -143,9 +143,16 @@ jobs:
           ## https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016675.html
           ## https://github.com/r-lib/remotes/issues/296
           remotes::install_cran("BiocManager")
+
+          ## Install the CRAN dependencies first
+          remotes::install_deps( repos = BiocManager::repositories()[c('CRAN')] )
+
+          ## Next the Bioconductor source-only ones
           remotes::install_deps( repos = BiocManager::repositories()[c('BioCann', 'BioCexp', 'BioCworkflows')] )
+
           ## Now install the rest of the dependencies
-          remotes::install_deps()
+          deps <- remotes::dev_package_deps(dependencies = TRUE, repos = BiocManager::repositories())
+          BiocManager::install(deps$package[deps$diff != 0])
 
           ## For running the checks
           remotes::install_cran("rcmdcheck")
@@ -354,9 +361,16 @@ jobs:
           ## https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016675.html
           ## https://github.com/r-lib/remotes/issues/296
           remotes::install_cran("BiocManager")
+
+          ## Install the CRAN dependencies first
+          remotes::install_deps( repos = BiocManager::repositories()[c('CRAN')] )
+
+          ## Next the Bioconductor source-only ones
           remotes::install_deps( repos = BiocManager::repositories()[c('BioCann', 'BioCexp', 'BioCworkflows')] )
+
           ## Now install the rest of the dependencies
-          remotes::install_deps()
+          deps <- remotes::dev_package_deps(dependencies = TRUE, repos = BiocManager::repositories())
+          BiocManager::install(deps$package[deps$diff != 0])
 
           ## For running the checks
           remotes::install_cran("rcmdcheck")
