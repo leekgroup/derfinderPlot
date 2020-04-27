@@ -346,8 +346,7 @@ jobs:
       - name: Install Windows system dependencies
         if: runner.os == 'Windows'
         run: |
-          ## Required to install TxDb.Hsapiens.UCSC.hg19.knownGene, reported to bioc-devel
-          # remotes::install_cran('tibble')
+          ## Edit below if you have any Windows system dependencies
         shell: Rscript {0}
 
       - name: Install BiocManager
