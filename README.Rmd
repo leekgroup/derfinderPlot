@@ -6,10 +6,10 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+    collapse = TRUE,
+    comment = "#>",
+    fig.path = "man/figures/README-",
+    out.width = "100%"
 )
 ```
 
@@ -37,8 +37,9 @@ For more information about `derfinderPlot` check the vignettes [through Biocondu
 Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then install `derfinderPlot` using from [Bioconductor](http://bioconductor.org/) the following code:
 
 ```{r 'install', eval = FALSE}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+      install.packages("BiocManager")
+  }
 
 BiocManager::install("derfinderPlot")
 ```
@@ -49,7 +50,7 @@ Below is the citation output from using `citation('derfinderPlot')` in R. Please
 run this yourself to check for any updates on how to cite __derfinderPlot__.
 
 ```{r 'citation', eval = requireNamespace('derfinderPlot')}
-print(citation('derfinderPlot'), bibtex = TRUE)
+print(citation("derfinderPlot"), bibtex = TRUE)
 ```
 
 Please note that the `derfinderPlot` was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.
@@ -67,3 +68,5 @@ Please note that the derfinderPlot project is released with a [Contributor Code 
 * The documentation is formatted thanks to `r BiocStyle::CRANpkg('devtools')` and `r BiocStyle::CRANpkg('roxygen2')`.
 
 For more details, check the `dev` directory.
+
+This package was developed using `r BiocStyle::Biocpkg('biocthis')`.

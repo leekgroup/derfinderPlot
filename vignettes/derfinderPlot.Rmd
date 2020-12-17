@@ -28,8 +28,9 @@ vignette: >
 `R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg('derfinderPlot')` is a `R` package available via the [Bioconductor](http://bioconductor/packages/derfinderPlot) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg('derfinderPlot')` by using the following commands in your `R` session:
 
 ```{r 'installDer', eval = FALSE}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+      install.packages("BiocManager")
+  }
 
 BiocManager::install("derfinderPlot")
 
@@ -64,20 +65,14 @@ citation("derfinderPlot")
 startTime <- Sys.time()
 
 ## Bib setup
-library("knitcitations")
-
-## Load knitcitations with a clean bibliography
-cleanbib()
-cite_options(hyperlink = "to.doc", citation_format = "text", style = "html")
-# Note links won't show for now due to the following issue
-# https://github.com/cboettig/knitcitations/issues/63
+library("RefManageR")
 
 ## Write bibliography information
 bib <- c(
-    knitcitations = citation("knitcitations"),
     derfinderPlot = citation("derfinderPlot")[1],
     BiocStyle = citation("BiocStyle"),
     knitr = citation("knitr")[3],
+    RefManageR = citation("RefManageR")[1],
     rmarkdown = citation("rmarkdown")[1],
     derfinder = citation("derfinder")[1],
     ggbio = citation("ggbio"),
@@ -116,7 +111,6 @@ bib <- c(
     ),
     derfinderData = citation("derfinderData")
 )
-write.bibtex(bib, file = "derfinderPlotRef.bib")
 ```
 
 
@@ -348,9 +342,9 @@ This package was made possible thanks to:
 * `r Biocpkg('derfinder')` `r citep(bib[['derfinder']])`
 * `r Biocexptpkg('derfinderData')` `r citep(bib[['derfinderData']])`
 * `r CRANpkg('sessioninfo')` `r citep(bib[['sessioninfo']])`
-* `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`
 * `r CRANpkg('knitr')` `r citep(bib[['knitr']])`
 * `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
+* `r CRANpkg("RefManageR")` `r Citep(bib[["RefManageR"]])`
 * `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])`
 * `r CRANpkg('testthat')` `r citep(bib[['testthat']])`
 * `r Biocannopkg('TxDb.Hsapiens.UCSC.hg19.knownGene')` `r citep(bib[['TxDb.Hsapiens.UCSC.hg19.knownGene']])`
@@ -370,7 +364,6 @@ knit("derfinderPlot.Rmd", tangle = TRUE)
 ```{r createVignette2}
 ## Clean up
 unlink("chr21", recursive = TRUE)
-file.remove("derfinderPlotRef.bib")
 ```
 
 Date the vignette was generated.
@@ -402,7 +395,7 @@ session_info()
 This vignette was generated using `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
 with `r CRANpkg('knitr')` `r citep(bib[['knitr']])` and `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])` running behind the scenes.
 
-Citations made with `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`.
+Citations made with `r CRANpkg('RefManageR')` `r citep(bib[['RefManageR']])`.
 
 ```{r vignetteBiblio, results = 'asis', echo = FALSE, warning = FALSE, message = FALSE}
 ## Print bibliography

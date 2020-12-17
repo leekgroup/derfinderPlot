@@ -1,8 +1,8 @@
 Package: derfinderPlot
 Type: Package
 Title: Plotting functions for derfinder
-Version: 1.25.0
-Date: 2020-05-10
+Version: 1.25.1
+Date: 2020-12-17
 Authors@R: c(person("Leonardo", "Collado-Torres", role = c("aut", "cre"), email
     = "lcolladotor@gmail.com", comment = c(ORCID = "0000-0003-2140-308X")),
     person(c("Andrew", "E."), "Jaffe", role = "aut",
@@ -34,7 +34,6 @@ Suggests:
     bumphunter (>= 1.7.6),
     derfinderData (>= 0.99.0),
     sessioninfo,
-    knitcitations (>= 1.0.1),
     knitr (>= 1.6),
     BiocStyle (>= 2.5.19),
     org.Hs.eg.db,
@@ -51,6 +50,6 @@ LazyData: false
 URL: https://github.com/leekgroup/derfinderPlot
 BugReports: https://support.bioconductor.org/t/derfinderPlot
 biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization, ImmunoOncology
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
