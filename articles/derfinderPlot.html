@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">derfinderPlot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.25.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.0</span>
       </span>
     </div>
 
@@ -70,16 +70,16 @@
 
       
 
-      </header><script src="derfinderPlot_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="derfinderPlot_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to derfinderPlot</h1>
                         <h4 class="author">Leonardo Collado-Torres</h4>
             <address class="author_afil">
-      Lieber Institute for Brain Development, Johns Hopkins Medical Campus<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com" class="email">lcolladotor@gmail.com</a>
+      Lieber Institute for Brain Development, Johns Hopkins Medical CampusCenter for Computational Biology, Johns Hopkins University<br><a class="author_email" href="mailto:#"></a><a href="mailto:lcolladotor@gmail.com" class="email">lcolladotor@gmail.com</a>
       </address>
                   
-            <h4 class="date">17 December 2020</h4>
+            <h4 class="date">24 May 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leekgroup/derfinderPlot/blob/master/vignettes/derfinderPlot.Rmd"><code>vignettes/derfinderPlot.Rmd</code></a></small>
       <div class="hidden name"><code>derfinderPlot.Rmd</code></div>
@@ -129,7 +129,7 @@
 ## Collado-Torres L, Jaffe AE, Leek JT (2017). _derfinderPlot: Plotting
 ## functions for derfinder_. doi: 10.18129/B9.bioc.derfinderPlot (URL:
 ## https://doi.org/10.18129/B9.bioc.derfinderPlot),
-## https://github.com/leekgroup/derfinderPlot - R package version 1.25.1,
+## https://github.com/leekgroup/derfinderPlot - R package version 1.27.0,
 ## &lt;URL: http://www.bioconductor.org/packages/derfinderPlot&gt;.
 ## 
 ## Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,
@@ -166,11 +166,8 @@
 <p>We first load the required packages.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Load libraries</span>
-<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/lcolladotor/derfinder">"derfinder"</a></span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## No methods found in package 'IRanges' for request: 'values&lt;-' when loading 'derfinder'</code></pre>
-<pre><code>## No methods found in package 'IRanges' for request: 'values' when loading 'derfinder'</code></pre>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/leekgroup/derfinderData">"derfinderData"</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/lcolladotor/derfinder">"derfinder"</a></span><span class="op">)</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/leekgroup/derfinderData">"derfinderData"</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/leekgroup/derfinderPlot">"derfinderPlot"</a></span><span class="op">)</span></code></pre></div>
 <pre><code>## Registered S3 method overwritten by 'GGally':
 ##   method from   
@@ -179,7 +176,7 @@
 <h2 class="hasAnchor">
 <a href="#analyze-data" class="anchor"></a>Analyze data</h2>
 <p>For this example, we created a small table with the relevant phenotype data for 12 samples: 6 from fetal samples and 6 from adult samples. We chose at random a brain region, in this case the primary auditory cortex (core) and for the example we will only look at data from chromosome 21. Other variables include the age in years and the gender. The data is shown below.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/">"knitr"</a></span><span class="op">)</span>
 <span class="co">## Get pheno table</span>
 <span class="va">pheno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">brainspanPheno</span>, <span class="va">structure_acronym</span> <span class="op">==</span> <span class="st">"A1C"</span><span class="op">)</span>
@@ -416,7 +413,7 @@ adult
 </tbody>
 </table>
 <p>We can load the data from <em><a href="https://bioconductor.org/packages/3.12/derfinderData">derfinderData</a></em> (Collado-Torres, Jaffe, and Leek, 2020) by first identifying the paths to the BigWig files with <code><a href="https://rdrr.io/pkg/derfinder/man/rawFiles.html">derfinder::rawFiles()</a></code> and then loading the data with <code><a href="https://rdrr.io/pkg/derfinder/man/fullCoverage.html">derfinder::fullCoverage()</a></code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Determine the files to use and fix the names</span>
 <span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/derfinder/man/rawFiles.html">rawFiles</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"A1C"</span>, package <span class="op">=</span> <span class="st">"derfinderData"</span><span class="op">)</span>,
     samplepatt <span class="op">=</span> <span class="st">"bw"</span>, fileterm <span class="op">=</span> <span class="cn">NULL</span>
@@ -425,26 +422,26 @@ adult
 
 <span class="co">## Load the data from disk</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="va">fullCov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/derfinder/man/fullCoverage.html">fullCoverage</a></span><span class="op">(</span>files <span class="op">=</span> <span class="va">files</span>, chrs <span class="op">=</span> <span class="st">"chr21"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2020-12-17 23:06:10 fullCoverage: processing chromosome chr21</code></pre>
-<pre><code>## 2020-12-17 23:06:10 loadCoverage: finding chromosome lengths</code></pre>
-<pre><code>## 2020-12-17 23:06:10 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB103.bw</code></pre>
-<pre><code>## 2020-12-17 23:06:10 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB114.bw</code></pre>
-<pre><code>## 2020-12-17 23:06:10 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB123.bw</code></pre>
-<pre><code>## 2020-12-17 23:06:11 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB126.bw</code></pre>
-<pre><code>## 2020-12-17 23:06:11 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB130.bw</code></pre>
-<pre><code>## 2020-12-17 23:06:11 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB135.bw</code></pre>
-<pre><code>## 2020-12-17 23:06:11 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB136.bw</code></pre>
-<pre><code>## 2020-12-17 23:06:11 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB145.bw</code></pre>
-<pre><code>## 2020-12-17 23:06:11 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB149.bw</code></pre>
-<pre><code>## 2020-12-17 23:06:11 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB150.bw</code></pre>
-<pre><code>## 2020-12-17 23:06:11 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB154.bw</code></pre>
-<pre><code>## 2020-12-17 23:06:11 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB178.bw</code></pre>
-<pre><code>## 2020-12-17 23:06:12 loadCoverage: applying the cutoff to the merged data</code></pre>
-<pre><code>## 2020-12-17 23:06:12 filterData: originally there were 48129895 rows, now there are 48129895 rows. Meaning that 0 percent was filtered.</code></pre>
+<pre><code>## 2021-05-24 15:28:49 fullCoverage: processing chromosome chr21</code></pre>
+<pre><code>## 2021-05-24 15:28:49 loadCoverage: finding chromosome lengths</code></pre>
+<pre><code>## 2021-05-24 15:28:50 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB103.bw</code></pre>
+<pre><code>## 2021-05-24 15:28:50 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB114.bw</code></pre>
+<pre><code>## 2021-05-24 15:28:50 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB123.bw</code></pre>
+<pre><code>## 2021-05-24 15:28:50 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB126.bw</code></pre>
+<pre><code>## 2021-05-24 15:28:50 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB130.bw</code></pre>
+<pre><code>## 2021-05-24 15:28:50 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB135.bw</code></pre>
+<pre><code>## 2021-05-24 15:28:51 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB136.bw</code></pre>
+<pre><code>## 2021-05-24 15:28:51 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB145.bw</code></pre>
+<pre><code>## 2021-05-24 15:28:51 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB149.bw</code></pre>
+<pre><code>## 2021-05-24 15:28:51 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB150.bw</code></pre>
+<pre><code>## 2021-05-24 15:28:51 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB154.bw</code></pre>
+<pre><code>## 2021-05-24 15:28:51 loadCoverage: loading BigWig file /__w/_temp/Library/derfinderData/extdata/A1C/HSB178.bw</code></pre>
+<pre><code>## 2021-05-24 15:28:52 loadCoverage: applying the cutoff to the merged data</code></pre>
+<pre><code>## 2021-05-24 15:28:52 filterData: originally there were 48129895 rows, now there are 48129895 rows. Meaning that 0 percent was filtered.</code></pre>
 <pre><code>##    user  system elapsed 
-##   2.467   0.048   2.514</code></pre>
+##   2.114   0.048   2.162</code></pre>
 <p>Alternatively, since the BigWig files are publicly available from <em>BrainSpan</em> (see <a href="http://download.alleninstitute.org/brainspan/MRF_BigWig_Gencode_v10/bigwig/">here</a>), we can extract the relevant coverage data using <code><a href="https://rdrr.io/pkg/derfinder/man/fullCoverage.html">derfinder::fullCoverage()</a></code>. Note that as of <em><a href="https://bioconductor.org/packages/3.12/rtracklayer">rtracklayer</a></em> 1.25.16 BigWig files are not supported on Windows: you can find the <code>fullCov</code> object inside <em><a href="https://bioconductor.org/packages/3.12/derfinderData">derfinderData</a></em> to follow the examples.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Determine the files to use and fix the names</span>
 <span class="va">files</span> <span class="op">&lt;-</span> <span class="va">pheno</span><span class="op">$</span><span class="va">file</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">files</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">".A1C"</span>, <span class="st">""</span>, <span class="va">pheno</span><span class="op">$</span><span class="va">lab</span><span class="op">)</span>
@@ -452,23 +449,23 @@ adult
 <span class="co">## Load the data from the web</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="va">fullCov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/derfinder/man/fullCoverage.html">fullCoverage</a></span><span class="op">(</span>files <span class="op">=</span> <span class="va">files</span>, chrs <span class="op">=</span> <span class="st">"chr21"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Once we have the base-level coverage data for all 12 samples, we can construct the models. In this case, we want to find differences between fetal and adult samples while adjusting for gender and a proxy of the library size.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Get some idea of the library sizes</span>
 <span class="va">sampleDepths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/derfinder/man/sampleDepth.html">sampleDepth</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/derfinder/man/collapseFullCoverage.html">collapseFullCoverage</a></span><span class="op">(</span><span class="va">fullCov</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2020-12-17 23:06:13 sampleDepth: Calculating sample quantiles</code></pre>
-<pre><code>## 2020-12-17 23:06:13 sampleDepth: Calculating sample adjustments</code></pre>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<pre><code>## 2021-05-24 15:28:52 sampleDepth: Calculating sample quantiles</code></pre>
+<pre><code>## 2021-05-24 15:28:52 sampleDepth: Calculating sample adjustments</code></pre>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Define models</span>
 <span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/derfinder/man/makeModels.html">makeModels</a></span><span class="op">(</span><span class="va">sampleDepths</span>,
     testvars <span class="op">=</span> <span class="va">pheno</span><span class="op">$</span><span class="va">group</span>,
     adjustvars <span class="op">=</span> <span class="va">pheno</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gender"</span><span class="op">)</span><span class="op">]</span>
 <span class="op">)</span></code></pre></div>
 <p>Next, we can find candidate differentially expressed regions (DERs) using as input the segments of the genome where at least one sample has coverage greater than 3. In this particular example, we chose a low theoretical F-statistic cutoff and used 20 permutations.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Filter coverage</span>
 <span class="va">filteredCov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">fullCov</span>, <span class="va">filterData</span>, cutoff <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2020-12-17 23:06:13 filterData: originally there were 48129895 rows, now there are 90023 rows. Meaning that 99.81 percent was filtered.</code></pre>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<pre><code>## 2021-05-24 15:28:52 filterData: originally there were 48129895 rows, now there are 90023 rows. Meaning that 99.81 percent was filtered.</code></pre>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Perform differential expression analysis</span>
 <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ririzarr/bumphunter">"bumphunter"</a></span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/derfinder/man/analyzeChr.html">analyzeChr</a></span><span class="op">(</span>
@@ -476,77 +473,77 @@ adult
     <span class="va">models</span>, groupInfo <span class="op">=</span> <span class="va">pheno</span><span class="op">$</span><span class="va">group</span>, writeOutput <span class="op">=</span> <span class="cn">FALSE</span>,
     cutoffFstat <span class="op">=</span> <span class="fl">5e-02</span>, nPermute <span class="op">=</span> <span class="fl">20</span>, seeds <span class="op">=</span> <span class="fl">20140923</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
 <span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2020-12-17 23:06:14 analyzeChr: Pre-processing the coverage data</code></pre>
-<pre><code>## 2020-12-17 23:06:16 analyzeChr: Calculating statistics</code></pre>
-<pre><code>## 2020-12-17 23:06:16 calculateStats: calculating the F-statistics</code></pre>
-<pre><code>## 2020-12-17 23:06:16 analyzeChr: Calculating pvalues</code></pre>
-<pre><code>## 2020-12-17 23:06:16 analyzeChr: Using the following theoretical cutoff for the F-statistics 5.31765507157871</code></pre>
-<pre><code>## 2020-12-17 23:06:16 calculatePvalues: identifying data segments</code></pre>
-<pre><code>## 2020-12-17 23:06:16 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:16 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:16 findRegions: identifying region clusters</code></pre>
-<pre><code>## 2020-12-17 23:06:16 calculatePvalues: calculating F-statistics for permutation 1 and seed 20140924</code></pre>
-<pre><code>## 2020-12-17 23:06:16 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:16 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:16 calculatePvalues: calculating F-statistics for permutation 2 and seed 20140925</code></pre>
-<pre><code>## 2020-12-17 23:06:16 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:16 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:16 calculatePvalues: calculating F-statistics for permutation 3 and seed 20140926</code></pre>
-<pre><code>## 2020-12-17 23:06:17 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:17 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:17 calculatePvalues: calculating F-statistics for permutation 4 and seed 20140927</code></pre>
-<pre><code>## 2020-12-17 23:06:17 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:17 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:17 calculatePvalues: calculating F-statistics for permutation 5 and seed 20140928</code></pre>
-<pre><code>## 2020-12-17 23:06:17 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:17 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:17 calculatePvalues: calculating F-statistics for permutation 6 and seed 20140929</code></pre>
-<pre><code>## 2020-12-17 23:06:17 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:17 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:17 calculatePvalues: calculating F-statistics for permutation 7 and seed 20140930</code></pre>
-<pre><code>## 2020-12-17 23:06:17 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:17 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:17 calculatePvalues: calculating F-statistics for permutation 8 and seed 20140931</code></pre>
-<pre><code>## 2020-12-17 23:06:17 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:17 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:17 calculatePvalues: calculating F-statistics for permutation 9 and seed 20140932</code></pre>
-<pre><code>## 2020-12-17 23:06:18 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:18 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:18 calculatePvalues: calculating F-statistics for permutation 10 and seed 20140933</code></pre>
-<pre><code>## 2020-12-17 23:06:18 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:18 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:18 calculatePvalues: calculating F-statistics for permutation 11 and seed 20140934</code></pre>
-<pre><code>## 2020-12-17 23:06:18 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:18 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:18 calculatePvalues: calculating F-statistics for permutation 12 and seed 20140935</code></pre>
-<pre><code>## 2020-12-17 23:06:18 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:18 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:18 calculatePvalues: calculating F-statistics for permutation 13 and seed 20140936</code></pre>
-<pre><code>## 2020-12-17 23:06:18 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:18 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:18 calculatePvalues: calculating F-statistics for permutation 14 and seed 20140937</code></pre>
-<pre><code>## 2020-12-17 23:06:18 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:18 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:19 calculatePvalues: calculating F-statistics for permutation 15 and seed 20140938</code></pre>
-<pre><code>## 2020-12-17 23:06:19 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:19 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:19 calculatePvalues: calculating F-statistics for permutation 16 and seed 20140939</code></pre>
-<pre><code>## 2020-12-17 23:06:19 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:19 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:19 calculatePvalues: calculating F-statistics for permutation 17 and seed 20140940</code></pre>
-<pre><code>## 2020-12-17 23:06:19 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:19 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:19 calculatePvalues: calculating F-statistics for permutation 18 and seed 20140941</code></pre>
-<pre><code>## 2020-12-17 23:06:19 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:19 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:19 calculatePvalues: calculating F-statistics for permutation 19 and seed 20140942</code></pre>
-<pre><code>## 2020-12-17 23:06:19 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:19 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:19 calculatePvalues: calculating F-statistics for permutation 20 and seed 20140943</code></pre>
-<pre><code>## 2020-12-17 23:06:19 findRegions: segmenting information</code></pre>
-<pre><code>## 2020-12-17 23:06:19 findRegions: identifying candidate regions</code></pre>
-<pre><code>## 2020-12-17 23:06:20 calculatePvalues: calculating the p-values</code></pre>
-<pre><code>## 2020-12-17 23:06:20 analyzeChr: Annotating regions</code></pre>
+<pre><code>## 2021-05-24 15:28:54 analyzeChr: Pre-processing the coverage data</code></pre>
+<pre><code>## 2021-05-24 15:28:56 analyzeChr: Calculating statistics</code></pre>
+<pre><code>## 2021-05-24 15:28:56 calculateStats: calculating the F-statistics</code></pre>
+<pre><code>## 2021-05-24 15:28:57 analyzeChr: Calculating pvalues</code></pre>
+<pre><code>## 2021-05-24 15:28:57 analyzeChr: Using the following theoretical cutoff for the F-statistics 5.31765507157871</code></pre>
+<pre><code>## 2021-05-24 15:28:57 calculatePvalues: identifying data segments</code></pre>
+<pre><code>## 2021-05-24 15:28:57 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:57 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:57 findRegions: identifying region clusters</code></pre>
+<pre><code>## 2021-05-24 15:28:57 calculatePvalues: calculating F-statistics for permutation 1 and seed 20140924</code></pre>
+<pre><code>## 2021-05-24 15:28:57 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:57 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:57 calculatePvalues: calculating F-statistics for permutation 2 and seed 20140925</code></pre>
+<pre><code>## 2021-05-24 15:28:57 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:57 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:57 calculatePvalues: calculating F-statistics for permutation 3 and seed 20140926</code></pre>
+<pre><code>## 2021-05-24 15:28:58 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:58 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:58 calculatePvalues: calculating F-statistics for permutation 4 and seed 20140927</code></pre>
+<pre><code>## 2021-05-24 15:28:58 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:58 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:58 calculatePvalues: calculating F-statistics for permutation 5 and seed 20140928</code></pre>
+<pre><code>## 2021-05-24 15:28:58 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:58 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:58 calculatePvalues: calculating F-statistics for permutation 6 and seed 20140929</code></pre>
+<pre><code>## 2021-05-24 15:28:58 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:58 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:58 calculatePvalues: calculating F-statistics for permutation 7 and seed 20140930</code></pre>
+<pre><code>## 2021-05-24 15:28:58 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:58 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:58 calculatePvalues: calculating F-statistics for permutation 8 and seed 20140931</code></pre>
+<pre><code>## 2021-05-24 15:28:59 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:59 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:59 calculatePvalues: calculating F-statistics for permutation 9 and seed 20140932</code></pre>
+<pre><code>## 2021-05-24 15:28:59 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:59 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:59 calculatePvalues: calculating F-statistics for permutation 10 and seed 20140933</code></pre>
+<pre><code>## 2021-05-24 15:28:59 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:59 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:59 calculatePvalues: calculating F-statistics for permutation 11 and seed 20140934</code></pre>
+<pre><code>## 2021-05-24 15:28:59 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:59 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:59 calculatePvalues: calculating F-statistics for permutation 12 and seed 20140935</code></pre>
+<pre><code>## 2021-05-24 15:28:59 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:28:59 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:28:59 calculatePvalues: calculating F-statistics for permutation 13 and seed 20140936</code></pre>
+<pre><code>## 2021-05-24 15:29:00 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:29:00 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:29:00 calculatePvalues: calculating F-statistics for permutation 14 and seed 20140937</code></pre>
+<pre><code>## 2021-05-24 15:29:00 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:29:00 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:29:00 calculatePvalues: calculating F-statistics for permutation 15 and seed 20140938</code></pre>
+<pre><code>## 2021-05-24 15:29:00 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:29:00 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:29:00 calculatePvalues: calculating F-statistics for permutation 16 and seed 20140939</code></pre>
+<pre><code>## 2021-05-24 15:29:00 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:29:00 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:29:00 calculatePvalues: calculating F-statistics for permutation 17 and seed 20140940</code></pre>
+<pre><code>## 2021-05-24 15:29:01 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:29:01 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:29:01 calculatePvalues: calculating F-statistics for permutation 18 and seed 20140941</code></pre>
+<pre><code>## 2021-05-24 15:29:01 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:29:01 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:29:01 calculatePvalues: calculating F-statistics for permutation 19 and seed 20140942</code></pre>
+<pre><code>## 2021-05-24 15:29:01 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:29:01 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:29:01 calculatePvalues: calculating F-statistics for permutation 20 and seed 20140943</code></pre>
+<pre><code>## 2021-05-24 15:29:01 findRegions: segmenting information</code></pre>
+<pre><code>## 2021-05-24 15:29:01 findRegions: identifying candidate regions</code></pre>
+<pre><code>## 2021-05-24 15:29:01 calculatePvalues: calculating the p-values</code></pre>
+<pre><code>## 2021-05-24 15:29:01 analyzeChr: Annotating regions</code></pre>
 <pre><code>## No annotationPackage supplied. Trying org.Hs.eg.db.</code></pre>
 <pre><code>## Loading required package: org.Hs.eg.db</code></pre>
 <pre><code>## Loading required package: AnnotationDbi</code></pre>
@@ -563,8 +560,8 @@ adult
 <pre><code>## Annotating genes.</code></pre>
 <pre><code>## ...</code></pre>
 <pre><code>##    user  system elapsed 
-##  41.461   1.876  40.508</code></pre>
-<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+##  58.464   2.556  57.601</code></pre>
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Quick access to the results</span>
 <span class="va">regions</span> <span class="op">&lt;-</span> <span class="va">results</span><span class="op">$</span><span class="va">regions</span><span class="op">$</span><span class="va">regions</span>
 
@@ -578,10 +575,10 @@ adult
 </h2>
 <p>Now that we have obtained the main results using <em><a href="https://bioconductor.org/packages/3.12/derfinder">derfinder</a></em>, we can proceed to visualizing the results using <em><a href="https://bioconductor.org/packages/3.12/derfinderPlot">derfinderPlot</a></em>. The easiest to use of all the functions is <code><a href="../reference/plotOverview.html">plotOverview()</a></code> which takes a set of regions and annotation information produced by <code><a href="https://rdrr.io/pkg/bumphunter/man/matchGenes.html">bumphunter::matchGenes()</a></code>.</p>
 <p>Figure @ref(fig:plotOverview) shows the candidate DERs colored by whether their q-value was less than 0.10 or not.</p>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Q-values overview</span>
 <span class="fu"><a href="../reference/plotOverview.html">plotOverview</a></span><span class="op">(</span>regions <span class="op">=</span> <span class="va">regions</span>, annotation <span class="op">=</span> <span class="va">results</span><span class="op">$</span><span class="va">annotation</span>, type <span class="op">=</span> <span class="st">"qval"</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2020-12-17 23:06:55 plotOverview: assigning chromosome lengths from hg19!</code></pre>
+<pre><code>## 2021-05-24 15:29:51 plotOverview: assigning chromosome lengths from hg19!</code></pre>
 <pre><code>## Scale for 'x' is already present. Adding another scale for 'x', which will
 ## replace the existing scale.
 ## Scale for 'x' is already present. Adding another scale for 'x', which will
@@ -592,13 +589,13 @@ Location of the DERs in the genome. This plot is was designed for many chromosom
 </p>
 </div>
 <p>Figure @ref(fig:plotOverview2) shows the candidate DERs colored by the type of gene feature they are nearest too.</p>
-<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Annotation overview</span>
 <span class="fu"><a href="../reference/plotOverview.html">plotOverview</a></span><span class="op">(</span>
     regions <span class="op">=</span> <span class="va">regions</span>, annotation <span class="op">=</span> <span class="va">results</span><span class="op">$</span><span class="va">annotation</span>,
     type <span class="op">=</span> <span class="st">"annotation"</span>
 <span class="op">)</span></code></pre></div>
-<pre><code>## 2020-12-17 23:06:56 plotOverview: assigning chromosome lengths from hg19!</code></pre>
+<pre><code>## 2021-05-24 15:29:53 plotOverview: assigning chromosome lengths from hg19!</code></pre>
 <pre><code>## Scale for 'x' is already present. Adding another scale for 'x', which will
 ## replace the existing scale.</code></pre>
 <div class="figure">
@@ -614,17 +611,17 @@ Location of the DERs in the genome and colored by annotation class. This plot is
 </h2>
 <p>The complete opposite of visualizing the candidate DERs at the genome-level is to visualize them one region at a time. <code><a href="../reference/plotRegionCoverage.html">plotRegionCoverage()</a></code> allows us to do this quickly for a large number of regions.</p>
 <p>Before using this function, we need to process more detailed information using two <em><a href="https://bioconductor.org/packages/3.12/derfinder">derfinder</a></em> functions: <code><a href="https://rdrr.io/pkg/derfinder/man/annotateRegions.html">annotateRegions()</a></code> and <code><a href="https://rdrr.io/pkg/derfinder/man/getRegionCoverage.html">getRegionCoverage()</a></code> as shown below.</p>
-<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Get required information for the plots</span>
 <span class="va">annoRegs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/derfinder/man/annotateRegions.html">annotateRegions</a></span><span class="op">(</span><span class="va">regions</span>, <span class="va">genomicState</span><span class="op">$</span><span class="va">fullGenome</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2020-12-17 23:06:57 annotateRegions: counting</code></pre>
-<pre><code>## 2020-12-17 23:06:57 annotateRegions: annotating</code></pre>
-<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<pre><code>## 2021-05-24 15:29:54 annotateRegions: counting</code></pre>
+<pre><code>## 2021-05-24 15:29:54 annotateRegions: annotating</code></pre>
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">regionCov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/derfinder/man/getRegionCoverage.html">getRegionCoverage</a></span><span class="op">(</span><span class="va">fullCov</span>, <span class="va">regions</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2020-12-17 23:06:57 getRegionCoverage: processing chr21</code></pre>
-<pre><code>## 2020-12-17 23:06:57 getRegionCoverage: done processing chr21</code></pre>
+<pre><code>## 2021-05-24 15:29:54 getRegionCoverage: processing chr21</code></pre>
+<pre><code>## 2021-05-24 15:29:54 getRegionCoverage: done processing chr21</code></pre>
 <p>Once we have the relevant information we can proceed to plotting the first 10 regions. In this case, we will supply <code><a href="../reference/plotRegionCoverage.html">plotRegionCoverage()</a></code> with the information it needs to plot transcripts overlapping these 10 regions (Figures @ref(fig:plotRegCov1), @ref(fig:plotRegCov2), @ref(fig:plotRegCov3), @ref(fig:plotRegCov4), @ref(fig:plotRegCov5), @ref(fig:plotRegCov6), @ref(fig:plotRegCov7), @ref(fig:plotRegCov8), @ref(fig:plotRegCov9), @ref(fig:plotRegCov10)).</p>
-<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Plot top 10 regions</span>
 <span class="fu"><a href="../reference/plotRegionCoverage.html">plotRegionCoverage</a></span><span class="op">(</span>
     regions <span class="op">=</span> <span class="va">regions</span>, regionCoverage <span class="op">=</span> <span class="va">regionCov</span>,
@@ -691,7 +688,7 @@ Base-pair resolution plot of differentially expressed region 10.
 <p>In this example, we noticed with the <code><a href="../reference/plotRegionCoverage.html">plotRegionCoverage()</a></code> plots that most of the candidate DERs are contained in known exons. Sometimes, the signal might be low or we might have used very stringent cutoffs in the <em><a href="https://bioconductor.org/packages/3.12/derfinder">derfinder</a></em> analysis. One way we can observe this is by plotting clusters of regions where a cluster is defined as regions within 300 bp (default option) of each other.</p>
 <p>To visualize the clusters, we can use <code><a href="../reference/plotCluster.html">plotCluster()</a></code> which takes similar input to <code><a href="../reference/plotOverview.html">plotOverview()</a></code> with the notable addition of the coverage information as well as the <code>idx</code> argument. This argument specifies which region to focus on: it will be plotted with a red bar and will determine the cluster to display.</p>
 <p>In Figure @ref(fig:plotCluster) we observe one large candidate DER with other nearby ones that do not have a q-value less than 0.10. In a real analysis, we would probably discard this region as the coverage is fairly low.</p>
-<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## First cluster</span>
 <span class="fu"><a href="../reference/plotCluster.html">plotCluster</a></span><span class="op">(</span>
     idx <span class="op">=</span> <span class="fl">1</span>, regions <span class="op">=</span> <span class="va">regions</span>, annotation <span class="op">=</span> <span class="va">results</span><span class="op">$</span><span class="va">annotation</span>,
@@ -719,7 +716,7 @@ Cluster plot for cluster 1 using ggbio.
 </p>
 </div>
 <p>The second cluster (Figure @ref(fig:plotCluster2)) shows a larger number of potential DERs (again without q-values less than 0.10) in a segment of the genome where the coverage data is highly variable. This is a common occurrence with RNA-seq data.</p>
-<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Second cluster</span>
 <span class="fu"><a href="../reference/plotCluster.html">plotCluster</a></span><span class="op">(</span>
     idx <span class="op">=</span> <span class="fl">2</span>, regions <span class="op">=</span> <span class="va">regions</span>, annotation <span class="op">=</span> <span class="va">results</span><span class="op">$</span><span class="va">annotation</span>,
@@ -787,7 +784,7 @@ Cluster plot for cluster 2 using ggbio.
 <a href="#vennregions" class="anchor"></a><code>vennRegions</code>
 </h2>
 <p><em><a href="https://bioconductor.org/packages/3.12/derfinder">derfinder</a></em> has functions for annotating regions given their genomic state. A typical visualization is to then view how many regions overlap known exons, introns, intergenic regions, none of them or several of these groups in a venn diagram. The function <code><a href="../reference/vennRegions.html">vennRegions()</a></code> makes this plot using the output from <code><a href="https://rdrr.io/pkg/derfinder/man/annotateRegions.html">derfinder::annotateRegions()</a></code> as shown in Figure @ref(fig:vennRegions).</p>
-<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Make venn diagram</span>
 <span class="va">venn</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/vennRegions.html">vennRegions</a></span><span class="op">(</span><span class="va">annoRegs</span><span class="op">)</span></code></pre></div>
 <div class="figure">
@@ -795,7 +792,7 @@ Cluster plot for cluster 2 using ggbio.
 Venn diagram of regions by annotation class.
 </p>
 </div>
-<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## It returns the actual venn counts information</span>
 <span class="va">venn</span></code></pre></div>
 <pre><code>##   exon intergenic intron Counts
@@ -859,7 +856,7 @@ Venn diagram of regions by annotation class.
 <em><a href="https://bioconductor.org/packages/3.12/TxDb.Hsapiens.UCSC.hg19.knownGene">TxDb.Hsapiens.UCSC.hg19.knownGene</a></em> (Carlson and Maintainer, 2015)</li>
 </ul>
 <p>Code for creating the vignette</p>
-<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Create the vignette</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/rmarkdown">"rmarkdown"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">render</a></span><span class="op">(</span><span class="st">"derfinderPlot.Rmd"</span>, <span class="st">"BiocStyle::html_document"</span><span class="op">)</span><span class="op">)</span>
@@ -867,13 +864,13 @@ Venn diagram of regions by annotation class.
 <span class="co">## Extract the R code</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/">"knitr"</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">knit</a></span><span class="op">(</span><span class="st">"derfinderPlot.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Clean up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"chr21"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code>## [1] "2020-12-17 23:07:19 UTC"</code></pre>
+<pre><code>## [1] "2021-05-24 15:30:21 UTC"</code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code>## Time difference of 1.393 mins</code></pre>
+<pre><code>## Time difference of 1.866 mins</code></pre>
 <p><code>R</code> session information.</p>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value                       
@@ -885,154 +882,155 @@ Venn diagram of regions by annotation class.
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2020-12-17                  
+##  date     2021-05-24                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  package                           * version  date       lib source        
 ##  AnnotationDbi                     * 1.52.0   2020-10-27 [1] Bioconductor  
 ##  AnnotationFilter                    1.14.0   2020-10-27 [1] Bioconductor  
-##  askpass                             1.1      2019-01-13 [2] RSPM (R 4.0.0)
-##  assertthat                          0.2.1    2019-03-21 [2] RSPM (R 4.0.0)
+##  askpass                             1.1      2019-01-13 [2] RSPM (R 4.0.3)
+##  assertthat                          0.2.1    2019-03-21 [2] RSPM (R 4.0.3)
 ##  backports                           1.2.1    2020-12-09 [1] RSPM (R 4.0.3)
-##  base64enc                           0.1-3    2015-07-28 [2] RSPM (R 4.0.0)
+##  base64enc                           0.1-3    2015-07-28 [2] RSPM (R 4.0.3)
 ##  Biobase                           * 2.50.0   2020-10-27 [1] Bioconductor  
 ##  BiocFileCache                       1.14.0   2020-10-27 [1] Bioconductor  
-##  BiocGenerics                      * 0.36.0   2020-10-27 [1] Bioconductor  
-##  BiocManager                         1.30.10  2019-11-16 [2] CRAN (R 4.0.3)
+##  BiocGenerics                      * 0.36.1   2021-04-16 [1] Bioconductor  
+##  BiocManager                         1.30.10  2019-11-16 [1] RSPM (R 4.0.0)
 ##  BiocParallel                        1.24.1   2020-11-06 [1] Bioconductor  
 ##  BiocStyle                         * 2.18.1   2020-11-24 [1] Bioconductor  
-##  biomaRt                             2.46.0   2020-10-27 [1] Bioconductor  
+##  biomaRt                             2.46.3   2021-02-09 [1] Bioconductor  
 ##  Biostrings                          2.58.0   2020-10-27 [1] Bioconductor  
 ##  biovizBase                          1.38.0   2020-10-27 [1] Bioconductor  
-##  bit                                 4.0.4    2020-08-04 [1] RSPM (R 4.0.2)
-##  bit64                               4.0.5    2020-08-30 [1] RSPM (R 4.0.2)
-##  bitops                              1.0-6    2013-08-17 [1] RSPM (R 4.0.0)
-##  blob                                1.2.1    2020-01-20 [1] RSPM (R 4.0.0)
+##  bit                                 4.0.4    2020-08-04 [1] RSPM (R 4.0.3)
+##  bit64                               4.0.5    2020-08-30 [1] RSPM (R 4.0.3)
+##  bitops                              1.0-6    2013-08-17 [1] RSPM (R 4.0.3)
+##  blob                                1.2.1    2020-01-20 [1] RSPM (R 4.0.3)
 ##  bookdown                            0.21     2020-10-13 [1] RSPM (R 4.0.2)
 ##  BSgenome                            1.58.0   2020-10-27 [1] Bioconductor  
 ##  bumphunter                        * 1.32.0   2020-10-27 [1] Bioconductor  
-##  checkmate                           2.0.0    2020-02-06 [1] RSPM (R 4.0.0)
-##  cli                                 2.2.0    2020-11-20 [2] RSPM (R 4.0.3)
-##  cluster                             2.1.0    2019-06-19 [3] CRAN (R 4.0.3)
+##  cachem                              1.0.4    2021-02-13 [2] RSPM (R 4.0.3)
+##  checkmate                           2.0.0    2020-02-06 [1] RSPM (R 4.0.3)
+##  cli                                 2.3.0    2021-01-31 [2] RSPM (R 4.0.3)
+##  cluster                             2.1.1    2021-02-14 [3] RSPM (R 4.0.3)
 ##  codetools                           0.2-18   2020-11-04 [3] RSPM (R 4.0.3)
 ##  colorspace                          2.0-0    2020-11-11 [1] RSPM (R 4.0.3)
-##  crayon                              1.3.4    2017-09-16 [2] RSPM (R 4.0.0)
-##  curl                                4.3      2019-12-02 [2] RSPM (R 4.0.0)
-##  data.table                          1.13.4   2020-12-08 [1] RSPM (R 4.0.3)
-##  DBI                                 1.1.0    2019-12-15 [1] RSPM (R 4.0.0)
-##  dbplyr                              2.0.0    2020-11-03 [1] RSPM (R 4.0.3)
-##  DelayedArray                        0.16.0   2020-10-27 [1] Bioconductor  
-##  derfinder                         * 1.24.0   2020-10-27 [1] Bioconductor  
-##  derfinderData                     * 2.8.0    2020-10-29 [1] Bioconductor  
-##  derfinderHelper                     1.24.0   2020-10-27 [1] Bioconductor  
-##  derfinderPlot                     * 1.25.1   2020-12-17 [1] Bioconductor  
-##  desc                                1.2.0    2018-05-01 [2] RSPM (R 4.0.0)
+##  crayon                              1.4.1    2021-02-08 [2] RSPM (R 4.0.3)
+##  curl                                4.3      2019-12-02 [2] RSPM (R 4.0.3)
+##  data.table                          1.13.6   2020-12-30 [1] RSPM (R 4.0.3)
+##  DBI                                 1.1.1    2021-01-15 [1] RSPM (R 4.0.3)
+##  dbplyr                              2.1.0    2021-02-03 [1] RSPM (R 4.0.3)
+##  DelayedArray                        0.16.3   2021-03-24 [1] Bioconductor  
+##  derfinder                         * 1.24.2   2020-12-18 [1] Bioconductor  
+##  derfinderData                     * 2.8.1    2020-12-21 [1] Bioconductor  
+##  derfinderHelper                     1.24.1   2020-12-18 [1] Bioconductor  
+##  derfinderPlot                     * 1.27.0   2021-05-24 [1] Bioconductor  
+##  desc                                1.2.0    2018-05-01 [2] RSPM (R 4.0.3)
 ##  dichromat                           2.0-0    2013-01-24 [1] RSPM (R 4.0.0)
 ##  digest                              0.6.27   2020-10-24 [2] RSPM (R 4.0.3)
-##  doRNG                               1.8.2    2020-01-27 [1] RSPM (R 4.0.0)
-##  dplyr                               1.0.2    2020-08-18 [1] RSPM (R 4.0.2)
-##  ellipsis                            0.3.1    2020-05-15 [2] RSPM (R 4.0.0)
-##  ensembldb                           2.14.0   2020-10-27 [1] Bioconductor  
-##  evaluate                            0.14     2019-05-28 [2] RSPM (R 4.0.0)
-##  fansi                               0.4.1    2020-01-08 [2] RSPM (R 4.0.0)
-##  farver                              2.0.3    2020-01-16 [1] RSPM (R 4.0.0)
-##  foreach                           * 1.5.1    2020-10-15 [1] RSPM (R 4.0.2)
-##  foreign                             0.8-80   2020-05-24 [3] CRAN (R 4.0.3)
-##  Formula                             1.2-4    2020-10-16 [1] RSPM (R 4.0.2)
-##  fs                                  1.5.0    2020-07-31 [2] RSPM (R 4.0.2)
+##  doRNG                               1.8.2    2020-01-27 [1] RSPM (R 4.0.3)
+##  dplyr                               1.0.4    2021-02-02 [1] RSPM (R 4.0.3)
+##  ellipsis                            0.3.1    2020-05-15 [2] RSPM (R 4.0.3)
+##  ensembldb                           2.14.1   2021-04-19 [1] Bioconductor  
+##  evaluate                            0.14     2019-05-28 [2] RSPM (R 4.0.3)
+##  farver                              2.0.3    2020-01-16 [1] RSPM (R 4.0.3)
+##  fastmap                             1.1.0    2021-01-25 [2] RSPM (R 4.0.3)
+##  foreach                           * 1.5.1    2020-10-15 [1] RSPM (R 4.0.3)
+##  foreign                             0.8-81   2020-12-22 [3] RSPM (R 4.0.3)
+##  Formula                             1.2-4    2020-10-16 [1] RSPM (R 4.0.3)
+##  fs                                  1.5.0    2020-07-31 [2] RSPM (R 4.0.3)
 ##  generics                            0.1.0    2020-10-31 [1] RSPM (R 4.0.3)
-##  GenomeInfoDb                      * 1.26.2   2020-12-08 [1] Bioconductor  
-##  GenomeInfoDbData                    1.2.4    2020-12-17 [1] Bioconductor  
+##  GenomeInfoDb                      * 1.26.7   2021-04-08 [1] Bioconductor  
+##  GenomeInfoDbData                    1.2.4    2021-05-24 [1] Bioconductor  
 ##  GenomicAlignments                   1.26.0   2020-10-27 [1] Bioconductor  
-##  GenomicFeatures                   * 1.42.1   2020-11-12 [1] Bioconductor  
+##  GenomicFeatures                   * 1.42.3   2021-04-01 [1] Bioconductor  
 ##  GenomicFiles                        1.26.0   2020-10-27 [1] Bioconductor  
 ##  GenomicRanges                     * 1.42.0   2020-10-27 [1] Bioconductor  
-##  GGally                              2.0.0    2020-06-06 [1] RSPM (R 4.0.0)
+##  GGally                              2.1.0    2021-01-06 [1] RSPM (R 4.0.3)
 ##  ggbio                               1.38.0   2020-10-27 [1] Bioconductor  
-##  ggplot2                             3.3.2    2020-06-19 [1] RSPM (R 4.0.1)
-##  glue                                1.4.2    2020-08-27 [2] RSPM (R 4.0.2)
+##  ggplot2                             3.3.3    2020-12-30 [1] RSPM (R 4.0.3)
+##  glue                                1.4.2    2020-08-27 [2] RSPM (R 4.0.3)
 ##  graph                               1.68.0   2020-10-27 [1] Bioconductor  
-##  gridExtra                           2.3      2017-09-09 [1] RSPM (R 4.0.0)
-##  gtable                              0.3.0    2019-03-25 [1] RSPM (R 4.0.0)
-##  highr                               0.8      2019-03-20 [2] RSPM (R 4.0.0)
+##  gridExtra                           2.3      2017-09-09 [1] RSPM (R 4.0.3)
+##  gtable                              0.3.0    2019-03-25 [1] RSPM (R 4.0.3)
+##  highr                               0.8      2019-03-20 [2] RSPM (R 4.0.3)
 ##  Hmisc                               4.4-2    2020-11-29 [1] RSPM (R 4.0.3)
-##  hms                                 0.5.3    2020-01-08 [1] RSPM (R 4.0.0)
-##  htmlTable                           2.1.0    2020-09-16 [1] RSPM (R 4.0.2)
-##  htmltools                           0.5.0    2020-06-16 [2] RSPM (R 4.0.1)
+##  hms                                 1.0.0    2021-01-13 [1] RSPM (R 4.0.3)
+##  htmlTable                           2.1.0    2020-09-16 [1] RSPM (R 4.0.3)
+##  htmltools                           0.5.1.1  2021-01-22 [2] RSPM (R 4.0.3)
 ##  htmlwidgets                         1.5.3    2020-12-10 [2] RSPM (R 4.0.3)
-##  httr                                1.4.2    2020-07-20 [2] RSPM (R 4.0.2)
+##  httr                                1.4.2    2020-07-20 [2] RSPM (R 4.0.3)
 ##  IRanges                           * 2.24.1   2020-12-12 [1] Bioconductor  
-##  iterators                         * 1.0.13   2020-10-15 [1] RSPM (R 4.0.2)
-##  jpeg                                0.1-8.1  2019-10-24 [1] RSPM (R 4.0.0)
+##  iterators                         * 1.0.13   2020-10-15 [1] RSPM (R 4.0.3)
+##  jpeg                                0.1-8.1  2019-10-24 [1] RSPM (R 4.0.3)
 ##  jsonlite                            1.7.2    2020-12-09 [2] RSPM (R 4.0.3)
-##  knitr                             * 1.30     2020-09-22 [2] RSPM (R 4.0.2)
+##  knitr                             * 1.31     2021-01-27 [2] RSPM (R 4.0.3)
 ##  labeling                            0.4.2    2020-10-20 [1] RSPM (R 4.0.3)
 ##  lattice                             0.20-41  2020-04-02 [3] CRAN (R 4.0.3)
-##  latticeExtra                        0.6-29   2019-12-19 [1] RSPM (R 4.0.0)
-##  lazyeval                            0.2.2    2019-03-15 [2] RSPM (R 4.0.0)
-##  lifecycle                           0.2.0    2020-03-06 [2] RSPM (R 4.0.0)
+##  latticeExtra                        0.6-29   2019-12-19 [1] RSPM (R 4.0.3)
+##  lazyeval                            0.2.2    2019-03-15 [2] RSPM (R 4.0.3)
+##  lifecycle                           1.0.0    2021-02-15 [2] RSPM (R 4.0.3)
 ##  limma                               3.46.0   2020-10-27 [1] Bioconductor  
-##  locfit                            * 1.5-9.4  2020-03-25 [1] RSPM (R 4.0.0)
+##  locfit                            * 1.5-9.4  2020-03-25 [1] RSPM (R 4.0.3)
 ##  lubridate                           1.7.9.2  2020-11-13 [1] RSPM (R 4.0.3)
 ##  magrittr                            2.0.1    2020-11-17 [2] RSPM (R 4.0.3)
-##  Matrix                              1.2-18   2019-11-27 [3] CRAN (R 4.0.3)
-##  MatrixGenerics                      1.2.0    2020-10-27 [1] Bioconductor  
-##  matrixStats                         0.57.0   2020-09-25 [1] RSPM (R 4.0.2)
-##  memoise                             1.1.0    2017-04-21 [2] RSPM (R 4.0.0)
-##  munsell                             0.5.0    2018-06-12 [1] RSPM (R 4.0.0)
-##  nnet                                7.3-14   2020-04-26 [3] CRAN (R 4.0.3)
-##  openssl                             1.4.3    2020-09-18 [2] RSPM (R 4.0.2)
-##  org.Hs.eg.db                      * 3.12.0   2020-12-17 [1] Bioconductor  
+##  Matrix                              1.3-2    2021-01-06 [3] RSPM (R 4.0.3)
+##  MatrixGenerics                      1.2.1    2021-01-30 [1] Bioconductor  
+##  matrixStats                         0.58.0   2021-01-29 [1] RSPM (R 4.0.3)
+##  memoise                             2.0.0    2021-01-26 [2] RSPM (R 4.0.3)
+##  munsell                             0.5.0    2018-06-12 [1] RSPM (R 4.0.3)
+##  nnet                                7.3-15   2021-01-24 [3] RSPM (R 4.0.3)
+##  openssl                             1.4.3    2020-09-18 [2] RSPM (R 4.0.3)
+##  org.Hs.eg.db                      * 3.12.0   2021-05-24 [1] Bioconductor  
 ##  OrganismDbi                         1.32.0   2020-10-27 [1] Bioconductor  
 ##  pillar                              1.4.7    2020-11-20 [2] RSPM (R 4.0.3)
-##  pkgconfig                           2.0.3    2019-09-22 [2] RSPM (R 4.0.0)
+##  pkgconfig                           2.0.3    2019-09-22 [2] RSPM (R 4.0.3)
 ##  pkgdown                             1.6.1    2020-09-12 [1] RSPM (R 4.0.2)
-##  plyr                                1.8.6    2020-03-03 [1] RSPM (R 4.0.2)
-##  png                                 0.1-7    2013-12-03 [1] RSPM (R 4.0.0)
-##  prettyunits                         1.1.1    2020-01-24 [2] RSPM (R 4.0.0)
-##  progress                            1.2.2    2019-05-16 [1] RSPM (R 4.0.0)
+##  plyr                                1.8.6    2020-03-03 [1] RSPM (R 4.0.3)
+##  png                                 0.1-7    2013-12-03 [1] RSPM (R 4.0.3)
+##  prettyunits                         1.1.1    2020-01-24 [2] RSPM (R 4.0.3)
+##  progress                            1.2.2    2019-05-16 [1] RSPM (R 4.0.3)
 ##  ProtGenerics                        1.22.0   2020-10-27 [1] Bioconductor  
-##  purrr                               0.3.4    2020-04-17 [2] RSPM (R 4.0.0)
+##  purrr                               0.3.4    2020-04-17 [2] RSPM (R 4.0.3)
 ##  qvalue                              2.22.0   2020-10-27 [1] Bioconductor  
 ##  R6                                  2.5.0    2020-10-28 [2] RSPM (R 4.0.3)
-##  ragg                                0.4.0    2020-10-05 [1] RSPM (R 4.0.3)
-##  rappdirs                            0.3.1    2016-03-28 [2] RSPM (R 4.0.0)
+##  ragg                                1.1.0    2021-02-15 [1] RSPM (R 4.0.3)
+##  rappdirs                            0.3.3    2021-01-31 [2] RSPM (R 4.0.3)
 ##  RBGL                                1.66.0   2020-10-27 [1] Bioconductor  
-##  RColorBrewer                        1.1-2    2014-12-07 [1] RSPM (R 4.0.0)
-##  Rcpp                                1.0.5    2020-07-06 [2] RSPM (R 4.0.2)
-##  RCurl                               1.98-1.2 2020-04-18 [1] RSPM (R 4.0.0)
+##  RColorBrewer                        1.1-2    2014-12-07 [1] RSPM (R 4.0.3)
+##  Rcpp                                1.0.6    2021-01-15 [2] RSPM (R 4.0.3)
+##  RCurl                               1.98-1.2 2020-04-18 [1] RSPM (R 4.0.3)
 ##  RefManageR                        * 1.3.0    2020-11-13 [1] RSPM (R 4.0.3)
-##  reshape                             0.8.8    2018-10-23 [1] RSPM (R 4.0.0)
-##  reshape2                            1.4.4    2020-04-09 [1] RSPM (R 4.0.2)
-##  rlang                               0.4.9    2020-11-26 [2] RSPM (R 4.0.3)
+##  reshape                             0.8.8    2018-10-23 [1] RSPM (R 4.0.3)
+##  reshape2                            1.4.4    2020-04-09 [1] RSPM (R 4.0.3)
+##  rlang                               0.4.10   2020-12-30 [2] RSPM (R 4.0.3)
 ##  rmarkdown                           2.6      2020-12-14 [1] RSPM (R 4.0.3)
-##  rngtools                            1.5      2020-01-23 [1] RSPM (R 4.0.0)
+##  rngtools                            1.5      2020-01-23 [1] RSPM (R 4.0.3)
 ##  rpart                               4.1-15   2019-04-12 [3] CRAN (R 4.0.3)
 ##  rprojroot                           2.0.2    2020-11-15 [2] RSPM (R 4.0.3)
 ##  Rsamtools                           2.6.0    2020-10-27 [1] Bioconductor  
-##  RSQLite                             2.2.1    2020-09-30 [1] RSPM (R 4.0.2)
+##  RSQLite                             2.2.3    2021-01-24 [1] RSPM (R 4.0.3)
 ##  rstudioapi                          0.13     2020-11-12 [2] RSPM (R 4.0.3)
 ##  rtracklayer                         1.50.0   2020-10-27 [1] Bioconductor  
 ##  S4Vectors                         * 0.28.1   2020-12-09 [1] Bioconductor  
-##  scales                              1.1.1    2020-05-11 [1] RSPM (R 4.0.0)
-##  sessioninfo                       * 1.1.1    2018-11-05 [2] RSPM (R 4.0.0)
-##  stringi                             1.5.3    2020-09-09 [2] RSPM (R 4.0.2)
-##  stringr                             1.4.0    2019-02-10 [2] RSPM (R 4.0.0)
+##  scales                              1.1.1    2020-05-11 [1] RSPM (R 4.0.3)
+##  sessioninfo                       * 1.1.1    2018-11-05 [2] RSPM (R 4.0.3)
+##  stringi                             1.5.3    2020-09-09 [2] RSPM (R 4.0.3)
+##  stringr                             1.4.0    2019-02-10 [2] RSPM (R 4.0.3)
 ##  SummarizedExperiment                1.20.0   2020-10-27 [1] Bioconductor  
 ##  survival                            3.2-7    2020-09-28 [3] CRAN (R 4.0.3)
-##  systemfonts                         0.3.2    2020-09-29 [1] RSPM (R 4.0.3)
-##  textshaping                         0.2.1    2020-11-13 [1] RSPM (R 4.0.3)
-##  tibble                              3.0.4    2020-10-12 [2] RSPM (R 4.0.2)
-##  tidyselect                          1.1.0    2020-05-11 [1] RSPM (R 4.0.0)
-##  TxDb.Hsapiens.UCSC.hg19.knownGene * 3.2.2    2020-12-17 [1] Bioconductor  
+##  systemfonts                         1.0.1    2021-02-09 [1] RSPM (R 4.0.3)
+##  textshaping                         0.3.0    2021-02-10 [1] RSPM (R 4.0.3)
+##  tibble                              3.0.6    2021-01-29 [2] RSPM (R 4.0.3)
+##  tidyselect                          1.1.0    2020-05-11 [1] RSPM (R 4.0.3)
+##  TxDb.Hsapiens.UCSC.hg19.knownGene * 3.2.2    2021-05-24 [1] Bioconductor  
 ##  VariantAnnotation                   1.36.0   2020-10-27 [1] Bioconductor  
-##  vctrs                               0.3.5    2020-11-17 [2] RSPM (R 4.0.3)
-##  withr                               2.3.0    2020-09-22 [2] RSPM (R 4.0.2)
-##  xfun                                0.19     2020-10-30 [2] RSPM (R 4.0.3)
-##  XML                                 3.99-0.5 2020-07-23 [1] RSPM (R 4.0.2)
-##  xml2                                1.3.2    2020-04-23 [2] RSPM (R 4.0.0)
+##  vctrs                               0.3.6    2020-12-17 [2] RSPM (R 4.0.3)
+##  withr                               2.4.1    2021-01-26 [2] RSPM (R 4.0.3)
+##  xfun                                0.21     2021-02-10 [2] RSPM (R 4.0.3)
+##  XML                                 3.99-0.5 2020-07-23 [1] RSPM (R 4.0.3)
+##  xml2                                1.3.2    2020-04-23 [2] RSPM (R 4.0.3)
 ##  XVector                             0.30.0   2020-10-27 [1] Bioconductor  
-##  yaml                                2.2.1    2020-02-01 [2] RSPM (R 4.0.0)
+##  yaml                                2.2.1    2020-02-01 [2] RSPM (R 4.0.3)
 ##  zlibbioc                            1.36.0   2020-10-27 [1] Bioconductor  
 ## 
 ## [1] /__w/_temp/Library
@@ -1057,10 +1055,10 @@ Venn diagram of regions by annotation class.
 <a id="bib-carlson2015txdb"></a><a href="#cite-carlson2015txdb">[4]</a><cite> M. Carlson and B. P. Maintainer. <em>TxDb.Hsapiens.UCSC.hg19.knownGene: Annotation package for TxDb object(s)</em>. R package version 3.2.2. 2015.</cite>
 </p>
 <p>
-<a id="bib-colladotorres2017derfinderplot"></a><a href="#cite-colladotorres2017derfinderplot">[5]</a><cite> L. Collado-Torres, A. E. Jaffe, and J. T. Leek. <em>derfinderPlot: Plotting functions for derfinder</em>. <a href="https://github.com/leekgroup/derfinderPlot" class="uri">https://github.com/leekgroup/derfinderPlot</a> - R package version 1.25.1. 2017. DOI: <a href="https://doi.org/10.18129/B9.bioc.derfinderPlot">10.18129/B9.bioc.derfinderPlot</a>. URL: <a href="http://www.bioconductor.org/packages/derfinderPlot">http://www.bioconductor.org/packages/derfinderPlot</a>.</cite>
+<a id="bib-colladotorres2017derfinderplot"></a><a href="#cite-colladotorres2017derfinderplot">[5]</a><cite> L. Collado-Torres, A. E. Jaffe, and J. T. Leek. <em>derfinderPlot: Plotting functions for derfinder</em>. <a href="https://github.com/leekgroup/derfinderPlot" class="uri">https://github.com/leekgroup/derfinderPlot</a> - R package version 1.27.0. 2017. DOI: <a href="https://doi.org/10.18129/B9.bioc.derfinderPlot">10.18129/B9.bioc.derfinderPlot</a>. URL: <a href="http://www.bioconductor.org/packages/derfinderPlot">http://www.bioconductor.org/packages/derfinderPlot</a>.</cite>
 </p>
 <p>
-<a id="bib-colladotorres2020derfinderdata"></a><a href="#cite-colladotorres2020derfinderdata">[6]</a><cite> L. Collado-Torres, A. Jaffe, and J. Leek. <em>derfinderData: Processed BigWigs from BrainSpan for examples</em>. R package version 2.8.0. 2020. URL: <a href="https://github.com/leekgroup/derfinderData">https://github.com/leekgroup/derfinderData</a>.</cite>
+<a id="bib-colladotorres2020derfinderdata"></a><a href="#cite-colladotorres2020derfinderdata">[6]</a><cite> L. Collado-Torres, A. Jaffe, and J. Leek. <em>derfinderData: Processed BigWigs from BrainSpan for examples</em>. R package version 2.8.1. 2020. URL: <a href="https://github.com/leekgroup/derfinderData">https://github.com/leekgroup/derfinderData</a>.</cite>
 </p>
 <p>
 <a id="bib-colladotorres2017flexible"></a><a href="#cite-colladotorres2017flexible">[7]</a><cite> L. Collado-Torres, A. Nellore, A. C. Frazee, et al. “Flexible expressed region analysis for RNA-seq with derfinder”. In: <em>Nucl. Acids Res.</em> (2017). DOI: <a href="https://doi.org/10.1093/nar/gkw852">10.1093/nar/gkw852</a>. URL: <a href="http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852">http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852</a>.</cite>
