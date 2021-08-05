@@ -49,6 +49,8 @@ overlapping in the vicinity of the region of interest." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -60,9 +62,15 @@ overlapping in the vicinity of the region of interest." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -76,19 +84,13 @@ overlapping in the vicinity of the region of interest." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">derfinderPlot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/derfinderPlot.html">Get started</a>
 </li>
 <li>
@@ -131,7 +133,7 @@ annotation exists, you can plot the trancripts and exons (if any)
 overlapping in the vicinity of the region of interest.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotCluster</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>plotCluster</span><span class='op'>(</span>
   <span class='va'>idx</span>,
   <span class='va'>regions</span>,
   <span class='va'>annotation</span>,
@@ -141,7 +143,7 @@ overlapping in the vicinity of the region of interest.</p>
   txdb <span class='op'>=</span> <span class='cn'>NULL</span>,
   p.ideogram <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -230,55 +232,94 @@ determined.</p>
     <p>Leonardo Collado-Torres</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## Load data</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/lcolladotor/derfinder'>"derfinder"</a></span><span class='op'>)</span>
-
-<span class='co'>## Annotate the results with bumphunter::matchGenes()</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/ririzarr/bumphunter'>"bumphunter"</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading required package: S4Vectors</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: stats4</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: BiocGenerics</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: parallel</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'BiocGenerics'</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:parallel':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,</span>
-#&gt; <span class='message'>    clusterExport, clusterMap, parApply, parCapply, parLapply,</span>
-#&gt; <span class='message'>    parLapplyLB, parRapply, parSapply, parSapplyLB</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:stats':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    IQR, mad, sd, var, xtabs</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:base':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    anyDuplicated, append, as.data.frame, basename, cbind, colnames,</span>
-#&gt; <span class='message'>    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,</span>
-#&gt; <span class='message'>    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,</span>
-#&gt; <span class='message'>    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,</span>
-#&gt; <span class='message'>    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,</span>
-#&gt; <span class='message'>    union, unique, unsplit, which.max, which.min</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'S4Vectors'</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:base':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    expand.grid</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: IRanges</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomeInfoDb</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomicRanges</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: foreach</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: iterators</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: locfit</span></div><div class='output co'>#&gt; <span class='message'>locfit 1.5-9.4 	 2020-03-24</span></div><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'>"TxDb.Hsapiens.UCSC.hg19.knownGene"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomicFeatures</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: AnnotationDbi</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: Biobase</span></div><div class='output co'>#&gt; <span class='message'>Welcome to Bioconductor</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    Vignettes contain introductory material; view with</span>
-#&gt; <span class='message'>    'browseVignettes()'. To cite Bioconductor, see</span>
-#&gt; <span class='message'>    'citation("Biobase")', and for packages 'citation("pkgname")'.</span></div><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'>"org.Hs.eg.db"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </div><div class='input'><span class='va'>genes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/bumphunter/man/annotateTranscripts.html'>annotateTranscripts</a></span><span class='op'>(</span>
-    txdb <span class='op'>=</span> <span class='va'>TxDb.Hsapiens.UCSC.hg19.knownGene</span>,
-    annotationPackage <span class='op'>=</span> <span class='st'>"org.Hs.eg.db"</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Getting TSS and TSE.</span></div><div class='output co'>#&gt; <span class='message'>Getting CSS and CSE.</span></div><div class='output co'>#&gt; <span class='message'>Getting exons.</span></div><div class='output co'>#&gt; <span class='message'>Annotating genes.</span></div><div class='input'><span class='va'>annotation</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/bumphunter/man/matchGenes.html'>matchGenes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>genomeRegions</span><span class='op'>$</span><span class='va'>regions</span>, subject <span class='op'>=</span> <span class='va'>genes</span><span class='op'>)</span>
-
-<span class='co'>## Make the plot</span>
-<span class='fu'>plotCluster</span><span class='op'>(</span>
-    idx <span class='op'>=</span> <span class='fl'>1</span>, regions <span class='op'>=</span> <span class='va'>genomeRegions</span><span class='op'>$</span><span class='va'>regions</span>, annotation <span class='op'>=</span> <span class='va'>annotation</span>,
-    coverageInfo <span class='op'>=</span> <span class='va'>genomeDataRaw</span><span class='op'>$</span><span class='va'>coverage</span>, groupInfo <span class='op'>=</span> <span class='va'>genomeInfo</span><span class='op'>$</span><span class='va'>pop</span>,
-    txdb <span class='op'>=</span> <span class='va'>TxDb.Hsapiens.UCSC.hg19.knownGene</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: geom(ideogram) need valid seqlengths information for accurate mapping,</span>
-#&gt; <span class='warning'>                 now use reduced information as ideogram... </span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='message'>Parsing transcripts...</span></div><div class='output co'>#&gt; <span class='message'>Parsing exons...</span></div><div class='output co'>#&gt; <span class='message'>Parsing cds...</span></div><div class='output co'>#&gt; <span class='message'>Parsing utrs...</span></div><div class='output co'>#&gt; <span class='message'>------exons...</span></div><div class='output co'>#&gt; <span class='message'>------cdss...</span></div><div class='output co'>#&gt; <span class='message'>------introns...</span></div><div class='output co'>#&gt; <span class='message'>------utr...</span></div><div class='output co'>#&gt; <span class='message'>aggregating...</span></div><div class='output co'>#&gt; <span class='message'>Done</span></div><div class='output co'>#&gt; <span class='message'>Constructing graphics...</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `panel.margin` is deprecated. Please use `panel.spacing` property instead</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Transformation introduced infinite values in continuous y-axis</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Transformation introduced infinite values in continuous y-axis</span></div><div class='img'><img src='plotCluster-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>## Resize the plot window and the labels will look good.</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'>## For a custom plot, check the ggbio and ggplot2 packages.</span>
-<span class='co'>## Also feel free to look at the code for this function:</span>
-<span class='va'>plotCluster</span>
-<span class='op'>}</span>
-
-</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'>## Load data</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/lcolladotor/derfinder'>"derfinder"</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Annotate the results with bumphunter::matchGenes()</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/rafalab/bumphunter'>"bumphunter"</a></span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: S4Vectors</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: stats4</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: BiocGenerics</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Attaching package: 'BiocGenerics'</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following objects are masked from 'package:stats':</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     IQR, mad, sd, var, xtabs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following objects are masked from 'package:base':</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Filter, Find, Map, Position, Reduce, anyDuplicated, append,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     as.data.frame, basename, cbind, colnames, dirname, do.call,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     tapply, union, unique, unsplit, which.max, which.min</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Attaching package: 'S4Vectors'</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following objects are masked from 'package:base':</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     I, expand.grid, unname</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: IRanges</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: GenomeInfoDb</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: GenomicRanges</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: foreach</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: iterators</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: parallel</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: locfit</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> locfit 1.5-9.4 	 2020-03-24</span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'>"TxDb.Hsapiens.UCSC.hg19.knownGene"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: GenomicFeatures</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: AnnotationDbi</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: Biobase</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Welcome to Bioconductor</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Vignettes contain introductory material; view with</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     'browseVignettes()'. To cite Bioconductor, see</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     'citation("Biobase")', and for packages 'citation("pkgname")'.</span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'>"org.Hs.eg.db"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='va'>genes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/bumphunter/man/annotateTranscripts.html'>annotateTranscripts</a></span><span class='op'>(</span></span>
+<span class='r-in'>    txdb <span class='op'>=</span> <span class='va'>TxDb.Hsapiens.UCSC.hg19.knownGene</span>,</span>
+<span class='r-in'>    annotationPackage <span class='op'>=</span> <span class='st'>"org.Hs.eg.db"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Getting TSS and TSE.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Getting CSS and CSE.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Getting exons.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Annotating genes.</span>
+<span class='r-in'><span class='va'>annotation</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/bumphunter/man/matchGenes.html'>matchGenes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>genomeRegions</span><span class='op'>$</span><span class='va'>regions</span>, subject <span class='op'>=</span> <span class='va'>genes</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Make the plot</span></span>
+<span class='r-in'><span class='fu'>plotCluster</span><span class='op'>(</span></span>
+<span class='r-in'>    idx <span class='op'>=</span> <span class='fl'>1</span>, regions <span class='op'>=</span> <span class='va'>genomeRegions</span><span class='op'>$</span><span class='va'>regions</span>, annotation <span class='op'>=</span> <span class='va'>annotation</span>,</span>
+<span class='r-in'>    coverageInfo <span class='op'>=</span> <span class='va'>genomeDataRaw</span><span class='op'>$</span><span class='va'>coverage</span>, groupInfo <span class='op'>=</span> <span class='va'>genomeInfo</span><span class='op'>$</span><span class='va'>pop</span>,</span>
+<span class='r-in'>    txdb <span class='op'>=</span> <span class='va'>TxDb.Hsapiens.UCSC.hg19.knownGene</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>`guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; = "none")` instead.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Parsing transcripts...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Parsing exons...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Parsing cds...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Parsing utrs...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> ------exons...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> ------cdss...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> ------introns...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> ------utr...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> aggregating...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Done</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Constructing graphics...</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Transformation introduced infinite values in continuous y-axis</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Transformation introduced infinite values in continuous y-axis</span>
+<span class='r-plt'><img src='plotCluster-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'>## Resize the plot window and the labels will look good.</span></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='co'>## For a custom plot, check the ggbio and ggplot2 packages.</span></span>
+<span class='r-in'><span class='co'>## Also feel free to look at the code for this function:</span></span>
+<span class='r-in'><span class='va'>plotCluster</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -290,11 +331,11 @@ determined.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Leonardo Collado-Torres, Andrew E. Jaffe, Jeffrey T. Leek.</p>
+  <p><p>Developed by Leonardo Collado-Torres, Andrew E. Jaffe, Jeffrey T. Leek.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -302,6 +343,8 @@ determined.</p>
 
   
 
+
+  
 
   </body>
 </html>
