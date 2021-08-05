@@ -36,7 +36,7 @@ Bioconductor](http://bioconductor.org/packages/derfinderPlot) or at the
 
 Get the latest stable `R` release from
 [CRAN](http://cran.r-project.org/). Then install `derfinderPlot` from
-using [Bioconductor](http://bioconductor.org/) the following code:
+[Bioconductor](http://bioconductor.org/) using the following code:
 
 ``` r
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
