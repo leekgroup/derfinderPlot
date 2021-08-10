@@ -44,7 +44,8 @@ Suggests:
     covr
 VignetteBuilder: knitr
 Description: This package provides plotting functions for results from the
-    derfinder package.
+    derfinder package. This helps separate the graphical dependencies
+    required for making these plots from the core functionality of derfinder.
 License: Artistic-2.0
 LazyData: false
 URL: https://github.com/leekgroup/derfinderPlot

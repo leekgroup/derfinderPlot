@@ -13,7 +13,6 @@ SIGNIFICANT USER-VISIBLE CHANGES
 * Code in all examples has been re-styled thanks to styler::style_pkg(), see
 dev/02_update.R for details.
 
-
 # derfinderPlot 1.21.2
 
 SIGNIFICANT USER-VISIBLE CHANGES
@@ -23,7 +22,6 @@ SIGNIFICANT USER-VISIBLE CHANGES
 * Added a dev/01_setup.R script.
 * Now using a README.Rmd file.
 
-
 # derfinderPlot 1.21.1
 
 SIGNIFICANT USER-VISIBLE CHANGES
@@ -31,13 +29,13 @@ SIGNIFICANT USER-VISIBLE CHANGES
 * Use GenomeInfoDb::getChromInfoFromUCSC() when possible instead of data
 from biovizBase::hg19Ideogram for getting the hg19 chromosome lengths.
 
-
 # derfinderPlot 1.19.3
+
+SIGNIFICANT USER-VISIBLE CHANGES
 
 * Added a `NEWS.md` file to track changes to the package.
 
 # derfinderPlot 1.17.2
-
 
 NEW FEATURES
 
@@ -46,13 +44,11 @@ http://bioconductor.org/developers/package-guidelines/#description
 
 # derfinderPlot 1.15.1
 
-
 SIGNIFICANT USER-VISIBLE CHANGES
 
 * Use BiocManager
 
 # derfinderPlot 1.13.5
-
 
 BUG FIXES
 
@@ -60,7 +56,6 @@ BUG FIXES
 `hg19IdeogramCyto` object from the `biovizBase` package.
 
 # derfinderPlot 1.13.4
-
 
 BUG FIXES
 
@@ -71,9 +66,7 @@ chromosome (that is, a `seqinfo()` with `seqlengths` specified).
 Thanks to Emily E Burke for reporting this issue
 https://github.com/emilyburke.
 
-
 # derfinderPlot 1.11.2
-
 
 SIGNIFICANT USER-VISIBLE CHANGES
 
@@ -82,13 +75,11 @@ released.
 
 # derfinderPlot 1.7.10
 
-
 SIGNIFICANT USER-VISIBLE CHANGES
 
 * Help pages now document advanced arguments.
 
 # derfinderPlot 1.7.8
-
 
 BUG FIXES
 
@@ -97,13 +88,11 @@ https://github.com/SteveSemick.
 
 # derfinderPlot 1.7.1
 
-
 SIGNIFICANT USER-VISIBLE CHANGES
 
 * Dropped defunct functions.
 
 # derfinderPlot 1.5.8
-
 
 BUG FIXES
 
@@ -115,22 +104,18 @@ but it is a problem when using it with stranded regions.
 
 # derfinderPlot 1.5.4
 
-
 SIGNIFICANT USER-VISIBLE CHANGES
 
 * Only use distance if it's not `NA` in `plotRegionCoverage()`
 
 # derfinderPlot 1.3.4
 
-
 SIGNIFICANT USER-VISIBLE CHANGES
 
 * Dropped `tMatrix()` because it was a confusing plot and also lead to build
 errors.
 
-
 # derfinderPlot 1.3.3
-
 
 NEW FEATURES
 
@@ -143,16 +128,13 @@ plot is similar to interaction plots made for HiC data.
 
 # derfinderPlot 1.3.2
 
-
 NEW FEATURES
 
 * Added the `vennRegions()` function to visualize how many regions overlap
 known exons, introns, intergenic regions, none of them or several of 
 these groups.
 
-
 # derfinderPlot 1.3.1
-
 
 SIGNIFICANT USER-VISIBLE CHANGES
 
@@ -161,21 +143,17 @@ camelCase functions. This was done to simplify the package.
 
 # derfinderPlot 1.1.6
 
-
 SIGNIFICANT USER-VISIBLE CHANGES
 
 * Adapted to work with `bumphunter` version >= 1.7.6
 
 # derfinderPlot 1.1.3
 
-
 BUG FIXES
 
 * Adapted `plotCluster()` and `plotOverview()` to derfinder 1.1.5
 
-
 # derfinderPlot 0.99.0
-
 
 NEW FEATURES
 
@@ -189,7 +167,6 @@ calculated with `derfinder::mergeResults()`
 
 # derfinderPlot 0.0.4
 
-
 SIGNIFICANT USER-VISIBLE CHANGES
 
 * Hid some arguments in `plotCluster()` and `plotOverview()` as advanced just
@@ -202,16 +179,13 @@ fixed the introns on the gene track.
 
 # derfinderPlot 0.0.3
 
-
 SIGNIFICANT USER-VISIBLE CHANGES
 
 * `plotRegionCoverage()` now has a `txdb` argument. When specified, this 
 function will extract the transcript information needed and display
 the transcripts.
 
-
 # derfinderPlot 0.0.1
-
 
 SIGNIFICANT USER-VISIBLE CHANGES
 
