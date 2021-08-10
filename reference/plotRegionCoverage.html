@@ -238,8 +238,8 @@ base of the region as well as the summarized annotation information.</p>
 <span class='r-in'>    regions <span class='op'>=</span> <span class='va'>regions</span>,</span>
 <span class='r-in'>    genomicState <span class='op'>=</span> <span class='va'>genomicState</span><span class='op'>$</span><span class='va'>fullGenome</span>, minoverlap <span class='op'>=</span> <span class='fl'>1</span></span>
 <span class='r-in'><span class='op'>)</span></span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-05 18:19:52 annotateRegions: counting</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-05 18:19:52 annotateRegions: annotating</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:39:18 annotateRegions: counting</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:39:18 annotateRegions: annotating</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'>## Find nearest annotation with bumphunter::matchGenes()</span></span>
 <span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/rafalab/bumphunter'>"bumphunter"</a></span><span class='op'>)</span></span>
@@ -266,8 +266,8 @@ base of the region as well as the summarized annotation information.</p>
 <span class='r-in'><span class='co'>## Get the region coverage</span></span>
 <span class='r-in'><span class='va'>regionCov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/derfinder/man/getRegionCoverage.html'>getRegionCoverage</a></span><span class='op'>(</span>fullCov <span class='op'>=</span> <span class='va'>fullCov</span>, regions <span class='op'>=</span> <span class='va'>regions</span><span class='op'>)</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> extendedMapSeqlevels: sequence names mapped from NCBI to UCSC for species homo_sapiens</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-05 18:20:18 getRegionCoverage: processing chr21</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-05 18:20:18 getRegionCoverage: done processing chr21</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:39:43 getRegionCoverage: processing chr21</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:39:43 getRegionCoverage: done processing chr21</span>
 <span class='r-in'><span class='co'>#</span></span>
 <span class='r-in'><span class='co'>## Make plots for the regions</span></span>
 <span class='r-in'><span class='fu'>plotRegionCoverage</span><span class='op'>(</span></span>
@@ -286,8 +286,8 @@ base of the region as well as the summarized annotation information.</p>
 <span class='r-in'>    annotatedRegions <span class='op'>=</span> <span class='va'>annotatedRegions</span>, whichRegions <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>,</span>
 <span class='r-in'>    txdb <span class='op'>=</span> <span class='va'>TxDb.Hsapiens.UCSC.hg19.knownGene</span></span>
 <span class='r-in'><span class='op'>)</span></span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-05 18:20:18 plotRegionCoverage: extracting Tx info</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-05 18:20:21 plotRegionCoverage: getting Tx plot info</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:39:43 plotRegionCoverage: extracting Tx info</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:39:46 plotRegionCoverage: getting Tx plot info</span>
 <span class='r-plt'><img src='plotRegionCoverage-4.png' alt='' width='700' height='433' /></span>
 <span class='r-plt'><img src='plotRegionCoverage-5.png' alt='' width='700' height='433' /></span>
 <span class='r-plt'><img src='plotRegionCoverage-6.png' alt='' width='700' height='433' /></span>
