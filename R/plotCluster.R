@@ -194,7 +194,7 @@ plotCluster <- function(idx, regions, annotation, coverageInfo, groupInfo,
             x = x,
             xend = xend, y = y, yend = y, size = 3
         ), data = ann_line, colour = "red") +
-            guides(size = FALSE)
+            guides(size = "none")
     } else if (titleUse == "qval") {
         p.region <- autoplot(neighbors, aes(fill = significantQval)) +
             scale_fill_manual(values = c("chartreuse4", "wheat2"), limits = c(
@@ -203,7 +203,7 @@ plotCluster <- function(idx, regions, annotation, coverageInfo, groupInfo,
             )) + geom_segment(aes(
                 x = x, xend = xend, y = y,
                 yend = y, size = 3
-            ), data = ann_line, colour = "red") + guides(size = FALSE)
+            ), data = ann_line, colour = "red") + guides(size = "none")
     } else if (titleUse == "fwer") {
         p.region <- autoplot(neighbors, aes(fill = significantFWER)) +
             scale_fill_manual(values = c("chartreuse4", "wheat2"), limits = c(
@@ -212,20 +212,20 @@ plotCluster <- function(idx, regions, annotation, coverageInfo, groupInfo,
             )) + geom_segment(aes(
                 x = x, xend = xend, y = y,
                 yend = y, size = 3
-            ), data = ann_line, colour = "red") + guides(size = FALSE)
+            ), data = ann_line, colour = "red") + guides(size = "none")
     } else {
         p.region <- autoplot(neighbors) + geom_segment(aes(
             x = x, xend = xend,
             y = y, yend = y, size = 3
         ), data = ann_line, colour = "red") +
-            guides(size = FALSE)
+            guides(size = "none")
     }
 
     ## Graphical parameters
     nGroups <- length(levels(groupInfo))
 
     ## Construct the coverage plot
-    pos <- start(wh):end(wh)
+    pos <- seq(start(wh), end(wh), by = 1)
     rawData <- as.data.frame(coverageInfo[pos, colsubset])
     rawData$position <- pos
     covData <- melt(rawData, id.vars = "position")
@@ -254,6 +254,11 @@ plotCluster <- function(idx, regions, annotation, coverageInfo, groupInfo,
             }
         )
     }
+
+    ## Work-around https://github.com/lawremi/ggbio/issues/159
+    ## with code from https://github.com/lawremi/ggbio/blob/94a43058698a2f251c1ac6f6adf70a31cedd60af/R/Tracks-class.R#L126-L130
+    wh <- c(start(wh), end(wh))
+
     if (!is.logical(p.transcripts)) {
         result <- tracks(p.ideogram,
             Coverage = p.coverage, `Mean coverage` = p.meanCov,
