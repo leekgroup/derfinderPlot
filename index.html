@@ -11,7 +11,8 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Plotting functions for derfinder">
+<script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
+<meta property="og:title" content="Plotting functions for derfinder">
 <meta property="og:description" content="This package provides plotting functions for results from the
     derfinder package. This helps separate the graphical dependencies
     required for making these plots from the core functionality of derfinder.">
@@ -87,8 +88,8 @@
 <p>Get the latest stable <code>R</code> release from <a href="http://cran.r-project.org/" class="external-link">CRAN</a>. Then install <code>derfinderPlot</code> from <a href="http://bioconductor.org/" class="external-link">Bioconductor</a> using the following code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"derfinderPlot"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -98,12 +99,13 @@
 <p>Below is the citation output from using <code>citation('derfinderPlot')</code> in R. Please run this yourself to check for any updates on how to cite <strong>derfinderPlot</strong>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"derfinderPlot"</span><span class="op">)</span>, bibtex <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; To cite package 'derfinderPlot' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Collado-Torres L, Jaffe AE, Leek JT (2017). _derfinderPlot: Plotting</span></span>
-<span><span class="co">#&gt; functions for derfinder_. doi: 10.18129/B9.bioc.derfinderPlot (URL:</span></span>
-<span><span class="co">#&gt; https://doi.org/10.18129/B9.bioc.derfinderPlot),</span></span>
-<span><span class="co">#&gt; https://github.com/leekgroup/derfinderPlot - R package version 1.25.1,</span></span>
-<span><span class="co">#&gt; &lt;URL: http://www.bioconductor.org/packages/derfinderPlot&gt;.</span></span>
+<span><span class="co">#&gt;   Collado-Torres L, Jaffe AE, Leek JT (2017). _derfinderPlot: Plotting</span></span>
+<span><span class="co">#&gt;   functions for derfinder_. doi:10.18129/B9.bioc.derfinderPlot</span></span>
+<span><span class="co">#&gt;   &lt;https://doi.org/10.18129/B9.bioc.derfinderPlot&gt;,</span></span>
+<span><span class="co">#&gt;   https://github.com/leekgroup/derfinderPlot - R package version</span></span>
+<span><span class="co">#&gt;   1.35.0, &lt;http://www.bioconductor.org/packages/derfinderPlot&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -112,15 +114,15 @@
 <span><span class="co">#&gt;     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},</span></span>
 <span><span class="co">#&gt;     year = {2017},</span></span>
 <span><span class="co">#&gt;     url = {http://www.bioconductor.org/packages/derfinderPlot},</span></span>
-<span><span class="co">#&gt;     note = {https://github.com/leekgroup/derfinderPlot - R package version 1.25.1},</span></span>
+<span><span class="co">#&gt;     note = {https://github.com/leekgroup/derfinderPlot - R package version 1.35.0},</span></span>
 <span><span class="co">#&gt;     doi = {10.18129/B9.bioc.derfinderPlot},</span></span>
 <span><span class="co">#&gt;   }</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,</span></span>
-<span><span class="co">#&gt; Irizarry RA, Leek JT, Jaffe AE (2017). "Flexible expressed region</span></span>
-<span><span class="co">#&gt; analysis for RNA-seq with derfinder." _Nucl. Acids Res._. doi:</span></span>
-<span><span class="co">#&gt; 10.1093/nar/gkw852 (URL: https://doi.org/10.1093/nar/gkw852), &lt;URL:</span></span>
-<span><span class="co">#&gt; http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852&gt;.</span></span>
+<span><span class="co">#&gt;   Collado-Torres L, Nellore A, Frazee AC, Wilks C, Love MI, Langmead B,</span></span>
+<span><span class="co">#&gt;   Irizarry RA, Leek JT, Jaffe AE (2017). "Flexible expressed region</span></span>
+<span><span class="co">#&gt;   analysis for RNA-seq with derfinder." _Nucl. Acids Res._.</span></span>
+<span><span class="co">#&gt;   doi:10.1093/nar/gkw852 &lt;https://doi.org/10.1093/nar/gkw852&gt;,</span></span>
+<span><span class="co">#&gt;   &lt;http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -143,14 +145,14 @@
 <h2 id="development-tools">Development tools<a class="anchor" aria-label="anchor" href="#development-tools"></a>
 </h2>
 <ul>
-<li>Continuous code testing is possible thanks to <a href="https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/" class="external-link">GitHub actions</a> through <em><a href="https://CRAN.R-project.org/package=usethis" class="external-link">usethis</a></em>, <em><a href="https://CRAN.R-project.org/package=remotes" class="external-link">remotes</a></em>, <em><a href="https://github.com/r-hub/sysreqs" class="external-link">sysreqs</a></em> and <em><a href="https://CRAN.R-project.org/package=rcmdcheck" class="external-link">rcmdcheck</a></em> customized to use <a href="https://www.bioconductor.org/help/docker/" class="external-link">Bioconductor’s docker containers</a> and <em><a href="https://bioconductor.org/packages/3.12/BiocCheck" class="external-link">BiocCheck</a></em>.</li>
+<li>Continuous code testing is possible thanks to <a href="https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/" class="external-link">GitHub actions</a> through <em><a href="https://CRAN.R-project.org/package=usethis" class="external-link">usethis</a></em>, <em><a href="https://CRAN.R-project.org/package=remotes" class="external-link">remotes</a></em>, <em><a href="https://github.com/r-hub/sysreqs" class="external-link">sysreqs</a></em> and <em><a href="https://CRAN.R-project.org/package=rcmdcheck" class="external-link">rcmdcheck</a></em> customized to use <a href="https://www.bioconductor.org/help/docker/" class="external-link">Bioconductor’s docker containers</a> and <em><a href="https://bioconductor.org/packages/3.17/BiocCheck" class="external-link">BiocCheck</a></em>.</li>
 <li>Code coverage assessment is possible thanks to <a href="https://codecov.io/gh" class="external-link">codecov</a> and <em><a href="https://CRAN.R-project.org/package=covr" class="external-link">covr</a></em>.</li>
 <li>The <a href="http://leekgroup.github.io/derfinderPlot" class="external-link">documentation website</a> is automatically updated thanks to <em><a href="https://CRAN.R-project.org/package=pkgdown" class="external-link">pkgdown</a></em>.</li>
 <li>The code is styled automatically thanks to <em><a href="https://CRAN.R-project.org/package=styler" class="external-link">styler</a></em>.</li>
 <li>The documentation is formatted thanks to <em><a href="https://CRAN.R-project.org/package=devtools" class="external-link">devtools</a></em> and <em><a href="https://CRAN.R-project.org/package=roxygen2" class="external-link">roxygen2</a></em>.</li>
 </ul>
 <p>For more details, check the <code>dev</code> directory.</p>
-<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.12/biocthis" class="external-link">biocthis</a></em>.</p>
+<p>This package was developed using <em><a href="https://bioconductor.org/packages/3.17/biocthis" class="external-link">biocthis</a></em>.</p>
 </div>
 </div>
   </div>
@@ -200,13 +202,18 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://bioconductor.org/checkResults/release/bioc-LATEST/derfinderPlot" class="external-link"><img src="http://www.bioconductor.org/shields/build/release/bioc/derfinderPlot.svg" alt="BioC status"></a></li>
-<li><a href="https://bioconductor.org/checkResults/devel/bioc-LATEST/derfinderPlot" class="external-link"><img src="http://www.bioconductor.org/shields/build/devel/bioc/derfinderPlot.svg" alt="BioC dev status"></a></li>
-<li><a href="https://codecov.io/gh/leekgroup/derfinderPlot?branch=master" class="external-link"><img src="https://codecov.io/gh/leekgroup/derfinderPlot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
+<li><a href="https://bioconductor.org/checkResults/release/bioc-LATEST/derfinderPlot" class="external-link"><img src="http://www.bioconductor.org/shields/build/release/bioc/derfinderPlot.svg" alt="Bioc release status"></a></li>
+<li><a href="https://bioconductor.org/checkResults/devel/bioc-LATEST/derfinderPlot" class="external-link"><img src="http://www.bioconductor.org/shields/build/devel/bioc/derfinderPlot.svg" alt="Bioc devel status"></a></li>
+<li><a href="http://bioconductor.org/packages/stats/bioc/derfinderPlot/" class="external-link"><img src="https://bioconductor.org/shields/downloads/release/derfinderPlot.svg" alt="Bioc downloads rank"></a></li>
+<li><a href="https://support.bioconductor.org/tag/derfinderPlot" class="external-link"><img src="https://bioconductor.org/shields/posts/derfinderPlot.svg" alt="Bioc support"></a></li>
+<li><a href="https://bioconductor.org/packages/release/bioc/html/derfinderPlot.html#since" class="external-link"><img src="https://bioconductor.org/shields/years-in-bioc/derfinderPlot.svg" alt="Bioc history"></a></li>
+<li><a href="http://bioconductor.org/checkResults/devel/bioc-LATEST/derfinderPlot/" class="external-link"><img src="https://bioconductor.org/shields/lastcommit/devel/bioc/derfinderPlot.svg" alt="Bioc last commit"></a></li>
+<li><a href="https://bioconductor.org/packages/release/bioc/html/derfinderPlot.html#since" class="external-link"><img src="https://bioconductor.org/shields/dependencies/release/derfinderPlot.svg" alt="Bioc dependencies"></a></li>
+<li><a href="https://codecov.io/gh/leekgroup/derfinderPlot?branch=devel" class="external-link"><img src="https://codecov.io/gh/leekgroup/derfinderPlot/branch/devel/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://github.com/leekgroup/derfinderPlot/actions" class="external-link"><img src="https://github.com/leekgroup/derfinderPlot/workflows/R-CMD-check-bioc/badge.svg" alt="R build status"></a></li>
-<li><a href="https://support.bioconductor.org/t/derfinderPlot/" class="external-link"><img src="http://www.bioconductor.org/shields/posts/derfinderPlot.svg" alt="Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts."></a></li>
 <li><a href="https://github.com/leekgroup/derfinderPlot/issues" class="external-link"><img src="https://img.shields.io/github/issues/leekgroup/derfinderPlot" alt="GitHub issues"></a></li>
+<li><a href="https://github.com/leekgroup/derfinderPlot/pulls" class="external-link"><img src="https://img.shields.io/github/issues-pr/leekgroup/derfinderPlot" alt="GitHub pulls"></a></li>
 </ul>
 </div>
 
