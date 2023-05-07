@@ -46,7 +46,6 @@
 #'         genomeRegions$regions$significant == "TRUE", main = "Significant only"
 #' )
 vennRegions <- function(annotatedRegions, subsetIndex = NULL, ...) {
-
     ## Check input
     stopifnot("countTable" %in% names(annotatedRegions))
 

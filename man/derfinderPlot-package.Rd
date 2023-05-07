@@ -6,8 +6,7 @@
 \alias{derfinderPlot-package}
 \title{derfinderPlot: Plotting functions for derfinder}
 \description{
-This package provides plotting functions for results from the
-    derfinder package.
+This package provides plotting functions for results from the derfinder package. This helps separate the graphical dependencies required for making these plots from the core functionality of derfinder.
 }
 \seealso{
 Useful links:

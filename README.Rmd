@@ -16,13 +16,18 @@ knitr::opts_chunk$set(
 # derfinderPlot
 
 <!-- badges: start -->
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![BioC status](http://www.bioconductor.org/shields/build/release/bioc/derfinderPlot.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/derfinderPlot)
-[![BioC dev status](http://www.bioconductor.org/shields/build/devel/bioc/derfinderPlot.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/derfinderPlot)
-[![Codecov test coverage](https://codecov.io/gh/leekgroup/derfinderPlot/branch/master/graph/badge.svg)](https://codecov.io/gh/leekgroup/derfinderPlot?branch=master)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Bioc release status](http://www.bioconductor.org/shields/build/release/bioc/derfinderPlot.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/derfinderPlot)
+[![Bioc devel status](http://www.bioconductor.org/shields/build/devel/bioc/derfinderPlot.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/derfinderPlot)
+[![Bioc downloads rank](https://bioconductor.org/shields/downloads/release/derfinderPlot.svg)](http://bioconductor.org/packages/stats/bioc/derfinderPlot/)
+[![Bioc support](https://bioconductor.org/shields/posts/derfinderPlot.svg)](https://support.bioconductor.org/tag/derfinderPlot)
+[![Bioc history](https://bioconductor.org/shields/years-in-bioc/derfinderPlot.svg)](https://bioconductor.org/packages/release/bioc/html/derfinderPlot.html#since)
+[![Bioc last commit](https://bioconductor.org/shields/lastcommit/devel/bioc/derfinderPlot.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/derfinderPlot/)
+[![Bioc dependencies](https://bioconductor.org/shields/dependencies/release/derfinderPlot.svg)](https://bioconductor.org/packages/release/bioc/html/derfinderPlot.html#since)
+[![Codecov test coverage](https://codecov.io/gh/leekgroup/derfinderPlot/branch/devel/graph/badge.svg)](https://codecov.io/gh/leekgroup/derfinderPlot?branch=devel)
 [![R build status](https://github.com/leekgroup/derfinderPlot/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/leekgroup/derfinderPlot/actions)
-[![Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts.](http://www.bioconductor.org/shields/posts/derfinderPlot.svg)](https://support.bioconductor.org/t/derfinderPlot/)
 [![GitHub issues](https://img.shields.io/github/issues/leekgroup/derfinderPlot)](https://github.com/leekgroup/derfinderPlot/issues)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/leekgroup/derfinderPlot)](https://github.com/leekgroup/derfinderPlot/pulls)
 <!-- badges: end -->
 
 Addon package with plotting functions for
@@ -38,8 +43,8 @@ Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then 
 
 ```{r 'install', eval = FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
-      install.packages("BiocManager")
-  }
+    install.packages("BiocManager")
+}
 
 BiocManager::install("derfinderPlot")
 ```

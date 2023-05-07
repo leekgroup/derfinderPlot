@@ -51,6 +51,6 @@ LazyData: false
 URL: https://github.com/leekgroup/derfinderPlot
 BugReports: https://support.bioconductor.org/t/derfinderPlot
 biocViews: DifferentialExpression, Sequencing, RNASeq, Software, Visualization, ImmunoOncology
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

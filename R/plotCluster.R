@@ -101,8 +101,9 @@
 #' plotCluster
 #' }
 #'
-plotCluster <- function(idx, regions, annotation, coverageInfo, groupInfo,
-    titleUse = "qval", txdb = NULL, p.ideogram = NULL, ...) {
+plotCluster <- function(
+        idx, regions, annotation, coverageInfo, groupInfo,
+        titleUse = "qval", txdb = NULL, p.ideogram = NULL, ...) {
     stopifnot(titleUse %in% c("pval", "qval", "fwer", "none"))
     stopifnot(is.factor(groupInfo))
 

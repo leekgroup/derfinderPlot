@@ -108,11 +108,11 @@
 #' dev.off()
 #' }
 #'
-plotRegionCoverage <- function(regions, regionCoverage, groupInfo, nearestAnnotation,
-    annotatedRegions, txdb = NULL, whichRegions = seq_len(min(100, length(regions))),
-    colors = NULL, scalefac = 32, ask = interactive(), ylab = "Coverage",
-    verbose = TRUE) {
-
+plotRegionCoverage <- function(
+        regions, regionCoverage, groupInfo, nearestAnnotation,
+        annotatedRegions, txdb = NULL, whichRegions = seq_len(min(100, length(regions))),
+        colors = NULL, scalefac = 32, ask = interactive(), ylab = "Coverage",
+        verbose = TRUE) {
     ## Check inputs
     stopifnot(length(intersect(names(annotatedRegions), c("annotationList"))) ==
         1)
@@ -230,12 +230,13 @@ plotRegionCoverage <- function(regions, regionCoverage, groupInfo, nearestAnnota
         )
         mtext(ylab, side = 2, line = 2.5, cex = 1.3)
         if (!is.na(nearestAnnotation$distance[i])) {
-            mtext(paste0(
-                nearestAnnotation$name[i], ", ", nearestAnnotation$distance[i],
-                " bp from tss: ", nearestAnnotation$region[i]
-            ),
-            outer = TRUE,
-            cex = 1.3
+            mtext(
+                paste0(
+                    nearestAnnotation$name[i], ", ", nearestAnnotation$distance[i],
+                    " bp from tss: ", nearestAnnotation$region[i]
+                ),
+                outer = TRUE,
+                cex = 1.3
             )
         } else {
             mtext(paste0(
