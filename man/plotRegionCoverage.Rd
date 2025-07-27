@@ -87,7 +87,7 @@ nearestAnnotation <- matchGenes(x = regions, subject = genes)
 fullCov <- list("21" = genomeDataRaw$coverage)
 
 ## Assign chr lengths using hg19 information
-library("GenomicRanges")
+library("GenomeInfoDb")
 seqlengths(regions) <- seqlengths(getChromInfoFromUCSC("hg19",
     as.Seqinfo = TRUE
 ))[

@@ -44,8 +44,7 @@
 #' @importFrom GenomicRanges GRangesList
 #' @importMethodsFrom GenomicRanges names start end '$' as.data.frame
 #' gaps findOverlaps
-#' @importFrom GenomeInfoDb seqlengths 'seqlengths<-' 'seqlevels<-'
-#' seqlevelsInUse
+#' @importFrom Seqinfo seqlengths 'seqlengths<-' 'seqlevels<-' seqlevelsInUse
 #' @importFrom graphics abline axis layout legend matplot mtext par plot
 #' plot.new polygon text
 #' @importFrom grDevices devAskNewPage palette
@@ -72,7 +71,7 @@
 #' fullCov <- list("21" = genomeDataRaw$coverage)
 #'
 #' ## Assign chr lengths using hg19 information
-#' library("GenomicRanges")
+#' library("GenomeInfoDb")
 #' seqlengths(regions) <- seqlengths(getChromInfoFromUCSC("hg19",
 #'     as.Seqinfo = TRUE
 #' ))[
