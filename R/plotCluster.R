@@ -95,6 +95,7 @@
 #'     txdb = TxDb.Hsapiens.UCSC.hg19.knownGene
 #' )
 #' ## Resize the plot window and the labels will look good.
+#'
 #' \dontrun{
 #' ## For a custom plot, check the ggbio and ggplot2 packages.
 #' ## Also feel free to look at the code for this function:
@@ -193,9 +194,8 @@ plotCluster <- function(
             "wheat2"
         ), limits = c("TRUE", "FALSE")) + geom_segment(aes(
             x = x,
-            xend = xend, y = y, yend = y, size = 3
-        ), data = ann_line, colour = "red") +
-            guides(size = "none")
+            xend = xend, y = y, yend = y, linewidth = 3
+        ), data = ann_line, colour = "red")
     } else if (titleUse == "qval") {
         p.region <- autoplot(neighbors, aes(fill = significantQval)) +
             scale_fill_manual(values = c("chartreuse4", "wheat2"), limits = c(
@@ -203,8 +203,8 @@ plotCluster <- function(
                 "FALSE"
             )) + geom_segment(aes(
                 x = x, xend = xend, y = y,
-                yend = y, size = 3
-            ), data = ann_line, colour = "red") + guides(size = "none")
+                yend = y, linewidth = 3
+            ), data = ann_line, colour = "red")
     } else if (titleUse == "fwer") {
         p.region <- autoplot(neighbors, aes(fill = significantFWER)) +
             scale_fill_manual(values = c("chartreuse4", "wheat2"), limits = c(
@@ -212,14 +212,13 @@ plotCluster <- function(
                 "FALSE"
             )) + geom_segment(aes(
                 x = x, xend = xend, y = y,
-                yend = y, size = 3
-            ), data = ann_line, colour = "red") + guides(size = "none")
+                yend = y, linewidth = 3
+            ), data = ann_line, colour = "red")
     } else {
         p.region <- autoplot(neighbors) + geom_segment(aes(
             x = x, xend = xend,
-            y = y, yend = y, size = 3
-        ), data = ann_line, colour = "red") +
-            guides(size = "none")
+            y = y, yend = y, linewidth = 3
+        ), data = ann_line, colour = "red")
     }
 
     ## Graphical parameters
