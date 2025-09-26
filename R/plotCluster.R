@@ -69,7 +69,8 @@
 #' guides scale_y_continuous geom_segment
 #' @importFrom plyr ddply summarise
 #' @importFrom scales log2_trans log_trans
-#' @importFrom GenomeInfoDb seqlevels renameSeqlevels
+#' @importFrom Seqinfo seqlevels
+#' @importFrom GenomeInfoDb renameSeqlevels
 #' @importFrom GenomicFeatures exonsBy
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom derfinder extendedMapSeqlevels
