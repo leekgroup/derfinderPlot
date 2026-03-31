@@ -173,8 +173,8 @@ base of the region as well as the summarized annotation information.</p>
 <span class="r-in"><span>    regions <span class="op">=</span> <span class="va">regions</span>,</span></span>
 <span class="r-in"><span>    genomicState <span class="op">=</span> <span class="va">genomicState</span><span class="op">$</span><span class="va">fullGenome</span>, minoverlap <span class="op">=</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 16:11:28.130206 annotateRegions: counting</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 16:11:28.184872 annotateRegions: annotating</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:51:02.735218 annotateRegions: counting</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:51:02.791204 annotateRegions: annotating</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Find nearest annotation with bumphunter::matchGenes()</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rafalab/bumphunter" class="external-link">"bumphunter"</a></span><span class="op">)</span></span></span>
@@ -203,8 +203,8 @@ base of the region as well as the summarized annotation information.</p>
 <span class="r-in"><span><span class="co">## Get the region coverage</span></span></span>
 <span class="r-in"><span><span class="va">regionCov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/derfinder/man/getRegionCoverage.html" class="external-link">getRegionCoverage</a></span><span class="op">(</span>fullCov <span class="op">=</span> <span class="va">fullCov</span>, regions <span class="op">=</span> <span class="va">regions</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> extendedMapSeqlevels: sequence names mapped from NCBI to UCSC for species homo_sapiens</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 16:12:00.096321 getRegionCoverage: processing chr21</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 16:12:00.124861 getRegionCoverage: done processing chr21</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:51:34.41187 getRegionCoverage: processing chr21</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:51:34.440634 getRegionCoverage: done processing chr21</span>
 <span class="r-in"><span><span class="co">#</span></span></span>
 <span class="r-in"><span><span class="co">## Make plots for the regions</span></span></span>
 <span class="r-in"><span><span class="fu">plotRegionCoverage</span><span class="op">(</span></span></span>
@@ -223,8 +223,8 @@ base of the region as well as the summarized annotation information.</p>
 <span class="r-in"><span>    annotatedRegions <span class="op">=</span> <span class="va">annotatedRegions</span>, whichRegions <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,</span></span>
 <span class="r-in"><span>    txdb <span class="op">=</span> <span class="va">TxDb.Hsapiens.UCSC.hg19.knownGene</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 16:12:00.205411 plotRegionCoverage: extracting Tx info</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 16:12:05.30861 plotRegionCoverage: getting Tx plot info</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:51:34.597573 plotRegionCoverage: extracting Tx info</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 17:51:39.650019 plotRegionCoverage: getting Tx plot info</span>
 <span class="r-plt img"><img src="plotRegionCoverage-4.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="plotRegionCoverage-5.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="plotRegionCoverage-6.png" alt="" width="700" height="433"></span>
@@ -254,7 +254,7 @@ base of the region as well as the summarized annotation information.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>
