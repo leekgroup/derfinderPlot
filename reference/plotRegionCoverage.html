@@ -23,7 +23,7 @@ function."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">derfinderPlot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.41.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.45.0</span>
       </span>
     </div>
 
@@ -173,8 +173,8 @@ base of the region as well as the summarized annotation information.</p>
 <span class="r-in"><span>    regions <span class="op">=</span> <span class="va">regions</span>,</span></span>
 <span class="r-in"><span>    genomicState <span class="op">=</span> <span class="va">genomicState</span><span class="op">$</span><span class="va">fullGenome</span>, minoverlap <span class="op">=</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2024-12-12 22:18:53.768837 annotateRegions: counting</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2024-12-12 22:18:53.820029 annotateRegions: annotating</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 16:11:28.130206 annotateRegions: counting</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 16:11:28.184872 annotateRegions: annotating</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Find nearest annotation with bumphunter::matchGenes()</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rafalab/bumphunter" class="external-link">"bumphunter"</a></span><span class="op">)</span></span></span>
@@ -183,7 +183,9 @@ base of the region as well as the summarized annotation information.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No annotationPackage supplied. Trying org.Hs.eg.db.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Getting TSS and TSE.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Getting CSS and CSE.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>some group names are NAs or duplicated</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Getting exons.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>some group names are NAs or duplicated</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Annotating genes.</span>
 <span class="r-in"><span><span class="va">nearestAnnotation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bumphunter/man/matchGenes.html" class="external-link">matchGenes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">regions</span>, subject <span class="op">=</span> <span class="va">genes</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -191,18 +193,18 @@ base of the region as well as the summarized annotation information.</p>
 <span class="r-in"><span><span class="va">fullCov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"21"</span> <span class="op">=</span> <span class="va">genomeDataRaw</span><span class="op">$</span><span class="va">coverage</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Assign chr lengths using hg19 information</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://bioconductor.org/packages/GenomicRanges" class="external-link">"GenomicRanges"</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">seqlengths</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">seqlengths</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/getChromInfoFromUCSC.html" class="external-link">getChromInfoFromUCSC</a></span><span class="op">(</span><span class="st">"hg19"</span>,</span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://bioconductor.org/packages/GenomeInfoDb" class="external-link">"GenomeInfoDb"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/Seqinfo/man/seqinfo.html" class="external-link">seqlengths</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Seqinfo/man/seqinfo.html" class="external-link">seqlengths</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/getChromInfoFromUCSC.html" class="external-link">getChromInfoFromUCSC</a></span><span class="op">(</span><span class="st">"hg19"</span>,</span></span>
 <span class="r-in"><span>    as.Seqinfo <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span><span class="op">)</span><span class="op">[</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqlevelsStyle.html" class="external-link">mapSeqlevels</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">seqlengths</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span><span class="op">)</span>, <span class="st">"UCSC"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqlevelsStyle.html" class="external-link">mapSeqlevels</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Seqinfo/man/seqinfo.html" class="external-link">seqlengths</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span><span class="op">)</span>, <span class="st">"UCSC"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">]</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Get the region coverage</span></span></span>
 <span class="r-in"><span><span class="va">regionCov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/derfinder/man/getRegionCoverage.html" class="external-link">getRegionCoverage</a></span><span class="op">(</span>fullCov <span class="op">=</span> <span class="va">fullCov</span>, regions <span class="op">=</span> <span class="va">regions</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> extendedMapSeqlevels: sequence names mapped from NCBI to UCSC for species homo_sapiens</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2024-12-12 22:19:18.604488 getRegionCoverage: processing chr21</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2024-12-12 22:19:18.631395 getRegionCoverage: done processing chr21</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 16:12:00.096321 getRegionCoverage: processing chr21</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 16:12:00.124861 getRegionCoverage: done processing chr21</span>
 <span class="r-in"><span><span class="co">#</span></span></span>
 <span class="r-in"><span><span class="co">## Make plots for the regions</span></span></span>
 <span class="r-in"><span><span class="fu">plotRegionCoverage</span><span class="op">(</span></span></span>
@@ -221,8 +223,8 @@ base of the region as well as the summarized annotation information.</p>
 <span class="r-in"><span>    annotatedRegions <span class="op">=</span> <span class="va">annotatedRegions</span>, whichRegions <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,</span></span>
 <span class="r-in"><span>    txdb <span class="op">=</span> <span class="va">TxDb.Hsapiens.UCSC.hg19.knownGene</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2024-12-12 22:19:18.707752 plotRegionCoverage: extracting Tx info</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2024-12-12 22:19:20.33838 plotRegionCoverage: getting Tx plot info</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 16:12:00.205411 plotRegionCoverage: extracting Tx info</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2026-03-31 16:12:05.30861 plotRegionCoverage: getting Tx plot info</span>
 <span class="r-plt img"><img src="plotRegionCoverage-4.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="plotRegionCoverage-5.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="plotRegionCoverage-6.png" alt="" width="700" height="433"></span>
@@ -252,7 +254,7 @@ base of the region as well as the summarized annotation information.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>
